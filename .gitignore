@@ -1,0 +1,38 @@
+# IntelliJ IDEA
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Java compiled files
+*.class
+
+# IntelliJ build output
+out/
+
+# Maven build output
+target/
+
+# Gradle build output
+.gradle/
+build/
+
+# Runtime text-file data
+data/*.txt
+
+# Keep the empty data directory in Git
+!data/.gitkeep
+
+# Log files
+*.log
+
+# Windows files
+Thumbs.db
+Desktop.ini
+
+# macOS files
+.DS_Store
+
+# Temporary files
+*.tmp
+*.temp

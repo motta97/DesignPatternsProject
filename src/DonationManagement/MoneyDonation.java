@@ -1,0 +1,18 @@
+package DonationManagement;
+
+public class MoneyDonation implements DonationType{
+    private double amount ;
+
+    public MoneyDonation(double amount){
+        this.amount = amount ;
+    }
+
+    public double getAmount() {
+        return amount;
+    }
+
+    @Override
+    public String getType() {
+        return "Money Donation";
+    }
+}
