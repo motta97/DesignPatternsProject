@@ -83,9 +83,29 @@ public class DonationController {
 
         String donationType = view.readString("Donation type (money/thing): ");
 
+        if(donationType.equals("thing")){
+            double value = view.readDouble("Amount or quantity: ");
+            Donation donation = facade.makeDonation(donorId, "thing", donationType, value, "");
+            view.showSuccess("Donation created.");
+
+            view.showDonation(donation);
+            return ;
+
+        }
         double value = view.readDouble("Amount or quantity: ");
 
+
+
         String paymentMethod = view.readString("Method (cash/check/online): ");
+
+        if(paymentMethod.equals("cash")){
+            Donation donation = facade.makeDonation(donorId, paymentMethod, donationType, value, "");
+
+            view.showSuccess("Donation created.");
+
+            view.showDonation(donation);
+            return ;
+        }
 
         String paymentDetails = view.readString("Payment details: ");
 

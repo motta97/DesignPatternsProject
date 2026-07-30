@@ -9,13 +9,13 @@ import java.util.Scanner;
 
 public class BeneficiaryController {
 
-    private final BeneficiaryFacade
+    private  BeneficiaryFacade
             beneficiaryFacade;
 
-    private final DonationFacade
+    private  DonationFacade
             donationFacade;
 
-    private final BeneficiaryView view;
+    private  BeneficiaryView view;
 
     public BeneficiaryController(BeneficiaryFacade beneficiaryFacade ,DonationFacade donationFacade ,BeneficiaryView view) {
 
@@ -187,17 +187,13 @@ public class BeneficiaryController {
                                 + "(delivery/collection/transfer): "
                 );
 
-        /*
-         * The Donation module retrieves the Donation.
-         */
+
         Donation donation =
                 donationFacade.findDonation(
                         donationId
                 );
 
-        /*
-         * The Beneficiary module performs distribution.
-         */
+
         beneficiaryFacade
                 .distributeDonation(
                         beneficiaryId,

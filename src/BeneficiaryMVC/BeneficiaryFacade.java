@@ -7,7 +7,7 @@ import java.util.List;
 
 public class BeneficiaryFacade {
 
-    private final BeneficiaryModel model;
+    private  BeneficiaryModel model;
 
     public BeneficiaryFacade(BeneficiaryModel model) {
 

@@ -12,7 +12,7 @@ public  class TextFileManager {
 
     private static TextFileManager instance;
 
-    private final Path dataDirectory;
+    private  Path dataDirectory;
 
     private TextFileManager() {
 

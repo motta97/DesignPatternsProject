@@ -2,7 +2,7 @@ package TextFile;
 
  class TextFileCodec {
 
-    private TextFileCodec() {
+    public TextFileCodec() {
     }
 
     static String encode(String value) {

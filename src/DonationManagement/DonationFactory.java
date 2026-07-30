@@ -49,6 +49,7 @@ public class DonationFactory {
                 return new onlineMethod(Paymentdetails) ;
 
             }
+            case "thing" -> {return new thingmethod() ;}
             default -> {
                 System.out.println("unknown method ");
             }

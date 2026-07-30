@@ -1,15 +1,6 @@
 package TextFile;
 
-import DonationManagement.CashMethod;
-import DonationManagement.CheckMethod;
-import DonationManagement.DonateMethod;
-import DonationManagement.Donation;
-import DonationManagement.DonationFactory;
-import DonationManagement.DonationType;
-import DonationManagement.Donor;
-import DonationManagement.MoneyDonation;
-import DonationManagement.ThingDonation;
-import DonationManagement.onlineMethod;
+import DonationManagement.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -213,7 +204,17 @@ public  class DonationTextFileRepository {
             paymentDetails =
                     online.getCreditCardNumber();
 
-        } else {
+        }
+        else if (
+                method instanceof thingmethod thing) {
+
+            paymentMethod = "online";
+            paymentDetails = "" ;
+
+        }
+
+
+        else {
 
             throw new IllegalArgumentException(
                     "Unsupported payment method: "
