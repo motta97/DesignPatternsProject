@@ -6,7 +6,7 @@ public class VIPDonor extends DonorDecorater{
 
     public VIPDonor(Donor ref) {
 
-        super(ref.getName() , ref.getId() , ref.getPhone() , ref.getEmail() , ref);
+        super(ref.getName() ,  ref.getPhone() , ref.getEmail() , ref);
 
     }
 

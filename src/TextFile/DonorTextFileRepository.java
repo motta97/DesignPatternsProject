@@ -71,7 +71,6 @@ public  class DonorTextFileRepository {
                 Donor donor =
                         DonorFactory.createDonor(
                                 name,
-                                id,
                                 donorType,
                                 phone,
                                 email

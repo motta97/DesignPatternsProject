@@ -1,8 +1,9 @@
 package DonationManagement;
+import utility.User ;
 
 public abstract class Donor extends User {
-    public Donor(String name , int id , String phone , String email){
-        super(name,id,phone,email);
+    public Donor(String name ,  String phone , String email){
+        super(name,phone,email);
 
     }
 

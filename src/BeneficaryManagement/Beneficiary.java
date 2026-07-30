@@ -2,13 +2,15 @@ package BeneficaryManagement;
 
 import DonationManagement.Donation;
 
+import utility.User ;
+
 public class Beneficiary extends User {
 
     private Isupport supp_type ;
     private DistributionStrategy ref ;
 
-    public Beneficiary(String name, int id, String phone, String email) {
-        super(name, id, phone, email);
+    public Beneficiary(String name,  String phone, String email) {
+        super(name,  phone, email);
     }
 
     public void setSupp_type(Isupport supp_type) {

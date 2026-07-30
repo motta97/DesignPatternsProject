@@ -14,9 +14,9 @@ public class BeneficiaryFacade {
         this.model = model;
     }
 
-    public Beneficiary registerBeneficiary(String name, int id, String phone, String email, String distributionType) {
+    public Beneficiary registerBeneficiary(String name,  String phone, String email, String distributionType) {
 
-        return model.registerBeneficiary(name, id, phone, email, distributionType);
+        return model.registerBeneficiary(name,  phone, email, distributionType);
     }
 
     public Beneficiary addSupport(int beneficiaryId, String supportType) {

@@ -1,14 +1,17 @@
-package DonationManagement;
+package utility;
 
 public class User {
-   private String name ;
-   private int id ;
-   private String phone ;
-   private String email ;
 
-    public User(String name, int id, String phone, String email) {
+    private String name ;
+    private static int counter =0 ;
+    private int id ;
+    private String phone ;
+    private String email ;
+
+    public User(String name,  String phone, String email) {
+        counter++ ;
         this.name = name ;
-        this.id = id ;
+        this.id = counter ;
         this.phone = phone ;
         this.email = email ;
     }

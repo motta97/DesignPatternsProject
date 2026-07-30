@@ -76,10 +76,6 @@ public class BeneficiaryController {
         String name =
                 view.readString("Name: ");
 
-        int id =
-                view.readInt(
-                        "Beneficiary ID: "
-                );
 
         String phone =
                 view.readString("Phone: ");
@@ -97,7 +93,6 @@ public class BeneficiaryController {
                 beneficiaryFacade
                         .registerBeneficiary(
                                 name,
-                                id,
                                 phone,
                                 email,
                                 strategy

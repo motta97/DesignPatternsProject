@@ -23,15 +23,11 @@ public class BeneficiaryModel {
         beneficiaries = repository.loadAll();
     }
 
-    public Beneficiary registerBeneficiary(String name, int id, String phone, String email, String distributionType) {
+    public Beneficiary registerBeneficiary(String name,  String phone, String email, String distributionType) {
 
-        if (findBeneficiaryOrNull(id) != null) {
-            throw new IllegalArgumentException(
-                    "Beneficiary ID already exists: " + id
-            );
-        }
 
-            Beneficiary beneficiary = BeneficaryFactory.createBeneficary(name, id, phone, email, distributionType);
+
+            Beneficiary beneficiary = BeneficaryFactory.createBeneficary(name,  phone, email, distributionType);
 
             beneficiaries.add(beneficiary);
 

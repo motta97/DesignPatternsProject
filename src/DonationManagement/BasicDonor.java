@@ -4,8 +4,8 @@ import java.util.ArrayList;
 public class BasicDonor extends Donor {
     private ArrayList<Donation> donations;
 
-    public BasicDonor(String name , int id , String phone , String email){
-        super(name ,id ,phone ,email);
+    public BasicDonor(String name ,  String phone , String email){
+        super(name  ,phone ,email);
         this.donations =new ArrayList<>() ;
     }
 

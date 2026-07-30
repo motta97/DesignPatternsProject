@@ -2,9 +2,9 @@ package BeneficaryManagement;
 
 public class BeneficaryFactory {
 
-    public static Beneficiary createBeneficary(String name, int id, String phone, String email, String distributionType) {
+    public static Beneficiary createBeneficary(String name,  String phone, String email, String distributionType) {
 
-        Beneficiary beneficiary = new Beneficiary(name, id, phone, email);
+        Beneficiary beneficiary = new Beneficiary(name,  phone, email);
 
         beneficiary.setSupp_type(
                 new BasicSupport()

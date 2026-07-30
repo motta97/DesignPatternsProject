@@ -5,7 +5,7 @@ public class PremiumDonor extends DonorDecorater{
 
 
     public PremiumDonor (Donor ref){
-        super(ref.getName() , ref.getId() , ref.getPhone() , ref.getEmail() , ref);
+        super(ref.getName() , ref.getPhone() , ref.getEmail() , ref);
 
     }
 

@@ -2,8 +2,8 @@ package DonationManagement;
 
 public class DonorDecorater extends Donor{
     protected Donor ref ;
-    public DonorDecorater(String name , int id , String phone , String email , Donor ref){
-        super(name , id, phone , email) ;
+    public DonorDecorater(String name ,  String phone , String email , Donor ref){
+        super(name ,  phone , email) ;
             this.ref = ref ;
     }
 

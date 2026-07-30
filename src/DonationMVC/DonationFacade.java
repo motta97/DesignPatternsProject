@@ -14,9 +14,9 @@ public class DonationFacade {
         this.model = model;
     }
 
-    public Donor registerDonor(String name, int id, String donorType, String phone, String email) {
+    public Donor registerDonor(String name, String donorType, String phone, String email) {
 
-        return model.registerDonor(name, id, donorType, phone, email);
+        return model.registerDonor(name,  donorType, phone, email);
     }
 
     public Donation makeDonation(int donorId, String paymentMethod, String donationType, double value, String paymentDetails) {

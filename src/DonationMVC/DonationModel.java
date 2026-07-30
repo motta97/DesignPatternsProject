@@ -31,15 +31,11 @@ public class DonationModel {
 
     }
 
-    public Donor registerDonor(String name, int id, String donorType, String phone, String email) {
+    public Donor registerDonor(String name,  String donorType, String phone, String email) {
 
-        if (findDonorOrNull(id) != null) {
-            throw new IllegalArgumentException(
-                    "Donor ID already exists: " + id
-            );
-        }
 
-        Donor donor = DonorFactory.createDonor(name, id, donorType, phone, email);
+
+        Donor donor = DonorFactory.createDonor(name,  donorType, phone, email);
 
         donors.add(donor);
 

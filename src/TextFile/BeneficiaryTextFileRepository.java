@@ -76,7 +76,6 @@ public  class BeneficiaryTextFileRepository {
                         BeneficaryFactory
                                 .createBeneficary(
                                         name,
-                                        id,
                                         phone,
                                         email,
                                         strategyType

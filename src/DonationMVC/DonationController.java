@@ -62,7 +62,7 @@ public class DonationController {
 
         String name = view.readString("Name: ");
 
-        int id = view.readInt("Donor ID: ");
+
 
         String type = view.readString("Type (basic/premium/vip): ");
 
@@ -70,7 +70,7 @@ public class DonationController {
 
         String email = view.readString("Email: ");
 
-        Donor donor = facade.registerDonor(name, id, type, phone, email);
+        Donor donor = facade.registerDonor(name,  type, phone, email);
 
         view.showSuccess("Donor registered.");
 
