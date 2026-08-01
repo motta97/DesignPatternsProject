@@ -1,6 +1,6 @@
 package Commuincation;
 
-import BeneficaryManagement.User;
+import utility.User;
 
 public interface CommunicationStrategy
 {

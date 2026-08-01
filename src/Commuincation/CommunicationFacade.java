@@ -1,6 +1,6 @@
 package Commuincation;
 
-import BeneficaryManagement.User;
+import utility.User;
 
 import java.util.List;
 
@@ -18,9 +18,12 @@ public class CommunicationFacade {
         return communicationStrategy.send(receiver, message);
 
     }
-    public void sendCampaign(List<User> users, String message){
+    public boolean sendCampaign(List<User> users, String message){
+        boolean result = true;
         for(User user : users){
-            sendMessage(user,message);
+            if(!sendMessage(user,message))
+                result = false;
         }
+        return result;
     }
 }

@@ -19,7 +19,8 @@ public class EventFileManager {
         return events;
 
     }
-    public  void save(){
+    public  void save(List<Event> events){
+        this.events = events;
         //save to a text file
     }
 

@@ -1,6 +1,6 @@
 package EventMVC;
 
-import BeneficaryManagement.User;
+import utility.User;
 import Enums.ReminderType;
 import Event.Event;
 import Event.Attendant;
@@ -11,12 +11,12 @@ import java.util.List;
 
 public class EventContoller {
     private EventRepository eventRepository;
-    private UserRepoisitory userRepoisitory;
+    private UserRepository userRepoisitory;
     private EventView eventView;
 
     public EventContoller(){
         eventRepository = new EventRepository();
-        userRepoisitory = new UserRepoisitory();
+        userRepoisitory = new UserRepository();
         eventView = new EventView();
 
 
@@ -29,11 +29,12 @@ public class EventContoller {
     }
     public void process(int actionID){
         if(actionID==1){
+            //create event
             eventView.showCreateEventMenu();
             String eventName= eventView.getString();
             int eventID= createEvent(eventName);
-            eventView.showEventDetails(eventID);
-            return;
+            eventView.showEventDetails(eventID);//should show the event details based on its id
+            mainMenu();
         }
         if(actionID==2){
             //update an event
@@ -47,7 +48,7 @@ public class EventContoller {
             else {
                 eventView.displayError("FAILED UPDATING EVENT");
             }
-            return;
+            mainMenu();
 
         }
         if(actionID==3){
@@ -58,7 +59,7 @@ public class EventContoller {
                 eventView.displayMessage("SUCCESS REMOVING AN EVENT");
             else
                 eventView.displayError("FAILED REMOVING AN EVENT");
-            return;
+            mainMenu();
         }
         if(actionID==4){
             //send event reminder
@@ -74,9 +75,43 @@ public class EventContoller {
                 eventView.displayError("FAILED SENDING A REMINDER");
 
 
-            return;
+            mainMenu();
 
         }
+        if(actionID==5){
+            //event attend
+
+            eventView.displayMessage("Please enter event ID: ");
+            int eventID = eventView.getInt();
+            eventView.displayMessage("Please enter User ID: ");
+            int userID = eventView.getInt();
+            if(eventAttend(eventID, userID)){
+                eventView.displayMessage("SUCCESS ATTENDING AN EVENT");
+            }
+            else
+                eventView.displayError("FAILED ATTENDING AN EVENT");
+            mainMenu();
+
+        }
+        if(actionID==6){
+            //exit
+            return;
+        }
+        eventView.displayError("ERROR NOT A VALID CHOICE, PLEASE TRY AGAIN");
+        mainMenu();
+    }
+    public boolean eventAttend(int eventID, int userID){
+        Event event = eventRepository.getEvent(eventID);
+        if(event==null){
+            return false;
+        }
+        User user = userRepoisitory.getUser(userID);
+        if(user==null){
+            return false;
+        }
+        event.attend((Attendant)user);
+        return true;
+
     }
     public int createEvent(String eventName){
         Event event = new Event(eventName);
@@ -108,6 +143,7 @@ public class EventContoller {
         for(Attendant a: attendantList){
             if(a.getId()==attendant.getId()){
                 result = true;
+                break;
             }
         }
 
@@ -126,6 +162,7 @@ public class EventContoller {
         }
         else return false;
             event.sendReminder((Attendant) attendant);
+            return true;
 
     }
 }

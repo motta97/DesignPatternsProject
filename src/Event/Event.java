@@ -4,7 +4,7 @@ import Enums.EventType;
 import java.util.List;
 
 public class Event implements Subject, Component {
-    private String eventName;
+    private String eventName="DEFAULT NAME";
     private int eventID;
     private double eventCost;
     private static int nextID=0;

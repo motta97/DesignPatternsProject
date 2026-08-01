@@ -1,14 +1,13 @@
 package EventMVC;
 
-import BeneficaryManagement.User;
-import Commuincation.CommunicationFacade;
+import utility.User;
 
 import java.util.List;
 
-public class UserRepoisitory {
+public class UserRepository {
     private UserFileManager userFileManager;
     private List<User> users;
-    public UserRepoisitory() {
+    public UserRepository() {
         userFileManager = UserFileManager.getInstance();
     }
     public void save(){

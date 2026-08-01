@@ -14,12 +14,13 @@ public class EventRepository {
         eventFileManager = EventFileManager.getInstance();
     }
     public void save(){
-        eventFileManager.save();
+        eventFileManager.save(eventList);
     }
     public void load(){
         eventList=eventFileManager.load();
     }
     public List<Event> getAllEvents(){
+        load();
         return eventList;
     }
     public void addEvent(Event event){

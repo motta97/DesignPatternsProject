@@ -1,7 +1,7 @@
 package Commuincation;
 
 
-import BeneficaryManagement.User;
+import utility.User;
 import Enums.ReminderType;
 import Enums.SocialMediaType;
 import Event.Event;
@@ -17,9 +17,13 @@ public class CommuincationService implements EventObserver {
 
     private List<User> users;
     private UserFileManager userFileManager;
-    public CommuincationService(){
-        event
+    public CommuincationService(Event event){
+        this.event = event;
+        event.registerObserver(this);
 
+    }
+    public CommuincationService(){
+        this.event = null;
     }
     public boolean sendMessage(User reciever, String message, ReminderType reminderType) {
         if(reminderType == ReminderType.SMS){
@@ -37,7 +41,11 @@ public class CommuincationService implements EventObserver {
     @Override
     public void updateEventObserver(String eventNotification){
         this.users=userFileManager.load();
-        communicationFacade.sendCampaign(users,eventNotification);
+        sendCampaign(this.users, eventNotification);
+    }
+    public void sendCampaign(List<User> users, String message){
+        if(!communicationFacade.sendCampaign(users,message))
+            System.out.println("FAILED TOTALLY OR PARTIALLY TO SEND A CAMPAIGN");
     }
     public void postOnSocialMedia(String description, SocialMediaType socialMediaType){
         if(socialMediaType.equals(SocialMediaType.FACEBOOK))
