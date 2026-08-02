@@ -4,6 +4,8 @@
  */
 package volunteermanagement;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Compuomart
@@ -13,28 +15,73 @@ public abstract class Volunteer {
     private String id;
     private String phone;
     private String email;
-    private String preferences;
-    private String qualifications;
+    private String prefs;
+    private Iskills skills;
     private int hoursCount;
+    private Itasks currTask;
+    private ArrayList<Itasks> taskHistory = new ArrayList<>();
+    private Icertificate certificate;
     
-    public Volunteer(String id,String name, String phone, String email, String prefs,String qualifications){
+    public Volunteer(String name, String id, String phone, String email,String prefs){
         this.name = name;
         this.id = id;
         this.phone = phone;
         this.email = email;
-        this.preferences = prefs;
-        this.hoursCount = 0;
-        this.qualifications = qualifications;
+        this.prefs = prefs;
+        currTask = null;
+        hoursCount = 0;
+        skills = new BaseSkill();
+        certificate = new NewComerCertificate();
     }
     public String getName(){
         return name;
     }
+    public String getID(){
+        return id;
+    }
     public String getEmail(){
-        return email;
+        return this.email;
     }
-    public String getPhone(){
-        return phone;
+    public abstract String getRole();
+    public Icertificate getCertificate(){
+        return this.certificate;
     }
-    public abstract void AssignTask();
-    public abstract void UnAssignTask();
+    public Iskills getSkills(){
+        return this.skills;
+    }
+    public void AssignTask(Itasks task){
+        if(currTask == null){
+            currTask = task;
+        }
+        else{
+            System.out.println("Volunteer already has a task!");
+        }
+    }
+    public void CompleteTask(){
+        if(currTask != null){
+            taskHistory.add(currTask);
+            this.hoursCount += currTask.estimatedHours;
+            currTask = null;
+        }
+    }
+}
+
+
+abstract class Itasks{
+    int estimatedHours;
+    public Itasks(int h){
+        this.estimatedHours = h;
+    }
+}
+interface Icertificate{
+    
+}
+class NewComerCertificate implements Icertificate{
+    
+}
+interface Iskills{
+    
+}
+class BaseSkill implements Iskills{
+    
 }
