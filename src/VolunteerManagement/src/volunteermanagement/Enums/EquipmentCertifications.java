@@ -2,16 +2,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Enum.java to edit this template
  */
-package volunteermanagement;
+package volunteermanagement.Enums;
 
 /**
  *
- * @author Compuomart
+ * @author mohandiss
  */
-public enum MedicalFields {
-    Respiratory,
-    Skin,
-    Digestive,
-    Children,
-    Bone_Muscle
+public enum EquipmentCertifications {
+    Forklift,
+    PalletJack
 }
