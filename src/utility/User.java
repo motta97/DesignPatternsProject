@@ -1,5 +1,7 @@
 package utility;
 
+import Enums.UserType;
+
 public class User {
 
     private String name ;
@@ -7,7 +9,7 @@ public class User {
     private int id ;
     private String phone ;
     private String email ;
-
+    private UserType type ;
     public User(String name,  String phone, String email) {
         counter++ ;
         this.name = name ;
@@ -15,10 +17,19 @@ public class User {
         this.phone = phone ;
         this.email = email ;
     }
-
+    public void setType(UserType type){
+        this.type = type;
+    }
+    public UserType getType(){
+        return this.type;
+    }
     public String getName() {
         return name;
     }
+    public void setName(String name) {
+        this.name = name;
+    }
+
 
     public int getId() {
         return id;
@@ -27,8 +38,14 @@ public class User {
     public String getPhone() {
         return phone;
     }
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
 
     public String getEmail() {
         return email;
+    }
+    public void setEmail(String email) {
+        this.email = email;
     }
 }
