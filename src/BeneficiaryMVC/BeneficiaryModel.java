@@ -4,23 +4,33 @@ import BeneficaryManagement.BeneficaryFactory;
 import BeneficaryManagement.Beneficiary;
 import BeneficaryManagement.DistributionStrategy;
 import BeneficaryManagement.Isupport;
+import BeneficaryRequestStatus.BeneficiaryRequest;
 import DonationManagement.Donation;
-import TextFile.BeneficiaryTextFileRepository;
+import TextFile.BeneficiaryRepository;
+import TextFile.BeneficiaryRequestsRepository;
 
-import java.util.Collections;
 import java.util.List;
 
 public class BeneficiaryModel {
 
-    private  BeneficiaryTextFileRepository repository;
+
+    private BeneficiaryRepository repository ;
+
+    private BeneficiaryRequestsRepository requestsRepository ;
 
     private  List<Beneficiary> beneficiaries;
 
+    private List<BeneficiaryRequest> requests ;
+
     public BeneficiaryModel() {
 
-        repository = new BeneficiaryTextFileRepository();
+        repository = new BeneficiaryRepository();
+        beneficiaries = repository.getAll();
+        requestsRepository = new BeneficiaryRequestsRepository() ;
 
-        beneficiaries = repository.loadAll();
+        requests = requestsRepository.getAll() ;
+
+
     }
 
     public Beneficiary registerBeneficiary(String name,  String phone, String email, String distributionType) {
@@ -31,7 +41,7 @@ public class BeneficiaryModel {
 
             beneficiaries.add(beneficiary);
 
-            repository.saveAll(beneficiaries);
+            repository.SaveAll(beneficiaries);
 
             return beneficiary;
 
@@ -44,9 +54,41 @@ public class BeneficiaryModel {
 
         beneficiary.setSupp_type(updatedSupport);
 
-        repository.saveAll(beneficiaries);
+        repository.SaveAll(beneficiaries);
 
         return beneficiary;
+    }
+    public BeneficiaryRequest registeRequest(String request , int beneficiaryid){
+        BeneficiaryRequest Request =BeneficaryFactory.createBeneficiaryRequest(request ,beneficiaryid) ;
+        requests.add(Request) ;
+        requestsRepository.SaveAll(requests);
+        return Request ;
+    }
+    public BeneficiaryRequest findRequestById(int id){
+       for(BeneficiaryRequest request : requests){
+           if(request.getRequestId() == id){
+               return request ;
+           }
+       }
+       return null ;
+    }
+
+    public List<BeneficiaryRequest> getRequests(){
+        return requests ;
+    }
+
+    public void RemoveBenficaryRequest(int requestid){
+        BeneficiaryRequest ref = null ;
+        for(BeneficiaryRequest request : requests){
+            if(request.getBeneficiaryId() == requestid){
+                ref = request ;
+            }
+        }
+        if(ref != null){
+            requests.remove(ref) ;
+            requestsRepository.SaveAll(requests);
+        }
+        System.out.println("Not found this request");
     }
 
     public Beneficiary changeDistributionStrategy(int beneficiaryId, String strategyType) {
@@ -57,7 +99,7 @@ public class BeneficiaryModel {
 
         beneficiary.setRef(strategy);
 
-        repository.saveAll(beneficiaries);
+        repository.SaveAll(beneficiaries);
 
         return beneficiary;
     }
@@ -72,20 +114,9 @@ public class BeneficiaryModel {
 
         beneficiary.distributeDonation(donation);
 
-        repository.saveAll(beneficiaries);
+        repository.SaveAll(beneficiaries);
     }
 
-    public Beneficiary findBeneficiaryById(int id) {
-
-        Beneficiary beneficiary = findBeneficiaryOrNull(id);
-
-        if (beneficiary == null) {
-
-            throw new IllegalArgumentException("Beneficiary not found: " + id);
-        }
-
-        return beneficiary;
-    }
 
     public List<Beneficiary>
     getAllBeneficiaries() {
@@ -93,11 +124,9 @@ public class BeneficiaryModel {
         return beneficiaries;
     }
 
-    private Beneficiary findBeneficiaryOrNull(
-            int id) {
+    public Beneficiary findBeneficiaryById(int id) {
 
-        for (Beneficiary beneficiary :
-                beneficiaries) {
+        for (Beneficiary beneficiary : beneficiaries) {
 
             if (beneficiary.getId() == id) {
                 return beneficiary;
@@ -105,5 +134,19 @@ public class BeneficiaryModel {
         }
 
         return null;
+    }
+
+    public Beneficiary GetLastBeneficiary(){
+        return beneficiaries.getLast() ;
+    }
+    public void removeBeneficiaryById(int id){
+        Beneficiary ref = beneficiaries.get(--id) ;
+        if(ref != null){
+            beneficiaries.remove(ref) ;
+            repository.SaveAll(beneficiaries);
+        }else {
+            System.out.println("Beneficiary Not found");
+        }
+
     }
 }

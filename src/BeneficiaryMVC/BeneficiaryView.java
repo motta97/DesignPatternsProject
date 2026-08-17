@@ -1,16 +1,16 @@
 package BeneficiaryMVC;
 
 import BeneficaryManagement.Beneficiary;
+import BeneficaryRequestStatus.BeneficiaryRequest;
 
 import java.util.List;
 import java.util.Scanner;
 
 public class BeneficiaryView {
 
-    private final Scanner scanner;
+    private  Scanner scanner;
 
-    public BeneficiaryView(
-            Scanner scanner) {
+    public BeneficiaryView(Scanner scanner) {
 
         this.scanner = scanner;
     }
@@ -26,12 +26,29 @@ public class BeneficiaryView {
                 4. Distribute donation
                 5. Show all beneficiaries
                 6. Find beneficiary by ID
+                7. Undo Register of Beneficiary
+                8. Register Request
+                9. Show all Requests
+                10. Track a Request
                 0. Return to main menu
                 """);
     }
 
-    public String readString(
-            String message) {
+
+    public void TrackRequest(){
+
+        System.out.println("""
+                ===== Beneficiary Request =====
+                1.Approve Request
+                2.Reject Request
+                3.Start Distrbution
+                4.Complete Request
+                5. Process new Request
+                0. Return Back
+                """);
+    }
+
+    public String readString(String message) {
 
         System.out.print(message);
 
@@ -49,9 +66,7 @@ public class BeneficiaryView {
 
             } catch (NumberFormatException exception) {
 
-                showError(
-                        "Please enter a valid integer."
-                );
+
             }
         }
     }
@@ -80,13 +95,28 @@ public class BeneficiaryView {
         }
     }
 
-    public void showSuccess(String message) {
+    public void showRequests(List<BeneficiaryRequest> Requests){
+        System.out.println("\n--- Beneficiary Requests ---");
 
-        System.out.println("Success: " + message);
+        if (Requests.isEmpty()) {
+
+            System.out.println("No Requests found.");
+
+            return;
+        }
+        for (BeneficiaryRequest request : Requests) {
+
+            System.out.println(request);
+        }
+
     }
 
-    public void showError(String message) {
-
-        System.out.println("Error: " + message);
+    public void showError(String message){
+        System.out.println(message);
     }
+    public void showSuccess(String message){
+        System.out.println(message);
+    }
+
+
 }

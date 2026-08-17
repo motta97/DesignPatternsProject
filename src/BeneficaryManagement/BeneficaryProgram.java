@@ -1,18 +1,21 @@
 package BeneficaryManagement;
 
+import utility.Observer;
+import utility.Subject;
+
 import java.util.ArrayList;
 
-public class BeneficaryProgram {
-    ArrayList<observerBeneficaryProgram> observers ;
+public class BeneficaryProgram implements Subject {
+    ArrayList<Observer> observers ;
 
     public BeneficaryProgram(){
         observers = new ArrayList<>() ;
     }
-    public void add(observerBeneficaryProgram ref){
+    public void add(Observer ref){
         observers.add(ref) ;
     }
 
-    public void remove (observerBeneficaryProgram ref){
+    public void remove (Observer ref){
     observers.remove(ref) ;
 
     }

@@ -16,4 +16,9 @@ public class CheckMethod implements DonateMethod {
         System.out.println("[checking with the bank the check validaity] . . . . . . ");
         System.out.println("[check is ok]");
     }
+
+    @Override
+    public String getMethodType() {
+        return "CheckMethod";
+    }
 }

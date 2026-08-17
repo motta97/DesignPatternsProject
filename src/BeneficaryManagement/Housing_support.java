@@ -12,6 +12,6 @@ public class Housing_support extends supportDecorater{
 
     @Override
     public String getSupport() {
-        return ref.getSupport()+" + Housing Support";
+        return ref.getSupport()+" + , Housing ";
     }
 }

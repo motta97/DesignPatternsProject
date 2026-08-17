@@ -12,6 +12,6 @@ public class Medical_support extends supportDecorater{
 
     @Override
     public String getSupport() {
-        return ref.getSupport()+" + Medical Support";
+        return ref.getSupport()+" + , Medical ";
     }
 }

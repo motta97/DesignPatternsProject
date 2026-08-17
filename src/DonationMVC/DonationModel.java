@@ -4,17 +4,17 @@ import DonationManagement.Donation;
 import DonationManagement.DonationFactory;
 import DonationManagement.Donor;
 import DonationManagement.DonorFactory;
-import TextFile.DonationTextFileRepository;
-import TextFile.DonorTextFileRepository;
+import TextFile.DonaitonRepository;
+import TextFile.DonorRepository;
 
-import java.util.Collections;
 import java.util.List;
 
 public class DonationModel {
 
-    private  DonorTextFileRepository donorRepository;
-    private  DonationTextFileRepository donationRepository;
-
+//    private  DonorTextFileRepository donorRepository;
+//    private  DonationTextFileRepository donationRepository;
+    private DonorRepository donorRepository ;
+    private DonaitonRepository donationRepository;
     private  List<Donor> donors;
     private  List<Donation> donations;
 
@@ -22,11 +22,11 @@ public class DonationModel {
 
 
     public DonationModel(){
-        donorRepository = new DonorTextFileRepository() ;
-        donationRepository = new DonationTextFileRepository() ;
+        donorRepository = new DonorRepository() ;
+        donationRepository = new DonaitonRepository() ;
 
-        donors = donorRepository.loadAll() ;
-        donations = donationRepository.loadAll(donors) ;
+        donors = donorRepository.getAll() ;
+        donations = donationRepository.getAll() ;
 
 
     }
@@ -47,9 +47,8 @@ public class DonationModel {
     public Donation makeDonation(int donorId, String paymentMethod, String donationType, double value, String paymentDetails) {
 
         if (value <= 0) {
-            throw new IllegalArgumentException(
-                    "Donation value must be greater than zero."
-            );
+            System.out.println("The value must be greater than 0");
+            return null ;
         }
 
         Donor donor = findDonorById(donorId);
@@ -63,19 +62,6 @@ public class DonationModel {
         return donation;
     }
 
-    public Donor findDonorById(int id) {
-
-        Donor donor = findDonorOrNull(id);
-
-        if (donor == null) {
-            throw new IllegalArgumentException(
-                    "Donor not found: " + id
-            );
-        }
-
-        return donor;
-    }
-
     public Donation findDonationById(int id) {
 
         for (Donation donation : donations) {
@@ -84,9 +70,7 @@ public class DonationModel {
             }
         }
 
-        throw new IllegalArgumentException(
-                "Donation not found: " + id
-        );
+      return null ;
     }
 
     public List<Donor> getAllDonors() {
@@ -101,7 +85,7 @@ public class DonationModel {
 
     }
 
-    private Donor findDonorOrNull(int id) {
+    public Donor findDonorById(int id) {
 
         for (Donor donor : donors) {
 
@@ -112,4 +96,41 @@ public class DonationModel {
 
         return null;
     }
+
+    public Donation GetLastDonation(){
+
+        return donations.getLast() ;
+    }
+
+    public void RemoveDonationById(int id){
+        Donation ref = donations.get(id) ;
+        if(ref != null){
+            donations.remove(ref) ;
+            donationRepository.saveAll(donations) ;
+        }else {
+            System.out.println("Donation not found");
+        }
+
+
+    }
+
+    public Donor GetLastDonor(){
+
+        return donors.getLast() ;
+    }
+
+    public void RemoveDonorbyId(int id){
+       Donor ref = donors.get(--id) ;
+       if(ref != null){
+
+           donors.remove(ref) ;
+           donorRepository.saveAll(donors);
+
+
+       }else {
+           System.out.println("Donor is not found");
+       }
+    }
+
+
 }

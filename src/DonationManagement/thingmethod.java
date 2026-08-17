@@ -5,4 +5,9 @@ public class thingmethod implements DonateMethod{
     public void ProcessDonation() {
 
     }
+
+    @Override
+    public String getMethodType() {
+        return "thingmethod";
+    }
 }

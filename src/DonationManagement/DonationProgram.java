@@ -1,19 +1,22 @@
 package DonationManagement;
 
+import utility.Observer;
+import utility.Subject;
+
 import java.util.ArrayList;
 
-public class DonationProgram {
-    ArrayList<observerDonationProgram> observers ;
+public class DonationProgram implements Subject {
+    ArrayList<Observer> observers ;
     public DonationProgram(){
         observers = new ArrayList<>() ;
 
     }
 
-    public void add(observerDonationProgram ref){
+    public void add(Observer ref){
         observers.add(ref) ;
     }
 
-    public void remove(observerDonationProgram ref){
+    public void remove(Observer ref){
 
         observers.remove(ref) ;
     }

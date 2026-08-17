@@ -1,5 +1,7 @@
 package BeneficaryManagement;
 
+import BeneficaryRequestStatus.BeneficiaryRequest;
+
 public class BeneficaryFactory {
 
     public static Beneficiary createBeneficary(String name,  String phone, String email, String distributionType) {
@@ -19,6 +21,10 @@ public class BeneficaryFactory {
         return beneficiary;
     }
 
+    public static BeneficiaryRequest createBeneficiaryRequest(String Beneficaryrequest , int Beneficaryid){
+        BeneficiaryRequest request = new BeneficiaryRequest(Beneficaryid , Beneficaryrequest) ;
+        return request ;
+    }
 
     public static Isupport createSupport(String supportType , Isupport curr){
 
@@ -32,19 +38,20 @@ public class BeneficaryFactory {
             return curr ;
         }
 
-        switch (supportType.toLowerCase()){
-
+        switch (supportType.toLowerCase().trim()){
+            case("basic") -> {return curr ;}
             case("medical") ->{return new Medical_support(curr) ;}
             case("educational") -> {return new Educational_support(curr) ;}
             case("housing") -> {return new Housing_support(curr) ;}
+
             default -> {
-                System.out.println("unknown support type");
+                return curr;
             }
 
 
         }
 
-        return curr ;
+
 
     }
 

@@ -12,6 +12,6 @@ public class Educational_support extends supportDecorater{
 
     @Override
     public String getSupport() {
-        return ref.getSupport()+" + Educational Support";
+        return ref.getSupport()+" + , Educational ";
     }
 }

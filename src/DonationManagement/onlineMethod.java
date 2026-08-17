@@ -16,4 +16,9 @@ public class onlineMethod implements DonateMethod {
         System.out.println("[Process Transactions ] . . . . . . . ");
         System.out.println("[payment success]");
     }
+
+    @Override
+    public String getMethodType() {
+        return "onlineMethod";
+    }
 }

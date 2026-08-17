@@ -46,7 +46,10 @@ public class DonationController {
 
                     case 6 ->
                             findDonation();
-
+                    case 7 ->
+                            UndoMakeDonation() ;
+                    case 8 ->
+                            UndoRegisterDonor() ;
                     case 0 ->
                             flag = false;
 
@@ -58,7 +61,7 @@ public class DonationController {
         }
     }
 
-    private void registerDonor() {
+    public void registerDonor() {
 
         String name = view.readString("Name: ");
 
@@ -77,7 +80,7 @@ public class DonationController {
         view.showDonor(donor);
     }
 
-    private void makeDonation() {
+    public void makeDonation() {
 
         int donorId = view.readInt("Donor ID: ");
 
@@ -116,7 +119,7 @@ public class DonationController {
         view.showDonation(donation);
     }
 
-    private void findDonor() {
+    public void findDonor() {
 
         int id = view.readInt("Donor ID: ");
 
@@ -125,12 +128,20 @@ public class DonationController {
         view.showDonor(donor);
     }
 
-    private void findDonation() {
+    public void findDonation() {
 
         int id = view.readInt("Donation ID: ");
 
         Donation donation = facade.findDonation(id);
 
         view.showDonation(donation);
+    }
+
+    public void UndoMakeDonation(){
+        facade.UndoMakeDonation();
+    }
+
+    public void UndoRegisterDonor(){
+        facade.UndoRegisterDonor();
     }
 }

@@ -25,6 +25,8 @@ public class DonationView {
                 4. Show all donations
                 5. Find donor by ID
                 6. Find donation by ID
+                7. Undo Of Making Donation
+                8. Undo Of Registering the Donor
                 0. Return to main menu
                 """);
     }

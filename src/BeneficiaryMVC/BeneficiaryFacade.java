@@ -1,13 +1,17 @@
 package BeneficiaryMVC;
 
 import BeneficaryManagement.Beneficiary;
+import BeneficaryRequestStatus.BeneficiaryRequest;
+import Commands.RegisterBeneficiaryUndoCommand;
 import DonationManagement.Donation;
+import utility.Command;
 
 import java.util.List;
 
 public class BeneficiaryFacade {
 
     private  BeneficiaryModel model;
+    private Command slot ;
 
     public BeneficiaryFacade(BeneficiaryModel model) {
 
@@ -43,4 +47,26 @@ public class BeneficiaryFacade {
 
         return model.getAllBeneficiaries();
     }
+    public void SetCommand(Command ref){
+        this.slot = ref ;
+    }
+    public void UndoRegisterBenefcairy(){
+        SetCommand(new RegisterBeneficiaryUndoCommand(model));
+        slot.Undo();
+    }
+
+    public List<BeneficiaryRequest> getAllRequests() {
+
+        return model.getRequests();
+    }
+
+    public BeneficiaryRequest registerRequest(String request , int beneficiaryid){
+        return model.registeRequest(request , beneficiaryid) ;
+    }
+
+    public BeneficiaryRequest findRquest(int id){
+        return model.findRequestById(id) ;
+    }
+
+
 }

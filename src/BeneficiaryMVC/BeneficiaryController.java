@@ -1,9 +1,13 @@
 package BeneficiaryMVC;
 
 import BeneficaryManagement.Beneficiary;
+import BeneficaryRequestStatus.BeneficiaryRequest;
+import BeneficaryRequestStatus.RequestState;
+import Commands.RegisterBeneficiaryUndoCommand;
 import DonationMVC.DonationFacade;
 import DonationMVC.DonationModel;
 import DonationManagement.Donation;
+import utility.Command;
 
 import java.util.Scanner;
 
@@ -16,6 +20,8 @@ public class BeneficiaryController {
             donationFacade;
 
     private  BeneficiaryView view;
+
+
 
     public BeneficiaryController(BeneficiaryFacade beneficiaryFacade ,DonationFacade donationFacade ,BeneficiaryView view) {
 
@@ -57,7 +63,14 @@ public class BeneficiaryController {
 
                     case 6 ->
                             findBeneficiary();
-
+                    case 7 ->
+                            undoRegisterBeneficary() ;
+                    case 8 ->
+                            registerRequest() ;
+                    case 9 ->
+                            view.showRequests(beneficiaryFacade.getAllRequests()) ;
+                    case 10 ->
+                            trackRequest() ;
                     case 0 ->
                             flag = false;
 
@@ -71,71 +84,38 @@ public class BeneficiaryController {
         }
     }
 
-    private void registerBeneficiary() {
+    public void registerBeneficiary() {
 
-        String name =
-                view.readString("Name: ");
+        String name = view.readString("Name: ");
 
 
-        String phone =
-                view.readString("Phone: ");
+        String phone = view.readString("Phone: ");
 
-        String email =
-                view.readString("Email: ");
+        String email = view.readString("Email: ");
 
-        String strategy =
-                view.readString(
-                        "Strategy "
-                                + "(delivery/collection/transfer): "
-                );
+        String strategy = view.readString("Strategy " + "(delivery/collection/transfer): ");
 
-        Beneficiary beneficiary =
-                beneficiaryFacade
-                        .registerBeneficiary(
-                                name,
-                                phone,
-                                email,
-                                strategy
-                        );
+        Beneficiary beneficiary = beneficiaryFacade.registerBeneficiary(name, phone, email, strategy);
 
-        view.showSuccess(
-                "Beneficiary registered."
-        );
+        view.showSuccess("Beneficiary registered.");
 
-        view.showBeneficiary(
-                beneficiary
-        );
+        view.showBeneficiary(beneficiary);
     }
 
-    private void addSupport() {
+    public void addSupport() {
 
-        int beneficiaryId =
-                view.readInt(
-                        "Beneficiary ID: "
-                );
+        int beneficiaryId = view.readInt("Beneficiary ID: ");
 
-        String supportType =
-                view.readString(
-                        "Support "
-                                + "(medical/housing/educational): "
-                );
+        String supportType = view.readString("Support " + "(medical/housing/educational): ");
 
-        Beneficiary beneficiary =
-                beneficiaryFacade.addSupport(
-                        beneficiaryId,
-                        supportType
-                );
+        Beneficiary beneficiary = beneficiaryFacade.addSupport(beneficiaryId, supportType);
 
-        view.showSuccess(
-                "Support added."
-        );
+        view.showSuccess("Support added.");
 
-        view.showBeneficiary(
-                beneficiary
-        );
+        view.showBeneficiary(beneficiary);
     }
 
-    private void changeStrategy() {
+    public void changeStrategy() {
 
         int beneficiaryId =
                 view.readInt(
@@ -164,7 +144,7 @@ public class BeneficiaryController {
         );
     }
 
-    private void distributeDonation() {
+    public void distributeDonation() {
 
         int beneficiaryId =
                 view.readInt(
@@ -201,7 +181,7 @@ public class BeneficiaryController {
         );
     }
 
-    private void findBeneficiary() {
+    public void findBeneficiary() {
 
         int id =
                 view.readInt(
@@ -216,4 +196,44 @@ public class BeneficiaryController {
                 beneficiary
         );
     }
+
+    public void undoRegisterBeneficary(){
+        beneficiaryFacade.UndoRegisterBenefcairy();
+
+    }
+
+    public void registerRequest(){
+        String request = view.readString("Request: ");
+        int beneficiaryId = view.readInt("Beneficary Id : ");
+      BeneficiaryRequest Request = beneficiaryFacade.registerRequest(request ,beneficiaryId) ;
+        view.showSuccess("Request registered.");
+        System.out.println(Request);
+    }
+
+    public void trackRequest(){
+        int requestId =view.readInt("Enter Request Id : ") ;
+        BeneficiaryRequest request =beneficiaryFacade.findRquest(requestId) ;
+        if(request == null){
+            return ;
+        }
+
+        boolean flag = true ;
+        while(flag){
+            view.TrackRequest();
+            RequestState state = request.GetState() ;
+
+            int choice =view.readInt("Enter your choice : ") ;
+            switch(choice){
+                case 1 -> state.approve(request);
+                case 2 -> state.reject(request);
+                case 3 -> state.startDistribution(request);
+                case 4 -> state.complete(request);
+                case 5 -> state.processNew(request);
+                case 0 -> flag =false ;
+            }
+        }
+    }
+
+
+
 }

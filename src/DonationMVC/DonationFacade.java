@@ -1,13 +1,17 @@
 package DonationMVC;
 
+import Commands.MakeDonationUndoCommand;
+import Commands.RegisterDonorUndoCommand;
 import DonationManagement.Donation;
 import DonationManagement.Donor;
+import utility.Command;
 
 import java.util.List;
 
 public class DonationFacade {
 
     private  DonationModel model;
+    private Command slot;
 
     public DonationFacade(DonationModel model) {
 
@@ -43,4 +47,19 @@ public class DonationFacade {
 
         return model.getAllDonations();
     }
+
+    public void SetCommand(Command ref){
+        slot = ref ;
+    }
+
+    public void UndoRegisterDonor(){
+        SetCommand(new RegisterDonorUndoCommand(model));
+        slot.Undo();
+    }
+
+    public void UndoMakeDonation(){
+        SetCommand(new MakeDonationUndoCommand(model));
+        slot.Undo();
+    }
+
 }
