@@ -4,6 +4,7 @@
  */
 package volunteermanagement;
 
+import Tasks.Itasks;
 import volunteermanagement.Enums.MedicalDiagnosis;
 import volunteermanagement.Enums.EquipmentCertifications;
 import java.util.ArrayList;
@@ -81,5 +82,11 @@ public class PhysicalLaborVolunteer extends Volunteer {
         this.isAvailable = true;
         this.currMaxLiftingCapacity = this.originalLiftingCapacity;
         this.currRequiredWeekHours = this.originalWeekHours;
+    }
+
+    @Override
+    boolean checkRole(Itasks task) {
+        //still need physical labor tasks
+        return false;
     }
 }
