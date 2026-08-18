@@ -11,8 +11,7 @@ public abstract class Donor extends User {
     public abstract String showBenefits() ;
     @Override
     public String toString() {
-        return "Donor{" +
-                "id=" + getId() +
+        return "Donor{" + "id=" + getId() +
                 ", name='" + getName() + '\'' +
                 ", phone='" + getPhone() + '\'' +
                 ", email='" + getEmail() + '\'' +

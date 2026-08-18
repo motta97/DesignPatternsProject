@@ -42,15 +42,9 @@ public class Beneficiary extends User {
     @Override
     public String toString() {
 
-        String supportDescription =
-                supp_type == null
-                        ? "No support"
-                        : supp_type.getSupport();
+        String supportDescription = supp_type == null ? "No support" : supp_type.getSupport();
 
-        String strategyName =
-                ref == null
-                        ? "No strategy"
-                        : ref.getClass().getSimpleName();
+        String strategyName = ref == null ? "No strategy" : ref.getClass().getSimpleName();
 
         return "Beneficiary{" +
                 "id=" + getId() +

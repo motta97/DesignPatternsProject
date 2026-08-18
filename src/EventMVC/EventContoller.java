@@ -25,7 +25,7 @@ public class EventContoller {
 
         eventView.showEventMainMenu();
         int choice = eventView.getInt();
-        process(choise);
+        process(choice);
     }
     public void process(int actionID){
         if(actionID==1){

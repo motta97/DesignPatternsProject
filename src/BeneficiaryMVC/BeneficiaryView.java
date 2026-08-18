@@ -30,6 +30,7 @@ public class BeneficiaryView {
                 8. Register Request
                 9. Show all Requests
                 10. Track a Request
+                11. Generate a Report
                 0. Return to main menu
                 """);
     }
@@ -57,18 +58,9 @@ public class BeneficiaryView {
 
     public int readInt(String message) {
 
-        while (true) {
-
-            try {
-                return Integer.parseInt(
-                        readString(message)
-                );
-
-            } catch (NumberFormatException exception) {
+           return Integer.parseInt(readString(message));
 
 
-            }
-        }
     }
 
     public void showBeneficiary(Beneficiary beneficiary) {
@@ -111,12 +103,7 @@ public class BeneficiaryView {
 
     }
 
-    public void showError(String message){
-        System.out.println(message);
-    }
-    public void showSuccess(String message){
-        System.out.println(message);
-    }
+
 
 
 }

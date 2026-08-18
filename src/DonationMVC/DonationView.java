@@ -27,6 +27,7 @@ public class DonationView {
                 6. Find donation by ID
                 7. Undo Of Making Donation
                 8. Undo Of Registering the Donor
+                9. Generate a Report
                 0. Return to main menu
                 """);
     }

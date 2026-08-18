@@ -2,6 +2,8 @@ package DonationMVC;
 
 import DonationManagement.Donation;
 import DonationManagement.Donor;
+import Report.DonationReport;
+import Report.Report;
 
 import java.util.Scanner;
 
@@ -50,6 +52,8 @@ public class DonationController {
                             UndoMakeDonation() ;
                     case 8 ->
                             UndoRegisterDonor() ;
+                    case 9->
+                            facade.GenerateReport() ;
                     case 0 ->
                             flag = false;
 
@@ -144,4 +148,5 @@ public class DonationController {
     public void UndoRegisterDonor(){
         facade.UndoRegisterDonor();
     }
+
 }

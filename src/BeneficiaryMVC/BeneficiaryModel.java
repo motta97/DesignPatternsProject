@@ -118,8 +118,7 @@ public class BeneficiaryModel {
     }
 
 
-    public List<Beneficiary>
-    getAllBeneficiaries() {
+    public List<Beneficiary> getAllBeneficiaries() {
 
         return beneficiaries;
     }
@@ -148,5 +147,8 @@ public class BeneficiaryModel {
             System.out.println("Beneficiary Not found");
         }
 
+    }
+    public void savechangesTorequestReposiotry() {
+        requestsRepository.SaveAll(requests);
     }
 }

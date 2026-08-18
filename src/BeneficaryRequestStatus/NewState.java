@@ -1,30 +1,42 @@
 package BeneficaryRequestStatus;
 
+import TextFile.TextFileHandler;
+import utility.txtGetter;
+
+import java.util.List;
+
 public class NewState implements RequestState{
     @Override
     public void approve(BeneficiaryRequest request) {
-        System.out.println("Cannot Do this Transaction");
+
+        System.out.println(txtGetter.getMessage("ErrorMessage","src/BeneficaryRequestStatus/RequestStatusMessages.txt"));
     }
 
     @Override
     public void reject(BeneficiaryRequest request) {
-        System.out.println("Cannot Do this Transaction");
+
+        System.out.println(txtGetter.getMessage("ErrorMessage","src/BeneficaryRequestStatus/RequestStatusMessages.txt"));
     }
 
     @Override
     public void startDistribution(BeneficiaryRequest request) {
-        System.out.println("Cannot Do this Transaction");
+
+        System.out.println(txtGetter.getMessage("ErrorMessage","src/BeneficaryRequestStatus/RequestStatusMessages.txt"));
     }
 
     @Override
     public void complete(BeneficiaryRequest request) {
-        System.out.println("Cannot Do this Transaction");
+
+        System.out.println(txtGetter.getMessage("ErrorMessage","src/BeneficaryRequestStatus/RequestStatusMessages.txt"));
     }
     @Override
     public void processNew(BeneficiaryRequest request){
         request.SetState(new PendingState());
-        System.out.println("[New State] moved to Pending State . . . . ");
+        System.out.println(txtGetter.getMessage("processNew","src/BeneficaryRequestStatus/RequestStatusMessages.txt"));
+
     }
+
+
 
     @Override
     public String getStatus() {

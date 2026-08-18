@@ -62,21 +62,18 @@ public class BeneficaryFactory {
         if (strategy == null || strategy.isBlank()) {
             return new Collection();
         }
+        DistributionStrategy ref = new Collection() ;
 
-        return switch (strategy.trim().toLowerCase()) {
-            case "collect", "collection" ->
-                    new Collection();
+         switch (strategy.trim().toLowerCase()) {
+            case "collect", "collection" -> ref = new Collection();
 
-            case "delivery" ->
-                    new HomeDelivery();
+            case "delivery" ->ref = new HomeDelivery();
 
-            case "transfer" ->
-                    new DigitalTransfer();
+            case "transfer" ->ref = new DigitalTransfer();
 
-            default ->
-                    throw new IllegalArgumentException(
-                            "Unknown strategy: " + strategy
-                    );
-        };
+            case "external" ->ref =  new DeliveryAdapter(new ExternalDelivery()) ;
+
+        }
+         return ref ;
     }
 }

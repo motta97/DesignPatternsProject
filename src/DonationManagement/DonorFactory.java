@@ -6,36 +6,21 @@ public class DonorFactory {
 
     public static Donor createDonor(String name,  String type, String phone, String email) {
 
-        if (type == null || type.isBlank()) {
-            throw new IllegalArgumentException(
-                    "Donor type is required."
-            );
-        }
+      Donor donor = new BasicDonor(name,  phone, email) ;
 
-        return switch (type.trim().toLowerCase()) {
-            case "basic" ->
-                    new BasicDonor(
-                            name,  phone, email
-                    );
+         switch (type.trim().toLowerCase()) {
 
-            case "premium" ->
-                    new PremiumDonor(
-                            new BasicDonor(
-                                    name,  phone, email
-                            )
-                    );
+
+            case "premium" ->{
+                donor=  new PremiumDonor(donor);}
+
 
             case "vip" ->
-                    new VIPDonor(
-                            new BasicDonor(
-                                    name,  phone, email
-                            )
-                    );
+                    donor= new VIPDonor(new PremiumDonor(donor));
 
-            default ->
-                    throw new IllegalArgumentException(
-                            "Unknown donor type: " + type
-                    );
+
+
         };
+    return donor;
     }
 }

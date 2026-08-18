@@ -1,4 +1,6 @@
 package DonationManagement;
+import utility.txtGetter;
+
 import java.util.ArrayList;
 
 public class BasicDonor extends Donor {
@@ -29,11 +31,11 @@ public class BasicDonor extends Donor {
 
     @Override
     public String getDescription() {
-        return "Name with Basic ";
+        return txtGetter.getMessage("BasicDonor_getDescription","src/DonationManagement/DonationManagementMessages.txt");
     }
 
     @Override
     public String showBenefits() {
-        return "some benefits for basic";
+        return txtGetter.getMessage("BasicDonor_showBenefits","src/DonationManagement/DonationManagementMessages.txt");
     }
 }

@@ -1,5 +1,7 @@
 package DonationManagement;
 
+import utility.txtGetter;
+
 public class PremiumDonor extends DonorDecorater{
 
 
@@ -11,11 +13,11 @@ public class PremiumDonor extends DonorDecorater{
 
     @Override
     public String getDescription() {
-        return super.getDescription()+" some descirption for premimum ";
+        return super.getDescription()+ txtGetter.getMessage("PremiumDonor_getDescription","src/DonationManagement/DonationManagementMessages.txt");
     }
 
     @Override
     public String showBenefits() {
-        return super.showBenefits()+" some benfits for premium";
+        return super.showBenefits()+txtGetter.getMessage("PremiumDonor_showBenefits","src/DonationManagement/DonationManagementMessages.txt");
     }
 }

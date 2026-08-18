@@ -1,5 +1,7 @@
 package DonationManagement;
 
+import utility.txtGetter;
+
 public class CheckMethod implements DonateMethod {
     private String CheckNumber ;
 
@@ -13,12 +15,12 @@ public class CheckMethod implements DonateMethod {
 
     @Override
     public void ProcessDonation() {
-        System.out.println("[checking with the bank the check validaity] . . . . . . ");
-        System.out.println("[check is ok]");
+        System.out.println(txtGetter.getMessage("CheckMethod_ProcessDonation_1","src/DonationManagement/DonationManagementMessages.txt"));
+        System.out.println(txtGetter.getMessage("CheckMethod_ProcessDonation_2","src/DonationManagement/DonationManagementMessages.txt"));
     }
 
     @Override
     public String getMethodType() {
-        return "CheckMethod";
+        return txtGetter.getMessage("CheckMethod_getMethodType","src/DonationManagement/DonationManagementMessages.txt");
     }
 }

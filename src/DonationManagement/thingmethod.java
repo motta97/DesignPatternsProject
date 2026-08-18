@@ -1,5 +1,7 @@
 package DonationManagement;
 
+import utility.txtGetter;
+
 public class thingmethod implements DonateMethod{
     @Override
     public void ProcessDonation() {
@@ -8,6 +10,6 @@ public class thingmethod implements DonateMethod{
 
     @Override
     public String getMethodType() {
-        return "thingmethod";
+        return txtGetter.getMessage("thingmethod_getMethodType","src/DonationManagement/DonationManagementMessages.txt");
     }
 }
