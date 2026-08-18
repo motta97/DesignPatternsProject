@@ -24,4 +24,8 @@ public class RestingState implements VolunteerState {
     public boolean CanTakeTask() {
         return false;
     }
+    @Override
+    public boolean CanHandleEmergency(){
+        return true;
+    }
 }

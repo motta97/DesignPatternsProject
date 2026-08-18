@@ -21,6 +21,10 @@ public class IdleState implements VolunteerState {
         System.out.println("Volunteer is now occupied");
         v.SetState(new BusyState());
     }
+    @Override
+    public boolean CanHandleEmergency(){
+        return true;
+    }
 
     
 }

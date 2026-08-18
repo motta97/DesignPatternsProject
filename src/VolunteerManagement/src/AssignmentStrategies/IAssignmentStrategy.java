@@ -4,12 +4,18 @@
  */
 package AssignmentStrategies;
 
+import IteratorPackage.Collection;
 import Tasks.Itasks;
+import volunteermanagement.Volunteer;
 
 /**
  *
  * @author Compuomart
  */
-public interface IAssignmentStrategy {
-    public void AssignTask(Itasks task);
+public abstract class IAssignmentStrategy {
+    protected Collection<Volunteer> volunteersCollection;
+    public IAssignmentStrategy(Collection<Volunteer> v){
+        this.volunteersCollection = v;
+    }
+    abstract void Assign(Itasks task);
 }

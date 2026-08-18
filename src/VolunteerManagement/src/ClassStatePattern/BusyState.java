@@ -25,5 +25,8 @@ public class BusyState implements VolunteerState {
     public boolean CanTakeTask() {
         return false;
     }
-    
+    @Override
+    public boolean CanHandleEmergency(){
+        return false;
+    }
 }

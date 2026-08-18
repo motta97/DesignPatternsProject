@@ -77,6 +77,9 @@ public abstract class Volunteer {
         return hasRequiredSkills(task) && checkRole(task) && vState.CanTakeTask();
         
     }
+    public final boolean CanHandleEmergency(Itasks task){
+        return checkRole(task) && vState.CanHandleEmergency();
+    }
     abstract boolean checkRole(Itasks task);
     
     private boolean hasRequiredSkills(Itasks task){

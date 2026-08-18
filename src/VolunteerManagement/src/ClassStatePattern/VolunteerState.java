@@ -12,5 +12,6 @@ import volunteermanagement.Volunteer;
  */
 public interface VolunteerState {
     public boolean CanTakeTask();
+    public boolean CanHandleEmergency();
     public void NextState(Volunteer v);
 }
