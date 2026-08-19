@@ -26,12 +26,13 @@ public class BeneficiaryView {
                 4. Distribute donation
                 5. Show all beneficiaries
                 6. Find beneficiary by ID
-                7. Undo Register of Beneficiary
+                7. Remove Last Beneficiary
                 8. Register Request
                 9. Show all Requests
                 10. Track a Request
                 11. Generate a Report
                 12. Enter Admin Module
+                13. Undo Removing Last Beneficiary
                 0. Return to main menu
                 """);
     }

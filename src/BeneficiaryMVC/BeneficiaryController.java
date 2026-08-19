@@ -3,12 +3,8 @@ package BeneficiaryMVC;
 import BeneficaryManagement.Beneficiary;
 import BeneficaryRequestStatus.BeneficiaryRequest;
 import BeneficaryRequestStatus.RequestState;
-import Commands.RegisterBeneficiaryUndoCommand;
 import DonationMVC.DonationFacade;
-import DonationMVC.DonationModel;
 import DonationManagement.Donation;
-import Report.BeneficaryReport;
-import Report.Report;
 import utility.*;
 
 import java.util.Scanner;
@@ -68,7 +64,7 @@ public class BeneficiaryController {
                     case 6 ->
                             findBeneficiary();
                     case 7 ->
-                            undoRegisterBeneficary() ;
+                            RemoveLastBeneficiary() ;
                     case 8 ->
                             registerRequest() ;
                     case 9 ->
@@ -79,6 +75,8 @@ public class BeneficiaryController {
                         beneficiaryFacade.GenerateReport();
                     case 12 ->
                             adminModule() ;
+                    case 13 ->
+                            beneficiaryFacade.UndoRemoveLastBeneficary();
 
                     case 0 ->
                             flag = false;
@@ -164,8 +162,8 @@ public class BeneficiaryController {
         view.showBeneficiary(beneficiary);
     }
 
-    public void undoRegisterBeneficary(){
-        beneficiaryFacade.UndoRegisterBenefcairy();
+    public void RemoveLastBeneficiary(){
+        beneficiaryFacade.RemoveLastBeneficary();
 
     }
 
@@ -224,7 +222,7 @@ public class BeneficiaryController {
         if(userName.equals("admin")&& passKey.equals("admin")){
             user = new Admin("admin","00","admin@gmail.com") ;
         }else {
-            user = new User("Normal","11","Normal@gmail.com") ;
+            user = new normalUser("Normal","11","Normal@gmail.com") ;
         }
         ItxtSetter txtSetter = new ProxyTextSetter(user) ;
         while(flag){

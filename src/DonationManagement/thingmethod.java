@@ -12,4 +12,9 @@ public class thingmethod implements DonateMethod{
     public String getMethodType() {
         return txtGetter.getMessage("thingmethod_getMethodType","src/DonationManagement/DonationManagementMessages.txt");
     }
+
+    @Override
+    public String getPaymentDetails() {
+        return "";
+    }
 }

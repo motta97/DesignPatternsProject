@@ -2,14 +2,7 @@ package DonationMVC;
 
 import DonationManagement.Donation;
 import DonationManagement.Donor;
-import Report.DonationReport;
-import Report.Report;
-import utility.Admin;
-import utility.ItxtSetter;
-import utility.ProxyTextSetter;
-import utility.User;
-
-import java.util.Scanner;
+import utility.*;
 
 public class DonationController {
 
@@ -53,13 +46,17 @@ public class DonationController {
                     case 6 ->
                             findDonation();
                     case 7 ->
-                            UndoMakeDonation() ;
+                            RemoveLastDonation() ;
                     case 8 ->
-                            UndoRegisterDonor() ;
+                            RemoveLastDonor() ;
                     case 9->
                             facade.GenerateReport() ;
                     case 10 ->
                             adminModule() ;
+                    case 11 ->
+                            facade.UndoRemoveLastDonation();
+                    case 12 ->
+                            facade.UndoRemoveLastDonor();
                     case 0 ->
                             flag = false;
 
@@ -155,7 +152,7 @@ public class DonationController {
         if(userName.equals("admin")&& passKey.equals("admin")){
             user = new Admin("admin","00","admin@gmail.com") ;
         }else {
-            user = new User("Normal","11","Normal@gmail.com") ;
+            user = new normalUser("Normal","11","Normal@gmail.com") ;
         }
         ItxtSetter txtSetter = new ProxyTextSetter(user) ;
         while(flag){
@@ -170,12 +167,12 @@ public class DonationController {
         }
     }
 
-    public void UndoMakeDonation(){
-        facade.UndoMakeDonation();
+    public void RemoveLastDonation(){
+        facade.RemoveLastDonation();
     }
 
-    public void UndoRegisterDonor(){
-        facade.UndoRegisterDonor();
+    public void RemoveLastDonor(){
+        facade.RemoveLastDonor();
     }
 
 public void DonationMangmentMessagesAdd(ItxtSetter txtSetter){

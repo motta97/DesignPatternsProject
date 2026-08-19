@@ -2,7 +2,7 @@ package BeneficiaryMVC;
 
 import BeneficaryManagement.Beneficiary;
 import BeneficaryRequestStatus.BeneficiaryRequest;
-import Commands.RegisterBeneficiaryUndoCommand;
+import Commands.RemoveLastBeneficiaryCommand;
 import DonationManagement.Donation;
 import Report.Report;
 import Report.BeneficaryReport;
@@ -13,7 +13,7 @@ import java.util.List;
 public class BeneficiaryFacade {
 
     private   BeneficiaryModel model;
-    private Command slot ;
+    private Command slot = null ;
 
     public BeneficiaryFacade(BeneficiaryModel model) {
 
@@ -52,9 +52,15 @@ public class BeneficiaryFacade {
     public void SetCommand(Command ref){
         this.slot = ref ;
     }
-    public void UndoRegisterBenefcairy(){
-        SetCommand(new RegisterBeneficiaryUndoCommand(model));
-        slot.Undo();
+    public void RemoveLastBeneficary(){
+        SetCommand(new RemoveLastBeneficiaryCommand(model));
+        slot.execute();
+    }
+    public void UndoRemoveLastBeneficary(){
+        if(slot != null){
+            slot.Undo();
+        }
+        System.out.println("You Cannot make Undo of Command you have not made yet");
     }
 
     public List<BeneficiaryRequest> getAllRequests() {

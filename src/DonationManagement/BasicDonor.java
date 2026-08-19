@@ -11,6 +11,11 @@ public class BasicDonor extends Donor {
         this.donations =new ArrayList<>() ;
     }
 
+    @Override
+    public String getType() {
+        return "BasicDonor";
+    }
+
     public void addDonation(Donation ref) {
         donations.add(ref) ;
 
