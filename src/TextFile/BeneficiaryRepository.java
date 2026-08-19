@@ -72,7 +72,7 @@ public class BeneficiaryRepository {
                 suppType = suppType +supp.trim() ;
             }
             line =line+suppType+"|" ;
-            String distrubteType ="" ;
+            String distrubteType ="collection" ;
             if (beneficiary.getRef() == null ) {
 
                 distrubteType = "collection";
@@ -84,6 +84,9 @@ public class BeneficiaryRepository {
 
             if (beneficiary.getRef() instanceof HomeDelivery) {
                 distrubteType = "delivery";
+            }
+            if(beneficiary.getRef() instanceof DeliveryAdapter){
+                distrubteType = "external";
             }
             line = line +distrubteType ;
             lines.add(line) ;

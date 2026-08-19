@@ -1,5 +1,7 @@
 package DonationManagement;
 
+import utility.txtGetter;
+
 public class onlineMethod implements DonateMethod {
     private String CreditCardNumber ;
     public onlineMethod(String ccn){
@@ -12,13 +14,13 @@ public class onlineMethod implements DonateMethod {
 
     @Override
     public void ProcessDonation() {
-        System.out.println("[Checking Credi card number] . . . . . ");
-        System.out.println("[Process Transactions ] . . . . . . . ");
-        System.out.println("[payment success]");
+        System.out.println(txtGetter.getMessage("onlineMethod_ProcessDonation_1","src/DonationManagement/DonationManagementMessages.txt"));
+        System.out.println(txtGetter.getMessage("onlineMethod_ProcessDonation_2","src/DonationManagement/DonationManagementMessages.txt"));
+        System.out.println(txtGetter.getMessage("onlineMethod_ProcessDonation_3","src/DonationManagement/DonationManagementMessages.txt"));
     }
 
     @Override
     public String getMethodType() {
-        return "onlineMethod";
+        return txtGetter.getMessage("onlineMethod_getMethodType","src/DonationManagement/DonationManagementMessages.txt");
     }
 }

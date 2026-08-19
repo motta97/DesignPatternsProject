@@ -1,5 +1,7 @@
 package DonationManagement;
 
+import utility.txtGetter;
+
 public class VIPDonor extends DonorDecorater{
 
 
@@ -12,11 +14,11 @@ public class VIPDonor extends DonorDecorater{
 
     @Override
     public String getDescription() {
-        return super.getDescription()+" and some description for VIP";
+        return super.getDescription()+ txtGetter.getMessage("VIPDonor_getDescription","src/DonationManagement/DonationManagementMessages.txt");
     }
 
     @Override
     public String showBenefits() {
-        return super.showBenefits()+" and some benefits for VIP";
+        return super.showBenefits()+txtGetter.getMessage("VIPDonor_showBenefits","src/DonationManagement/DonationManagementMessages.txt");
     }
 }

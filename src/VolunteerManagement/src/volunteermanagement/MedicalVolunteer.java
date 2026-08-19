@@ -4,6 +4,8 @@
  */
 package volunteermanagement;
 
+import Tasks.Itasks;
+import Tasks.MedicalTask;
 import volunteermanagement.Enums.MedicalFields;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
@@ -62,17 +64,14 @@ public class MedicalVolunteer extends Volunteer {
     public String GetDegreeOfSpecialization(){
         return this.certificationLevel;
     }
+
+    @Override
+    boolean checkRole(Itasks task) {
+        if(task instanceof MedicalTask)
+            return true;
+        else
+            return false;
+    }
     
 }
 
-
-class MedicalCheckUp extends Itasks{
-    private MedicalFields medicalSpeciality;
-    public MedicalCheckUp(int h, MedicalFields mfield) {
-        super(h);
-        this.medicalSpeciality = mfield;
-    }
-    public MedicalFields GetMedicalField(){
-        return this.medicalSpeciality;
-    }
-}

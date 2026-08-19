@@ -4,13 +4,15 @@ import Commands.MakeDonationUndoCommand;
 import Commands.RegisterDonorUndoCommand;
 import DonationManagement.Donation;
 import DonationManagement.Donor;
+import Report.Report;
+import Report.DonationReport;
 import utility.Command;
 
 import java.util.List;
 
 public class DonationFacade {
 
-    private  DonationModel model;
+    private   DonationModel model;
     private Command slot;
 
     public DonationFacade(DonationModel model) {
@@ -60,6 +62,11 @@ public class DonationFacade {
     public void UndoMakeDonation(){
         SetCommand(new MakeDonationUndoCommand(model));
         slot.Undo();
+    }
+    public void GenerateReport(){
+
+        Report report = new DonationReport(model) ;
+        report.GenerateReport();
     }
 
 }

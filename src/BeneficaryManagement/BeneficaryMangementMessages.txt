@@ -1,0 +1,11 @@
+BasicSupport_getDescription=some description about basic support
+BasicSupport_getSupport=Basic Support
+Educational_support_getDescription= some description about educational support
+Educational_support_getSupport=  , Educational  
+ExternalDelivery_sendPackage=External Delivery Send Package  . . . . 
+ExternalDelivery_CalcShipping=[Calculate Shipping] . . . . . . is coming from external company
+ExternalDelivery_GetTrackingStatus=[Tracking Status] . . . .  is coming from external Company
+Housing_support_getDescription= some description about Housing support
+Housing_support_getSupport=  , Housing 
+Medical_support_getDescription= some description of medical support
+Medical_support_getSupport=  , Medical   

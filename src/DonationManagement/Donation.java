@@ -60,12 +60,10 @@ public class Donation {
         String donationValue;
 
         if (type instanceof MoneyDonation moneyDonation) {
-            donationValue =
-                    "amount=" + moneyDonation.getAmount();
+            donationValue = "amount=" + moneyDonation.getAmount();
 
         } else if (type instanceof ThingDonation thingDonation) {
-            donationValue =
-                    "quantity=" + thingDonation.getQuantity();
+            donationValue = "quantity=" + thingDonation.getQuantity();
 
         } else {
             donationValue = "unknown";

@@ -1,0 +1,17 @@
+BasicDonor_getDescription=Name with Basic 
+BasicDonor_showBenefits=some benefits for basic
+CashMethod_ProcessDonation=Cash Method
+CashMethod_getMethodType=CashMethod
+CheckMethod_ProcessDonation_1=[checking with the bank the check validaity] . . . . . .
+CheckMethod_ProcessDonation_2=[check is ok]
+CheckMethod_getMethodType=CheckMethod
+MoneyDonation_getType=Money Donation
+onlineMethod_ProcessDonation_1=[Checking Credi card number] . . . . . 
+onlineMethod_ProcessDonation_2=[Process Transactions ] . . . . . . . 
+onlineMethod_ProcessDonation_3=[payment success]
+onlineMethod_getMethodType=onlineMethod
+PremiumDonor_getDescription= some descirption for premimum 
+PremiumDonor_showBenefits= some benfits for premium
+thingmethod_getMethodType=thingmethod
+VIPDonor_getDescription= and some description for VIP
+VIPDonor_showBenefits= and some benefits for VIP

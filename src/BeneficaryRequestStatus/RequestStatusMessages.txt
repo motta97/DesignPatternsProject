@@ -1,0 +1,6 @@
+ErrorMessage=Cannot Do this Transaction
+approvePending=[Pending State] moved to Approved State . . . . 
+rejectPending=[Pending State] moved to Rejected State . . . . 
+processNew=[New State] moved to Pending State . . . . 
+inProgressComplete=[In Progress State] moved to Complete State . . . . 
+startDistributionApproved=[Approved State] moved to In Progress State . . . .

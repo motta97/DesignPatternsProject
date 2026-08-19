@@ -4,13 +4,15 @@ import BeneficaryManagement.Beneficiary;
 import BeneficaryRequestStatus.BeneficiaryRequest;
 import Commands.RegisterBeneficiaryUndoCommand;
 import DonationManagement.Donation;
+import Report.Report;
+import Report.BeneficaryReport;
 import utility.Command;
 
 import java.util.List;
 
 public class BeneficiaryFacade {
 
-    private  BeneficiaryModel model;
+    private   BeneficiaryModel model;
     private Command slot ;
 
     public BeneficiaryFacade(BeneficiaryModel model) {
@@ -68,5 +70,11 @@ public class BeneficiaryFacade {
         return model.findRequestById(id) ;
     }
 
-
+public void GenerateReport(){
+            Report report = new BeneficaryReport(model) ;
+            report.GenerateReport();
+        }
+    public void savechangesTorequestReposiotry(){
+        model.savechangesTorequestReposiotry();
+    }
 }

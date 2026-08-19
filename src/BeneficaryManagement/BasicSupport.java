@@ -1,13 +1,16 @@
 package BeneficaryManagement;
 
+import utility.txtGetter;
+
 public class BasicSupport implements Isupport{
     @Override
     public String getDescription() {
-        return "some description about basic support";
+
+        return txtGetter.getMessage("BasicSupport_getDescription","src/BeneficaryManagement/BeneficaryMangementMessages.txt");
     }
 
     @Override
     public String getSupport() {
-        return "Basic Support ";
+        return txtGetter.getMessage("BasicSupport_getSupport","src/BeneficaryManagement/BeneficaryMangementMessages.txt");
     }
 }

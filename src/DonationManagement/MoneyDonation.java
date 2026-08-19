@@ -1,5 +1,7 @@
 package DonationManagement;
 
+import utility.txtGetter;
+
 public class MoneyDonation implements DonationType{
     private double amount ;
 
@@ -13,6 +15,6 @@ public class MoneyDonation implements DonationType{
 
     @Override
     public String getType() {
-        return "Money Donation";
+        return txtGetter.getMessage("MoneyDonation_getType","src/DonationManagement/DonationManagementMessages.txt");
     }
 }
