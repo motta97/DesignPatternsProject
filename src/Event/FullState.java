@@ -3,15 +3,15 @@ package Event;
 public class FullState implements EventState {
     @Override
     public void register(Event event, Attendant attendee) {
-        event.addToWaitlist(attendee); // different behavior than OpenState!
+        System.out.println("can't register full state");
     }
     @Override
     public void cancel(Event event) {
-        event.notifyAttendeesOfCancellation();
         event.setState(new CancelledState());
     }
     @Override
     public void startEvent(Event event) {
+
         event.setState(new OngoingState());
     }
     @Override

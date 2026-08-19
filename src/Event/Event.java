@@ -15,12 +15,21 @@ public abstract class Event implements Subject, Component {
     private String eventDescription;
     protected EventType eventType;
     private EventState currentState;
-    public Event(String eventName, double eventCost, String eventDescription) {
+    private int EventCapcity;
+    private int registredCount = 0;
+    public Event(String eventName, double eventCost, String eventDescription, int EventCapcity) {
         this.eventName=eventName;
         this.eventID=nextID++;
         this.eventCost=eventCost;
         this.eventDescription=eventDescription;
+        this.EventCapcity=EventCapcity;
         currentState = new DraftState();
+    }
+    public int getRegisteredCount() {
+        return registredCount;
+    }
+    public int getCapacity() {
+        return EventCapcity;
     }
     public int getEventID(){
         return eventID;
@@ -76,6 +85,7 @@ public abstract class Event implements Subject, Component {
 
     public void register(Attendant attendant){
         attendantList.add(attendant);
+        registredCount++;
     }
     public void startEvent(){
         currentState.startEvent(this);

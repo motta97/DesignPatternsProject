@@ -5,15 +5,15 @@ import Enums.EventType;
 public class EventFactory {
     private static Event event;
     public static Event createEvent(String eventName, String eventType, String eventState, double eventCost,
-                                    String eventDescription) {
+                                    String eventDescription, int capacity) {
         if(eventType.equals("FUNDRAISERS")){
-            event = new Fundraisers(eventName, eventCost, eventDescription);
+            event = new Fundraisers(eventName, eventCost, eventDescription, capacity);
         }
         else if(eventType.equals("OUTREACH")){
-            event= new OutreachProgram(eventName,  eventCost, eventDescription);
+            event= new OutreachProgram(eventName,  eventCost, eventDescription, capacity);
         }
         else if(eventType.equals("WORKSHOP")){
-            event = new Workshop(eventName,  eventCost, eventDescription);
+            event = new Workshop(eventName,  eventCost, eventDescription, capacity);
         }
         else{
             return event; //null

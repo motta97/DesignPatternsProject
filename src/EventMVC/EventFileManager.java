@@ -56,7 +56,8 @@ public class EventFileManager {
                     String state = parts[2].trim();
                     double cost = Double.parseDouble(parts[3].trim());
                     String description = parts[4].trim();
-                    Event event = EventFactory.createEvent(name, type, state, cost, description);
+                    int capacity = Integer.parseInt(parts[5].trim());
+                    Event event = EventFactory.createEvent(name, type, state, cost, description,  capacity);
 
                     if (event != null) {
                         events.add(event);
@@ -88,7 +89,8 @@ public class EventFileManager {
             for (Event event : events) {
                 writer.println(
                         event.getEventName().replace(",","") + "," + event.getEventType().replace(",","")
-                                + "," + event.getEventState().replace(",","") + ","+ event.getCost() + ","+ event.getDescription().replace(",", "")
+                                + "," + event.getEventState().replace(",","") + ","+ event.getCost() + ","+ event.getDescription().replace(",", "")+","
+                        + event.getCapacity()
                 );
             }
 
