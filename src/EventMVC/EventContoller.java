@@ -37,7 +37,9 @@ public class EventContoller {
             eventView.showCreateEventMenu();
             String eventName= eventView.getString("EventName");
             String eventType = eventView.getString("EventType choose one of: Fundraisers, Outreach, or Workshop");
-            int eventID= createEvent(eventName, eventType);
+            String eventDescription = eventView.getString("EventDescription");
+            double cost = eventView.getInt("EventCost");
+            int eventID= createEvent(eventName, eventType,cost, eventDescription);
             eventView.showEventDetails(eventID);//should show the event details based on its id
             mainMenu();
             return;
@@ -161,16 +163,16 @@ public class EventContoller {
         return true;
 
     }
-    public int createEvent(String eventName, String eventType){
+    public int createEvent(String eventName, String eventType, double cost, String eventDescription){
         Event event;
         if(eventType.equals("Fundraisers")){
-             event = eventFactory.createEvent(EventType.FUNDRAISERS, eventName);
+            event = eventFactory.createEvent(eventName,"FUNDRAISERS", "DRAFT", cost, eventDescription);
         }
         else if(eventType.equals("Outreach")){
-             event = eventFactory.createEvent(EventType.OUTREACH, eventName);
+            event = eventFactory.createEvent(eventName,"OUTREACH", "DRAFT", cost, eventDescription);
         }
         else if(eventType.equals("Workshop")){
-             event = eventFactory.createEvent(EventType.WORKSHOP, eventName);
+            event = eventFactory.createEvent(eventName,"WORKSHOP", "DRAFT", cost, eventDescription);
         }
         else {
             eventView.displayError("ERROR NOT A VALID CHOICE, PLEASE TRY AGAIN");
