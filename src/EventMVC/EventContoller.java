@@ -38,7 +38,7 @@ public class EventContoller {
             String eventName= eventView.getString("EventName");
             String eventType = eventView.getString("EventType choose one of: Fundraisers, Outreach, or Workshop");
             String eventDescription = eventView.getString("EventDescription");
-            double cost = eventView.getInt("EventCost");
+            double cost = eventView.getDouble("EventCost");
             int eventID= createEvent(eventName, eventType,cost, eventDescription);
             eventView.showEventDetails(eventID);//should show the event details based on its id
             mainMenu();

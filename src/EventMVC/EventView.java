@@ -82,6 +82,16 @@ public class EventView {
 
         return value;
     }
+    public double getDouble(String message) {
+        System.out.println("Please enter " + message);
+        while (!scanner.hasNextDouble()) {
+            System.out.print("Please enter a valid number: ");
+            scanner.next();
+        }
+        double value = scanner.nextDouble();
+        scanner.nextLine();
+        return value;
+    }
 
     public String getString(String printing)
     {
