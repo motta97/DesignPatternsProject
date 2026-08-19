@@ -15,4 +15,3 @@ PremiumDonor_showBenefits= some benfits for premium
 thingmethod_getMethodType=thingmethod
 VIPDonor_getDescription= and some description for VIP
 VIPDonor_showBenefits= and some benefits for VIP
- 

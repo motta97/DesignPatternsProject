@@ -16,6 +16,11 @@ public class txtGetter {
                 return parts[1] ;
             }
         }
-        return "" ;
+        return "Not Found Your Message" ;
+    }
+    public static List<String> getAllMessages(String filepath){
+        TextFileHandler handler = new TextFileHandler() ;
+        List<String> messages =handler.ReadFile(filepath) ;
+        return messages;
     }
 }

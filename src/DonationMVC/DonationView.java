@@ -28,7 +28,44 @@ public class DonationView {
                 7. Undo Of Making Donation
                 8. Undo Of Registering the Donor
                 9. Generate a Report
+                10. Admin Module
                 0. Return to main menu
+                """);
+    }
+
+    public void ViewAdmin(){
+        System.out.println("""
+                ===== Admin Module =====
+                1.Add Message to Donation Management messages
+                2.Update a Message
+                3.Delete a Message
+                0.return back
+                """);
+
+    }
+
+    public void showDonationMangementMessages(){
+
+        System.out.println("""
+                ===== Donation Messages =====
+                1.BasicDonor class , method=> getDescription
+                2.BasicDonor class , method=> showBenefits
+                3.CashMethod class, method =>ProcessDonation
+                4.CashMethod class, method=>getMethodType
+                5.CheckMethod class , method=> ProcessDonation_1
+                6.CheckMethod class , method=> ProcessDonation_2
+                7.CheckMethod class , method=> getMethodType
+                8.MoneyDonation class , method=>getType
+                9.onlineMethod class , method=> ProcessDonation_1
+                10.onlineMethod class , method=> ProcessDonation_2
+                12.onlineMethod class , method=> ProcessDonation_3
+                13.onlineMethod class , method=> getMethodType
+                14.PremiumDonor class , method=> getDescription
+                15.PremiumDonor class , method=> showBenefits
+                16.thingmethod class , method=> getMethodType
+                17.VIPDonor class , method=> getDescription
+                18.VIPDonor class , method=> showBenefits
+                0. Return Back
                 """);
     }
 
