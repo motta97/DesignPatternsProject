@@ -3,7 +3,7 @@ import Enums.EventType;
 
 import java.util.List;
 
-public class Event implements Subject, Component {
+public abstract class Event implements Subject, Component {
     private String eventName="DEFAULT NAME";
     private int eventID;
     private double eventCost;
@@ -14,10 +14,13 @@ public class Event implements Subject, Component {
     private ReminderStrategy reminderStrategy;
     private String eventDescription;
     protected EventType eventType;
-
-    public Event(String eventName){
+    private EventState currentState;
+    public Event(String eventName, double eventCost, String eventDescription) {
         this.eventName=eventName;
         this.eventID=nextID++;
+        this.eventCost=eventCost;
+        this.eventDescription=eventDescription;
+        currentState = new DraftState();
     }
     public int getEventID(){
         return eventID;
@@ -45,9 +48,7 @@ public class Event implements Subject, Component {
             o.updateEventObserver(eventNotification);
         }
     }
-    public void attend(Attendant attendant){
-        attendantList.add(attendant);
-    }
+
     public void ticket(Attendant attendant){
         Ticket ticket = new Ticket();
         ticket.addTicket(attendant, this);
@@ -65,9 +66,7 @@ public class Event implements Subject, Component {
     public String getDescription(){
         return eventDescription;
     }
-    public EventType getEventType(){
-        return eventType;
-    }
+    public abstract String getEventType();
     public void setReminderStrategy(ReminderStrategy strategy){
         this.reminderStrategy=strategy;
     }
@@ -75,6 +74,24 @@ public class Event implements Subject, Component {
         reminderStrategy.sendReminder(attendant);
     }
 
+    public void register(Attendant attendant){
+        attendantList.add(attendant);
+    }
+    public void startEvent(){
+        currentState.startEvent(this);
+    }
+    public void cancel(){
+        currentState.cancel(this);
+    }
+    public void closeRegistration(){
+        currentState.closeRegistration(this);
+    }
+    public String getEventState(){
+        return currentState.getName();
+    }
+    public void setState(EventState state){
+        currentState=state;
+    }
 
     
 

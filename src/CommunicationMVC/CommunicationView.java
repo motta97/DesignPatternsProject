@@ -25,7 +25,6 @@ public class CommunicationView {
         System.out.println("3. Register to an Event");
         System.out.println("4. Send Campaign");
         System.out.println("5. Exit");
-        System.out.print("choicee: ");
     }
 
     public void showSendMessageMenu() {
@@ -56,8 +55,8 @@ public class CommunicationView {
     }
 //input methods
 
-    public int getInt() {
-
+    public int getInt(String message) {
+        System.out.println("Please enter "+message);
         while (!scanner.hasNextInt()) {
             System.out.print("Please enter a valid number: ");
             scanner.next();//removes the invalid input
@@ -69,7 +68,7 @@ public class CommunicationView {
         return value;
     }
 
-    public String getString() {
+    public String getString(String message) {
 
         return scanner.nextLine();
     }
@@ -80,7 +79,7 @@ public class CommunicationView {
         System.out.println("1. EMAIL");
         System.out.println("2. SMS");
 
-        int choice = getInt();
+        int choice = getInt("Choice");
 
         switch (choice) {
             case 1:
@@ -97,7 +96,7 @@ public class CommunicationView {
 
     public SocialMediaType getSocialMediaType() {
 
-        int choice = getInt();
+        int choice = getInt("Social media type 1, 2, or 3");
 
         switch (choice) {
 

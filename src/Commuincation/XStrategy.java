@@ -1,8 +1,13 @@
 package Commuincation;
 
 public class XStrategy implements SocialMediaStrategy {
+    APITemplate xAPI;
+    public XStrategy(APITemplate xAPI) {
+        this.xAPI = xAPI;
+    }
     @Override
-    public void post(String description) {
-        System.out.println("POSTING "+description+" ON X...");
+    public boolean post(String description) {
+        xAPI.createPost(description);
+        return true;
     }
 }

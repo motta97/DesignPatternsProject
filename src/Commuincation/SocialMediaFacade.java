@@ -5,21 +5,21 @@ public class SocialMediaFacade {
     public void setSocialMediaStrategy(SocialMediaStrategy socialMediaStrategy) {
         this.socialMediaStrategy = socialMediaStrategy;
     }
-    public void post(String description) {
+    public boolean post(String description) {
         if(socialMediaStrategy == null) {
-            return;
+            return false;
         }
-        socialMediaStrategy.post(description);
+        return socialMediaStrategy.post(description);
     }
     public void postOnAll(String description) {
         if(socialMediaStrategy == null) {
             return;
         }
-        socialMediaStrategy = new InstagramStrategy();
+        socialMediaStrategy = new InstagramStrategy(new InstagramAPI());
         socialMediaStrategy.post(description);
-        socialMediaStrategy= new FacebookStrategy();
+        socialMediaStrategy= new FacebookStrategy(new FacebookAPI());
         socialMediaStrategy.post(description);
-        socialMediaStrategy = new XStrategy();
+        socialMediaStrategy = new XStrategy(new XAPI());
         socialMediaStrategy.post(description);
     }
 }

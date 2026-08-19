@@ -14,7 +14,7 @@ public class UserFactory {
             user = new Attendant(name, email, phoneNumber);//!fix
         }
         else if(userType.equals("PREMIUM_ATTENDANT")){
-            user = new Attendant(name, phoneNumber,email);//!fix
+            user = new Attendant(name, phoneNumber,email);
         }
         else if(userType.equals("BASIC_DONOR")){
             //create basic donor
