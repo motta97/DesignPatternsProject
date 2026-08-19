@@ -14,6 +14,12 @@ public class Attendant extends User implements EventObserver{
         super(name, email, phoneNumber);
 
     }
+
+    @Override
+    public String getType() {
+        return "";
+    }
+
     public void updateEventObserver(String eventNotification){
         System.out.println("User " + getName() + " received: " + eventNotification);
     }

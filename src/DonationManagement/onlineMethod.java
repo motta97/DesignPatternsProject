@@ -23,4 +23,9 @@ public class onlineMethod implements DonateMethod {
     public String getMethodType() {
         return txtGetter.getMessage("onlineMethod_getMethodType","src/DonationManagement/DonationManagementMessages.txt");
     }
+
+    @Override
+    public String getPaymentDetails() {
+        return CreditCardNumber;
+    }
 }

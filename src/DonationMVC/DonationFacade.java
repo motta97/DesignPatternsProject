@@ -1,7 +1,7 @@
 package DonationMVC;
 
-import Commands.MakeDonationUndoCommand;
-import Commands.RegisterDonorUndoCommand;
+import Commands.RemoveLastDonationCommand;
+import Commands.RemoveLastDonorCommand;
 import DonationManagement.Donation;
 import DonationManagement.Donor;
 import Report.Report;
@@ -13,7 +13,7 @@ import java.util.List;
 public class DonationFacade {
 
     private   DonationModel model;
-    private Command slot;
+    private Command slot = null ;
 
     public DonationFacade(DonationModel model) {
 
@@ -54,14 +54,30 @@ public class DonationFacade {
         slot = ref ;
     }
 
-    public void UndoRegisterDonor(){
-        SetCommand(new RegisterDonorUndoCommand(model));
-        slot.Undo();
+    public void RemoveLastDonor(){
+        SetCommand(new RemoveLastDonorCommand(model));
+        slot.execute();
     }
 
-    public void UndoMakeDonation(){
-        SetCommand(new MakeDonationUndoCommand(model));
-        slot.Undo();
+    public void RemoveLastDonation(){
+        SetCommand(new RemoveLastDonationCommand(model));
+        slot.execute();
+    }
+    public void UndoRemoveLastDonor(){
+      if(slot != null){
+          slot.Undo();
+      } else{
+          System.out.println("You have not make a command to undo it ");
+      }
+
+    }
+
+    public void UndoRemoveLastDonation(){
+        if(slot != null){
+            slot.Undo();
+        } else{
+            System.out.println("You have not make a command to undo it ");
+        }
     }
     public void GenerateReport(){
 

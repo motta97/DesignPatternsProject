@@ -1,7 +1,9 @@
 package utility;
 
+import BeneficaryManagement.BeneficaryFactory;
 import DonationManagement.BasicDonor;
 import DonationManagement.Donor;
+import DonationManagement.DonorFactory;
 import DonationManagement.PremiumDonor;
 import Enums.UserType;
 import Event.Attendant;
@@ -17,11 +19,14 @@ public class UserFactory {
             user = new Attendant(name, phoneNumber,email);
         }
         else if(userType.equals("BASIC_DONOR")){
-            //create basic donor
+            user = DonorFactory.createDonor(name,"basic",phoneNumber,email) ;
         }
 
         else if(userType.equals("PREMIUM_DONOR")){
-            //create premium donor
+            user = DonorFactory.createDonor(name,"premium",phoneNumber,email) ;
+        }
+        else if(userType.equals("VIP_DONOR")){
+            user = DonorFactory.createDonor(name,"vip",phoneNumber,email) ;
         }
         else if(userType.equals("ADMIN_VOULANTEER")){
             //create admin voulanteer
@@ -30,11 +35,9 @@ public class UserFactory {
             //create physical voulanteer
         }
         else if(userType.equals("BASIC_BENEFECIARY")){
-            //create basic benef
+            user = BeneficaryFactory.createBeneficary(name,phoneNumber,email,"collection");
         }
-        else if(userType.equals("PREMIUM_BENEFECIARY")){
-            //create premium benef
-        }
+
         else user = null;
         return user;
 

@@ -14,4 +14,9 @@ public class CashMethod implements DonateMethod{
 
         return txtGetter.getMessage("CashMethod_getMethodType","src/DonationManagement/DonationManagementMessages.txt");
     }
+
+    @Override
+    public String getPaymentDetails() {
+        return "";
+    }
 }

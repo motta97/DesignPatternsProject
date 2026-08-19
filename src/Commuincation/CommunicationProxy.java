@@ -11,7 +11,7 @@ public class CommunicationProxy implements Subject{
         facade.setCommunicationStrategy(communicationStrategy);
     }
     public boolean sendMessage(User sender, User receiver, String message){
-        if( sender ==null || sender.getType() == UserType.BASIC_ATTENDANT){
+        if( sender ==null || sender.getType().equals( UserType.BASIC_ATTENDANT)){
             //basic attendant can't send messages
             return false;
         }
