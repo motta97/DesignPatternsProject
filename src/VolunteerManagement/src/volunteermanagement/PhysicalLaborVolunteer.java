@@ -4,10 +4,17 @@
  */
 package volunteermanagement;
 
+import DataContainers.VolunteersDataContainers.BasicVolunteerDataContainer;
+import DataContainers.VolunteersDataContainers.PhysicalLaborVolunteerDataContainer;
+import IteratorPackage.Collection;
+import IteratorPackage.DataCondition;
+import IteratorPackage.Icondition;
+import IteratorPackage.Iiterator;
 import Tasks.Itasks;
 import volunteermanagement.Enums.MedicalDiagnosis;
 import volunteermanagement.Enums.EquipmentCertifications;
 import java.util.ArrayList;
+import java.util.Map;
 
 /**
  *
@@ -16,31 +23,28 @@ import java.util.ArrayList;
 public class PhysicalLaborVolunteer extends Volunteer {
     private float currMaxLiftingCapacity;
     private boolean requiresAccomadation;
-    private ArrayList<EquipmentCertifications> certifiedEquipments = new ArrayList<>();
-    private ArrayList<MedicalDiagnosis> medicalCondition = new ArrayList<>();
+    private Collection<EquipmentCertifications> certifiedEquipments;
+    private Collection<MedicalDiagnosis> medicalCondition;
     private String Role;
     private int currRequiredWeekHours = 60;
     private int originalWeekHours = currRequiredWeekHours;
     private float originalLiftingCapacity;
-    private boolean isAvailable = true;
     
-    public PhysicalLaborVolunteer(String name, String id, String phone, String email, String prefs
-    ,float maxCap, boolean requiresAccomadation,String Role) {
-        super(name, id, phone, email, prefs);
-        this.currMaxLiftingCapacity = maxCap;
+    public PhysicalLaborVolunteer(PhysicalLaborVolunteerDataContainer container)
+    {
+        //,float maxCap, boolean requiresAccomadation,String Role
+        super(container.getName(), container.getID(), container.getPhone(), container.getEmail());
+        this.currMaxLiftingCapacity = container.getMaxCap();
         this.originalLiftingCapacity = this.currMaxLiftingCapacity;
-        this.requiresAccomadation = requiresAccomadation;
-        this.Role = Role;
+        this.requiresAccomadation = container.getAccomadationStatus();
+        this.certifiedEquipments = container.getCertifiedEquipment();
+        //this.Role; --> implement roles
     }
     public void AddEquipmentCertification(EquipmentCertifications ec){
-        certifiedEquipments.add(ec);
+        certifiedEquipments.Add(ec);
     }
     public void RemoveCertification(EquipmentCertifications ec){
-        for(EquipmentCertifications e : certifiedEquipments){
-            if(e.equals(ec)){
-                certifiedEquipments.remove(e);
-            }
-        }
+        this.certifiedEquipments.Remove(ec);
     }
     
     public boolean CanLift(float weight){
@@ -52,12 +56,12 @@ public class PhysicalLaborVolunteer extends Volunteer {
         }
     }
     public boolean CanOperate(EquipmentCertifications equipment){
-        if(this.certifiedEquipments.contains(equipment)){
+        Icondition<EquipmentCertifications> c = new DataCondition<EquipmentCertifications>(equipment);
+        Iiterator findEquipCertificate = this.certifiedEquipments.createFilteredIterator(c);
+        if(findEquipCertificate.hasNext()){
             return true;
         }
-        else{
-            return false;
-        }
+        return false;
     }
   /*  public boolean CanTakeTask(Itasks task){
         if(this.isAvailable){
@@ -71,18 +75,14 @@ public class PhysicalLaborVolunteer extends Volunteer {
     }
     
     public void UpdateHealthCondition(MedicalDiagnosis md){
-        this.medicalCondition.add(md);
+        this.medicalCondition.Add(md);
     }
     public void ReduceExpectedEffort(boolean canWork,int reducedHours, float reducedLiftingWeight){
         this.currMaxLiftingCapacity -= reducedLiftingWeight;
         this.currRequiredWeekHours -= reducedHours;
-        this.isAvailable = canWork;
+        
     }
-    public void BackToDuty(){
-        this.isAvailable = true;
-        this.currMaxLiftingCapacity = this.originalLiftingCapacity;
-        this.currRequiredWeekHours = this.originalWeekHours;
-    }
+    
 
     @Override
     boolean checkRole(Itasks task) {

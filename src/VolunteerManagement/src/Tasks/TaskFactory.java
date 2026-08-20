@@ -4,6 +4,11 @@
  */
 package Tasks;
 
+import DataContainers.BaseTaskDataContainer;
+import DataContainers.BloodExtractionTaskDataContainer;
+import DataContainers.MedicalTaskDataContainer;
+import DataContainers.VacinationTaskDataContainer;
+import DataContainers.XRayScanTaskDataContainer;
 import IteratorPackage.Collection;
 import Tasks.BloodExtraction;
 import Tasks.Vacination;
@@ -19,21 +24,18 @@ import volunteermanagement.Enums.TaskType;
  * @author Compuomart
  */
 public class TaskFactory {
-    public static Itasks CreateTask(TaskType taskType, int hours,Collection<TaskSkills> neededSkills ,Map<String,Object> extraData){
-        if(taskType == TaskType.MCU){
-            return new MedicalCheckUp(hours,neededSkills,extraData);
-        }
-        else if(taskType == TaskType.VAC){
-            return new Vacination(hours,neededSkills,extraData);
-        }
-        else if(taskType == TaskType.BE){
-            return new BloodExtraction(hours,neededSkills,extraData);
-        }
-        else if(taskType == TaskType.XRS){
-            return new XRayScan(hours,neededSkills,extraData);
-        }
-        else{
-            return null;
+    public static Itasks CreateTask(TaskType taskType, BaseTaskDataContainer container){
+        switch(taskType){
+            case TaskType.XRS:
+                return new XRayScan((XRayScanTaskDataContainer) container);
+            case TaskType.VAC:
+                return new Vacination((VacinationTaskDataContainer) container);
+            case TaskType.MCU:
+                return new MedicalCheckUp((MedicalTaskDataContainer) container);
+            case TaskType.BE:
+                return new BloodExtraction((BloodExtractionTaskDataContainer) container);
+            default:
+                return null;
         }
     }
 }

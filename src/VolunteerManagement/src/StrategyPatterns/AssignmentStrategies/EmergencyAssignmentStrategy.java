@@ -2,10 +2,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package AssignmentStrategies;
+package StrategyPatterns.AssignmentStrategies;
 
+import StrategyPatterns.AssignmentStrategies.IAssignmentStrategy;
 import ClassStatePattern.IdleState;
 import ClassStatePattern.RestingState;
+import IteratorPackage.CanHandleEmergencyAssignment;
 import IteratorPackage.Collection;
 import IteratorPackage.FilteredIterator;
 import IteratorPackage.Icondition;
@@ -26,9 +28,8 @@ public class EmergencyAssignmentStrategy extends IAssignmentStrategy {
 
     @Override
     void Assign(Itasks task) {
-        Icondition c1 = new VolunteerStateCondition(new IdleState());
-        Icondition c2 = new VolunteerStateCondition(new RestingState());
-        Icondition c = new OrCondition(c1,c2);
+        
+        Icondition c = new CanHandleEmergencyAssignment(task);
         FilteredIterator volunteerIterator = (FilteredIterator) volunteersCollection.createFilteredIterator(c);
         if(volunteerIterator.hasNext()){
             Volunteer availableVol = (Volunteer) volunteerIterator.getNext();

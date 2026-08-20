@@ -4,6 +4,7 @@
  */
 package Tasks;
 
+import DataContainers.MedicalTaskDataContainer;
 import IteratorPackage.Collection;
 import Tasks.MedicalTask;
 import java.util.Map;
@@ -19,10 +20,12 @@ import volunteermanagement.Volunteer;
 public class MedicalCheckUp extends MedicalTask {
     
     private static int taskCounter = 0;
-    //add list of symptoms
+    private Collection<String> symptoms;
     
-    public MedicalCheckUp(int hours,Collection<TaskSkills> neededSkills,Map<String,Object> extraData){
-        super(TaskType.MCU,hours,neededSkills,(MedicalFields)extraData.get("MedicalField"));
+    
+    public MedicalCheckUp(MedicalTaskDataContainer data){
+        super(TaskType.MCU,data.getHoursNeeded(),data.getNeededSkills(),data.getReqSpeciality());
+        this.symptoms = new Collection<>();
         taskCounter++;
     }
     @Override
@@ -30,5 +33,11 @@ public class MedicalCheckUp extends MedicalTask {
         return globalTaskCounter+""+taskCounter+"";
     }
 
+    public void AddSymptom(String sym){
+        symptoms.Add(sym);
+    }
+    public void RemoveSymptom(String sym){
+        symptoms.Remove(sym);
+    }
     
 }

@@ -4,6 +4,7 @@
  */
 package Tasks;
 
+import DataContainers.XRayScanTaskDataContainer;
 import IteratorPackage.Collection;
 import java.util.Map;
 import volunteermanagement.Enums.MedicalFields;
@@ -19,11 +20,11 @@ public class XRayScan extends MedicalTask{
     private static int taskCounter = 0;
     private String targetScan;
     private boolean isPregnant;
-    public XRayScan(int hours,Collection<TaskSkills> neededSkills,Map<String, Object> extraData) {
-        super(TaskType.MCU,hours,neededSkills,(MedicalFields)extraData.get("MedicalField"));
+    public XRayScan(XRayScanTaskDataContainer data) {
+        super(TaskType.XRS,data.getHoursNeeded(),data.getNeededSkills(),data.getReqSpeciality());
         taskCounter++;
-        this.targetScan = (String)extraData.get("TargetScan");
-        this.isPregnant = (boolean)extraData.get("isPregnant");
+        this.targetScan = data.getTargetScan();
+        this.isPregnant = data.getIsPregnant();
         
     }
 

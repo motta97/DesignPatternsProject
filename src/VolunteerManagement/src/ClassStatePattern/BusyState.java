@@ -29,4 +29,8 @@ public class BusyState implements VolunteerState {
     public boolean CanHandleEmergency(){
         return false;
     }
+    @Override
+    public void EndRest(Volunteer v){
+        System.out.println("Volunteer is not resting");
+    }
 }

@@ -4,6 +4,7 @@
  */
 package Tasks;
 
+import DataContainers.VacinationTaskDataContainer;
 import IteratorPackage.Collection;
 import Tasks.MedicalTask;
 import static Tasks.MedicalTask.globalTaskCounter;
@@ -23,12 +24,12 @@ public class Vacination extends MedicalTask{
     private int observationTime;
     
     private static int taskCounter=0;
-    public Vacination(int hours,Collection<TaskSkills> neededSkills,Map<String,Object> extraData){
-        super(TaskType.MCU,hours,neededSkills,(MedicalFields)extraData.get("MedicalField"));
+    public Vacination(VacinationTaskDataContainer data){
+        super(TaskType.VAC,data.getHoursNeeded(),data.getNeededSkills(),data.getReqSpeciality());
         taskCounter++;
         
-        this.vaccineBatchNum = (String) extraData.get("batchNum");
-        this.observationTime = (int)extraData.get("obsTime");
+        this.vaccineBatchNum = data.getVaccNum();
+        this.observationTime = data.getObsTime();
     }
     @Override
     String getTaskSeqNum(){

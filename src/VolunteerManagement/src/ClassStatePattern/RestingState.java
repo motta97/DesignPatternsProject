@@ -28,4 +28,8 @@ public class RestingState implements VolunteerState {
     public boolean CanHandleEmergency(){
         return true;
     }
+    @Override
+    public void EndRest(Volunteer v){
+        v.SetState(new IdleState());
+    }
 }

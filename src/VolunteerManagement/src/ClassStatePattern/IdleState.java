@@ -26,5 +26,8 @@ public class IdleState implements VolunteerState {
         return true;
     }
 
-    
+    @Override
+    public void EndRest(Volunteer v){
+        System.out.println("volunteer is not resting");
+    }
 }

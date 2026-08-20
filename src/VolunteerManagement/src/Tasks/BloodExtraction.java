@@ -4,8 +4,10 @@
  */
 package Tasks;
 
+import DataContainers.BloodExtractionTaskDataContainer;
 import IteratorPackage.Collection;
 import java.util.Map;
+import volunteermanagement.Enums.BloodType;
 import volunteermanagement.Enums.MedicalFields;
 import volunteermanagement.Enums.TaskSkills;
 import volunteermanagement.Enums.TaskType;
@@ -22,12 +24,12 @@ public class BloodExtraction extends MedicalTask {
     private boolean isFasting;
     private BloodType bloodType;
     
-    public BloodExtraction(int hours, Collection<TaskSkills> neededSkills,Map<String, Object> extraData){
-        super(TaskType.MCU,hours,neededSkills,(MedicalFields)extraData.get("MedicalField"));
+    public BloodExtraction(BloodExtractionTaskDataContainer data){
+        super(TaskType.BE,data.getHoursNeeded(),data.getNeededSkills(),data.getReqSpeciality());
         taskCounter++;
-        this.vialsRequired = (int)extraData.get("vialsReq");
-        this.isFasting = (boolean)extraData.get("isFasting");
-        this.bloodType = (BloodType)extraData.get("BloodType");
+        this.vialsRequired = data.reqVialsCount();
+        this.isFasting = data.getFastingStatus();
+        this.bloodType = data.getBloodType();
     }
 
     @Override
@@ -39,9 +41,4 @@ public class BloodExtraction extends MedicalTask {
     
 }
 
-enum BloodType{
-    A,
-    B,
-    AB,
-    O
-}
+

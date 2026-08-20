@@ -5,6 +5,7 @@
 package IteratorPackage;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  *
@@ -16,6 +17,12 @@ public class Collection<T>{
     
     public Collection(){
         collection = new ArrayList<>();
+    }
+    public Collection(T[] arr){
+        collection = new ArrayList<>(Arrays.asList(arr));
+    }
+    public Collection(ArrayList<T> arr){
+        collection = arr;
     }
     public void Add(T t){
         collection.add(t);
