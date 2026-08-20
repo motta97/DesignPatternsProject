@@ -1,6 +1,7 @@
 package Event;
 import Enums.EventType;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 public abstract class Event implements Subject, Component {
@@ -17,6 +18,7 @@ public abstract class Event implements Subject, Component {
     private EventState currentState;
     private int EventCapcity;
     private int registredCount = 0;
+    private LocalDateTime schedule;
     public Event(String eventName, double eventCost, String eventDescription, int EventCapcity) {
         this.eventName=eventName;
         this.eventID=nextID++;
@@ -24,6 +26,12 @@ public abstract class Event implements Subject, Component {
         this.eventDescription=eventDescription;
         this.EventCapcity=EventCapcity;
         currentState = new DraftState();
+    }
+    public LocalDateTime getSchedule() {
+        return schedule;
+    }
+    public void setSchedule(LocalDateTime schedule) {
+        this.schedule = schedule;
     }
     public int getRegisteredCount() {
         return registredCount;
@@ -80,7 +88,7 @@ public abstract class Event implements Subject, Component {
         this.reminderStrategy=strategy;
     }
     public void sendReminder(Attendant attendant){
-        reminderStrategy.sendReminder(attendant);
+        reminderStrategy.sendReminder(this, attendant);
     }
 
     public void register(Attendant attendant){

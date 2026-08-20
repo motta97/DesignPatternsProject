@@ -2,18 +2,23 @@ package Event;
 
 import Enums.EventType;
 
+import java.time.LocalDateTime;
+
 public class EventFactory {
     private static Event event;
     public static Event createEvent(String eventName, String eventType, String eventState, double eventCost,
-                                    String eventDescription, int capacity) {
+                                    String eventDescription, int capacity, LocalDateTime date) {
         if(eventType.equals("FUNDRAISERS")){
             event = new Fundraisers(eventName, eventCost, eventDescription, capacity);
+            event.setSchedule(date);
         }
         else if(eventType.equals("OUTREACH")){
             event= new OutreachProgram(eventName,  eventCost, eventDescription, capacity);
+            event.setSchedule(date);
         }
         else if(eventType.equals("WORKSHOP")){
             event = new Workshop(eventName,  eventCost, eventDescription, capacity);
+            event.setSchedule(date);
         }
         else{
             return event; //null

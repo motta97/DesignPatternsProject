@@ -12,11 +12,8 @@ public class UserFactory {
     private UserFactory() {}
     private static User user;
     public static User createUser(String userType, String name, String email, String phoneNumber) {
-        if(userType.equals("BASIC_ATTENDANT")){
+        if(userType.equals("ATTENDANT")) {
             user = new Attendant(name, email, phoneNumber);//!fix
-        }
-        else if(userType.equals("PREMIUM_ATTENDANT")){
-            user = new Attendant(name, phoneNumber,email);
         }
         else if(userType.equals("BASIC_DONOR")){
             user = DonorFactory.createDonor(name,"basic",phoneNumber,email) ;

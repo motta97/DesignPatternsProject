@@ -13,7 +13,7 @@ public class BasicDonor extends Donor {
 
     @Override
     public String getType() {
-        return "BasicDonor";
+        return "BASIC_DONOR";
     }
 
     public void addDonation(Donation ref) {

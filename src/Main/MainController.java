@@ -26,6 +26,7 @@ public class MainController {
         BeneficiaryView beneficiaryView = new BeneficiaryView(sc);
         beneficiaryController = new BeneficiaryController(beneficiaryFacade, donationFacade, beneficiaryView);
         donationController = new DonationController(donationFacade, donationView);
+
     }
 
     public void start(){

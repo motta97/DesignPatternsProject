@@ -8,6 +8,10 @@ import Event.Attendant;
 import Event.WhatsAppStrategy;
 import Event.SMSStrategy;
 import Event.EmailStrategy;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import Event.EventFactory;
 
@@ -21,8 +25,7 @@ public class EventContoller {
         eventRepository = new EventRepository();
         userRepoisitory = new UserRepository();
         eventView = new EventView();
-
-
+        mainMenu();
     }
     public void mainMenu(){
 
@@ -40,7 +43,12 @@ public class EventContoller {
             String eventDescription = eventView.getString("EventDescription");
             double cost = eventView.getDouble("EventCost");
             int capacity = eventView.getInt("EventCapacity");
-            int eventID= createEvent(eventName, eventType,cost, eventDescription, capacity);
+            String schedule = eventView.getString("EventDate in d/m/yyyy");
+            DateTimeFormatter fmt = DateTimeFormatter.ofPattern("d/M/yyyy");
+            LocalDate date = LocalDate.parse(schedule, fmt);
+            LocalDateTime dateTime = date.atStartOfDay();
+            int eventID= createEvent(eventName, eventType,cost, eventDescription, capacity, dateTime);
+
             eventView.showEventDetails(eventID);//should show the event details based on its id
             mainMenu();
             return;
@@ -164,16 +172,16 @@ public class EventContoller {
         return true;
 
     }
-    public int createEvent(String eventName, String eventType, double cost, String eventDescription, int capacity){
+    public int createEvent(String eventName, String eventType, double cost, String eventDescription, int capacity, LocalDateTime dateTime){
         Event event;
         if(eventType.equals("Fundraisers")){
-            event = eventFactory.createEvent(eventName,"FUNDRAISERS", "DRAFT", cost, eventDescription, capacity);
+            event = eventFactory.createEvent(eventName,"FUNDRAISERS", "DRAFT", cost, eventDescription, capacity,  dateTime);
         }
         else if(eventType.equals("Outreach")){
-            event = eventFactory.createEvent(eventName,"OUTREACH", "DRAFT", cost, eventDescription,  capacity);
+            event = eventFactory.createEvent(eventName,"OUTREACH", "DRAFT", cost, eventDescription,  capacity, dateTime);
         }
         else if(eventType.equals("Workshop")){
-            event = eventFactory.createEvent(eventName,"WORKSHOP", "DRAFT", cost, eventDescription,  capacity);
+            event = eventFactory.createEvent(eventName,"WORKSHOP", "DRAFT", cost, eventDescription,  capacity,  dateTime);
         }
         else {
             eventView.displayError("ERROR NOT A VALID CHOICE, PLEASE TRY AGAIN");

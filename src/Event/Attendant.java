@@ -17,7 +17,7 @@ public class Attendant extends User implements EventObserver{
 
     @Override
     public String getType() {
-        return "";
+        return "ATTENDANT";
     }
 
     public void updateEventObserver(String eventNotification){

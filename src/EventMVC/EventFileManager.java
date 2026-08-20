@@ -5,6 +5,9 @@ import utility.User;
 import utility.UserFactory;
 
 import java.io.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import Event.EventFactory;
@@ -42,7 +45,7 @@ public class EventFileManager {
                 }
                 String[] parts = line.split(",");
                     //we store teh event name, cost, type, state, and description
-                if (parts.length != 5) {
+                if (parts.length != 7) {
                     System.err.println(
                             "skip corrupted line " + lineNumber + ": " + line);
                     continue;
@@ -57,7 +60,10 @@ public class EventFileManager {
                     double cost = Double.parseDouble(parts[3].trim());
                     String description = parts[4].trim();
                     int capacity = Integer.parseInt(parts[5].trim());
-                    Event event = EventFactory.createEvent(name, type, state, cost, description,  capacity);
+                    DateTimeFormatter fmt = DateTimeFormatter.ofPattern("d/M/yyyy");
+                    LocalDate date = LocalDate.parse(parts[6], fmt);
+                    LocalDateTime dateTime = date.atStartOfDay();
+                    Event event = EventFactory.createEvent(name, type, state, cost, description,  capacity, dateTime);
 
                     if (event != null) {
                         events.add(event);
@@ -82,15 +88,17 @@ public class EventFileManager {
     }
     public  void save(List<Event> events){
         this.events = events;
+
         //save to a text file
         try (PrintWriter writer =
                      new PrintWriter(new FileWriter("events.txt", true))) {//true to make it append
 
             for (Event event : events) {
+
                 writer.println(
                         event.getEventName().replace(",","") + "," + event.getEventType().replace(",","")
                                 + "," + event.getEventState().replace(",","") + ","+ event.getCost() + ","+ event.getDescription().replace(",", "")+","
-                        + event.getCapacity()
+                        + event.getCapacity()+","+ event.getSchedule().format(DateTimeFormatter.ofPattern("d/M/yyyy"))
                 );
             }
 
