@@ -7,6 +7,7 @@ package volunteermanagement;
 import ClassStatePattern.BusyState;
 import ClassStatePattern.IdleState;
 import ClassStatePattern.VolunteerState;
+import DataContainers.VolunteersDataContainers.BasicVolunteerDataContainer;
 import IteratorPackage.Collection;
 import IteratorPackage.CriticalSkillCondition;
 import IteratorPackage.FilteredIterator;
@@ -46,6 +47,10 @@ public abstract class Volunteer {
         certificate = new NewComerCertificate();
         vState = new IdleState();
     }
+    public final BasicVolunteerDataContainer getData(){
+        return getVolunteerDataAsContainer();
+    }
+    abstract BasicVolunteerDataContainer getVolunteerDataAsContainer();
     public String getName(){
         return name;
     }
@@ -55,7 +60,9 @@ public abstract class Volunteer {
     public String getEmail(){
         return this.email;
     }
-    
+    public String getPhone(){
+        return this.phone;
+    }
     public abstract String getRole();
     
     public Icertificate getCertificate(){

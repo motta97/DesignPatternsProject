@@ -29,16 +29,23 @@ public class PhysicalLaborVolunteer extends Volunteer {
     private int currRequiredWeekHours = 60;
     private int originalWeekHours = currRequiredWeekHours;
     private float originalLiftingCapacity;
-    
+    private PhysicalLaborVolunteerDataContainer dataContainer;
     public PhysicalLaborVolunteer(PhysicalLaborVolunteerDataContainer container)
     {
-        //,float maxCap, boolean requiresAccomadation,String Role
+        
+        
         super(container.getName(), container.getID(), container.getPhone(), container.getEmail());
         this.currMaxLiftingCapacity = container.getMaxCap();
         this.originalLiftingCapacity = this.currMaxLiftingCapacity;
         this.requiresAccomadation = container.getAccomadationStatus();
+        this.dataContainer = container;
         this.certifiedEquipments = container.getCertifiedEquipment();
         //this.Role; --> implement roles
+    }
+    @Override
+    public BasicVolunteerDataContainer getVolunteerDataAsContainer(){
+        
+        return dataContainer;
     }
     public void AddEquipmentCertification(EquipmentCertifications ec){
         certifiedEquipments.Add(ec);

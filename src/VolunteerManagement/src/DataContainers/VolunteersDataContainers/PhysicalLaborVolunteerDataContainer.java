@@ -6,6 +6,7 @@ package DataContainers.VolunteersDataContainers;
 
 import IteratorPackage.Collection;
 import volunteermanagement.Enums.EquipmentCertifications;
+import volunteermanagement.Enums.VolunteerClassifications;
 
 /**
  *
@@ -31,4 +32,15 @@ public class PhysicalLaborVolunteerDataContainer extends BasicVolunteerDataConta
     public Collection<EquipmentCertifications> getCertifiedEquipment(){
         return this.certifiedTools;
     }
+    @Override
+    public String getContainerAsString(){
+        return super.getContainerAsString()+","+this.maxCap+","+this.reqAccomdations+","+this.certifiedTools.collectionToString();
+    }
+
+    @Override
+    VolunteerClassifications getVolunteerType() {
+        return VolunteerClassifications.PhysicalLabor;
+    }
+    
+    
 }

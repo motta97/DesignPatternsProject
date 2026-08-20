@@ -7,6 +7,7 @@ package DataContainers.VolunteersDataContainers;
 import java.time.LocalDate;
 import java.util.Map;
 import volunteermanagement.Enums.MedicalFields;
+import volunteermanagement.Enums.VolunteerClassifications;
 
 /**
  *
@@ -47,6 +48,16 @@ public class MedicalVolunteerDataContainer extends BasicVolunteerDataContainer{
     }
     public int getLimitPerDay(){
         return this.limitPerDay;
+    }
+    @Override
+    public String getContainerAsString(){
+        return super.getContainerAsString()+","+this.specialization+","+this.certificationLevel+","+this.certifiedBy
+                +","+this.lic+","+this.limitPerDay+","+this.expDate.toString();
+    }
+
+    @Override
+    VolunteerClassifications getVolunteerType() {
+        return VolunteerClassifications.Medical;
     }
     
 }

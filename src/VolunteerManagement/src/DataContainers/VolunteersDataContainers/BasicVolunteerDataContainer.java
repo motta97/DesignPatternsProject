@@ -5,12 +5,13 @@
 package DataContainers.VolunteersDataContainers;
 
 import java.util.Map;
+import volunteermanagement.Enums.VolunteerClassifications;
 
 /**
  *
  * @author abeer
  */
-public class BasicVolunteerDataContainer {
+public abstract class BasicVolunteerDataContainer {
     String name;
     String id;
     String email;
@@ -35,5 +36,8 @@ public class BasicVolunteerDataContainer {
     public String getPhone(){ 
         return this.phone;
     }
-    
+    public String getContainerAsString(){
+        return getVolunteerType()+","+this.id+","+this.name+","+this.phone+","+this.email;
+    }
+    abstract VolunteerClassifications getVolunteerType();
 }

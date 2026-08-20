@@ -26,13 +26,13 @@ public class MedicalVolunteer extends Volunteer {
     private LocalDate licExpDate;
     private LocalDate currDate = LocalDate.now();
     private String Role;
-    
+    private MedicalVolunteerDataContainer dataContainer;
     public MedicalVolunteer (MedicalVolunteerDataContainer container) throws IllegalArgumentException{
         
         //String license, String certificationLevel,String expDate, MedicalFields specialization,int limitPerDay,String certifiedBy,String Role
         super(container.getName(), container.getID(), container.getPhone(), container.getEmail());
         //this.Role; --> implement roles
-        
+        this.dataContainer = container;
         this.specialization = container.getField();
         this.medicalLicense = container.getLicense();
             this.licExpDate = container.getLicenseExpDate();
@@ -42,7 +42,10 @@ public class MedicalVolunteer extends Volunteer {
         this.checkupLimitPerDay = container.getLimitPerDay();
         
     }
-
+    @Override
+    public BasicVolunteerDataContainer getVolunteerDataAsContainer(){
+        return dataContainer;
+    }
     @Override
     public String getRole() {
         return this.Role;

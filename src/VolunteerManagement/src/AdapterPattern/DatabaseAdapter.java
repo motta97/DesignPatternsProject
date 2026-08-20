@@ -8,6 +8,6 @@ package AdapterPattern;
  *
  * @author abeer
  */
-public class DatabaseAdapter {
-    
+public class DatabaseAdapter implements Idatabase{
+    private CSVDatabase newDBsystem;
 }
