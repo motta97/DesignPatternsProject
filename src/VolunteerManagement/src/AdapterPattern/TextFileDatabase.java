@@ -11,6 +11,7 @@ import Tasks.Itasks;
 import java.io.IOException;
 import volunteermanagement.Volunteer;
 import java.io.Serializable;
+import volunteermanagement.Enums.VolunteerClassifications;
 /**
  *
  * @author abeer
@@ -45,7 +46,20 @@ public class TextFileDatabase implements Idatabase{
 
     @Override
     public Collection<Volunteer> LoadVolunteers() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        Collection<Volunteer> loadedVolunteers = new Collection<>();
+        try{
+            java.io.FileReader fileReader = new java.io.FileReader(this.volunteersFilePath);
+            java.io.BufferedReader buffer = new java.io.BufferedReader(fileReader);
+            String line;
+            while((line=buffer.readLine())!=null){
+                String[] data = line.split(",");
+                VolunteerClassifications type = VolunteerClassifications.valueOf(data[0]);
+            }
+            buffer.close();
+        }catch(java.io.IOException e){
+            System.out.println("Couldn't read volunteers file: "+e.getMessage());
+        }
+        return loadedVolunteers;
     }
 
     @Override

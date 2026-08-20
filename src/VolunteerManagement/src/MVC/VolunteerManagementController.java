@@ -22,7 +22,7 @@ import volunteermanagement.VolunteerFactory;
 public class VolunteerManagementController {
     private static Viewer volunteerViewer = Viewer.getInstance();
     private static BaseVolunteerdataCollectionStrategy dataCollectionStrategy;
-    public static void Start(){
+    public static void start(){
         volunteerViewer.DisplayGreeting();
         int userChoice = volunteerViewer.MainMenuView();
         HandleMainMenuChoice(userChoice);

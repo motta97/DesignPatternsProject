@@ -20,10 +20,10 @@ public class MedicalVolunteerDataCollectionStrategy extends BaseVolunteerdataCol
     private static Viewer viewer = Viewer.getInstance();
     @Override
     public BasicVolunteerDataContainer CollectVolunteerData() {
-        
-        return RegisterMedicalVolunteer(super.CollectVolunteerData());
+        super.InitializeBaseParamters();
+        return RegisterMedicalVolunteer();
     }
-    public MedicalVolunteerDataContainer RegisterMedicalVolunteer(BasicVolunteerDataContainer dc ){
+    public MedicalVolunteerDataContainer RegisterMedicalVolunteer( ){
         
         
         MedicalFields field = HandleMedicalFields();
@@ -38,8 +38,8 @@ public class MedicalVolunteerDataCollectionStrategy extends BaseVolunteerdataCol
         
         String expDate = viewer.promptForString("licnese expiry date: ");
         
-        MedicalVolunteerDataContainer dataContainer = new MedicalVolunteerDataContainer(dc.getName()
-                ,dc.getID(),dc.getEmail(),dc.getPhone(),field,lic,certificationLevel,expDate,limit,certifier);
+        MedicalVolunteerDataContainer dataContainer = new MedicalVolunteerDataContainer(name
+                ,id,email,phone,field,lic,certificationLevel,expDate,limit,certifier);
         return dataContainer;
     }
     private  MedicalFields HandleMedicalFields(){

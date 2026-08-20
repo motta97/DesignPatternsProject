@@ -19,13 +19,10 @@ public class PhysicalLaborVolunteerDataCollectionStrategy extends BaseVolunteerd
     
     @Override
     public BasicVolunteerDataContainer CollectVolunteerData(){
-        return RegisterPhysicalLaborVolunteer(super.CollectVolunteerData());
+        super.InitializeBaseParamters();
+        return RegisterPhysicalLaborVolunteer();
     }
-     public PhysicalLaborVolunteerDataContainer RegisterPhysicalLaborVolunteer(BasicVolunteerDataContainer dc ){
-         String name = dc.getName();
-         String id = dc.getID();
-         String email = dc.getEmail();
-         String phone = dc.getPhone();
+     public PhysicalLaborVolunteerDataContainer RegisterPhysicalLaborVolunteer( ){
          
          float maxCap = Viewer.promptForFLoat("Max carry capacity: ");
          boolean reqAcc = Viewer.promptForBoolean("Do you require accomodation? ");
