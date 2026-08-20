@@ -25,9 +25,8 @@ public class EventContoller {
         eventRepository = new EventRepository();
         userRepoisitory = new UserRepository();
         eventView = new EventView();
-        mainMenu();
     }
-    public void mainMenu(){
+    public void start(){
 
         eventView.showEventMainMenu();
         int choice = eventView.getInt("Menu Choice");
@@ -50,8 +49,8 @@ public class EventContoller {
             int eventID= createEvent(eventName, eventType,cost, eventDescription, capacity, dateTime);
 
             eventView.showEventDetails(eventID);//should show the event details based on its id
-            mainMenu();
-            return;
+            start();
+
         }
        else if(actionID==2){
             //update an event
@@ -65,8 +64,8 @@ public class EventContoller {
             else {
                 eventView.displayError("FAILED UPDATING EVENT");
             }
-            mainMenu();
-            return;
+            start();
+
 
         }
         else if(actionID==3){
@@ -77,8 +76,8 @@ public class EventContoller {
                 eventView.displayMessage("SUCCESS REMOVING AN EVENT");
             else
                 eventView.displayError("FAILED REMOVING AN EVENT");
-            mainMenu();
-            return;
+            start();
+
         }
         else if(actionID==4){
             //send event reminder
@@ -92,8 +91,8 @@ public class EventContoller {
                 eventView.displayError("FAILED SENDING A REMINDER");
 
 
-            mainMenu();
-            return;
+            start();
+
 
         }
         else if(actionID==5){
@@ -106,16 +105,16 @@ public class EventContoller {
             }
             else
                 eventView.displayError("FAILED ATTENDING AN EVENT");
-            mainMenu();
+            start();
 
         }
        else if(actionID==6){
             printAllEvents();
-            mainMenu();
+            start();
         }
        else if(actionID==7){
            printAllUsers();
-           mainMenu();
+           start();
         }
         else if(actionID==8){
             int eventID = eventView.getInt("Event ID");
@@ -123,7 +122,7 @@ public class EventContoller {
             if(event!=null){
                 eventStart(event);
             }
-            mainMenu();
+            start();
         }
         else if(actionID==9){
             int eventID = eventView.getInt("Event ID");
@@ -131,7 +130,7 @@ public class EventContoller {
             if(event!=null){
                 eventCancel(event);
             }
-            mainMenu();
+            start();
         }
         else if(actionID==10){
             int eventID = eventView.getInt("Event ID");
@@ -139,7 +138,7 @@ public class EventContoller {
             if(event!=null){
                 eventCloseRegistration(event);
             }
-            mainMenu();
+            start();
         }
         else if(actionID==11){
             int eventID = eventView.getInt("Event ID");
@@ -147,16 +146,17 @@ public class EventContoller {
             if(event!=null){
                 eventView.displayMessage(eventGetState(event));
             }
-            mainMenu();
+            start();
         }
 
         else if(actionID==12){
             //exit
-            return;
+
         }
         else {
             eventView.displayError("ERROR NOT A VALID CHOICE, PLEASE TRY AGAIN");
-            mainMenu();
+            start();
+
         }
     }
     public boolean eventAttend(int eventID, int userID){

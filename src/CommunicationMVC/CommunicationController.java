@@ -23,9 +23,8 @@ public class CommunicationController {
         view = new CommunicationView();
         currentUser = userRepository.getUser(currentUserID);
         commuincationService = new CommuincationService(currentUser);
-        mainMenu();
     }
-    public void mainMenu(){
+    public void start(){
         view.showCommunicationMainMenu();
         int choiceID= view.getInt("Menu Choice");
         chooseAction(choiceID);
@@ -42,7 +41,7 @@ public class CommunicationController {
                    view.displayMessage("SUCCESS SENDING A MESSAGE");
                 else
                     view.displayError("FAIL SENDING A MESSAGE");
-                mainMenu();
+                start();
                 break;
 
                 case 2:
@@ -56,7 +55,7 @@ public class CommunicationController {
                     else{
                         view.displayError("FAIL SENDING A MESSAGE");
                     }
-                    mainMenu();
+                    start();
                     break;
 
             case 3:
@@ -69,7 +68,7 @@ public class CommunicationController {
                 else{
                     view.displayError("FAIL SENDING A MESSAGE");
                 }
-                mainMenu();
+                start();
                 break;
             case 4:
                 //send campaign
@@ -94,7 +93,7 @@ public class CommunicationController {
                 else {
                     view.displayError("FAILED SENDING A CAMPAIGN");
                 }
-                mainMenu();
+                start();
 
             break;
             case 5:
@@ -102,7 +101,8 @@ public class CommunicationController {
                 return;
             default:
                 view.displayError("NOT A VALID CHOICE, PLEASE TRY AGAIN");
-                mainMenu();
+                start();
+                break;
 
         }
     }

@@ -9,12 +9,12 @@ public class UserController {
         userRepoisitory = new UserRepository();
         userView = new UserView();
     }
-    public boolean mainMenu() {
+    public int mainMenu() {
         userView.showMainMenu();
         int choice = userView.getInt("Choice");
         return process(choice);
     }
-    public boolean process(int choice) {
+    public int process(int choice) {
         switch (choice) {
             case 1:{
                 //login
@@ -23,12 +23,12 @@ public class UserController {
                 User user = userRepoisitory.getUser(userId);
                 if(user == null){
                     userView.displayError("User doesn't exist");
-                    return false;
+                    return -1;
 
                 }
                 else {
                     userView.displayMessage("Successfully logged in");
-                    return true;
+                    return user.getId();
                 }
 
             }
@@ -40,13 +40,13 @@ public class UserController {
                 String userPhone = userView.getString("User Phone");
                 String userType = userView.getUserType();
 
-                UserFactory.createUser(userType,userName,userEmail,userPhone );
+                User user = UserFactory.createUser(userType,userName,userEmail,userPhone );
                 userView.displayMessage("Successfully signed up");
-                return true;
+                return user.getId();
             }
             default:{
                 userView.displayError("Invalid choice");
-                return false;
+                return -1;
             }
 
 
