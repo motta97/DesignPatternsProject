@@ -14,7 +14,8 @@ public class RemoveLastBeneficiaryCommand implements Command {
     @Override
     public void execute() {
         ref =model.GetLastBeneficiary() ;
-        model.removeBeneficiaryById(model.GetLastBeneficiary().getId());
+       model.RemoveBeneficary(ref);
+       model.getUserRepository().removeUser(ref);
     }
 
     @Override

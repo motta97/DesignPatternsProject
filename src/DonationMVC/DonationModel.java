@@ -4,6 +4,7 @@ import DonationManagement.Donation;
 import DonationManagement.DonationFactory;
 import DonationManagement.Donor;
 import DonationManagement.DonorFactory;
+import EventMVC.UserRepository;
 import TextFile.DonaitonRepository;
 import TextFile.DonorRepository;
 
@@ -15,6 +16,7 @@ public class DonationModel {
 //    private  DonationTextFileRepository donationRepository;
     private DonorRepository donorRepository ;
     private DonaitonRepository donationRepository;
+    private UserRepository userRepository;
     private  List<Donor> donors;
     private  List<Donation> donations;
 
@@ -24,11 +26,21 @@ public class DonationModel {
     public DonationModel(){
         donorRepository = new DonorRepository() ;
         donationRepository = new DonaitonRepository() ;
-
+        userRepository = UserRepository.getInstance() ;
         donors = donorRepository.getAll() ;
         donations = donationRepository.getAll() ;
 
 
+    }
+    public void RemoveDonor(Donor ref){
+        donors.remove(ref) ;
+        donorRepository.saveAll(donors);
+        userRepository.removeUser(ref);
+        userRepository.saveNew();
+
+    }
+    public void RemoveDonation(Donation ref){
+        donations.remove(ref) ;
     }
 
     public Donor registerDonor(String name,  String donorType, String phone, String email) {
@@ -38,7 +50,7 @@ public class DonationModel {
         Donor donor = DonorFactory.createDonor(name,  donorType, phone, email);
 
         donors.add(donor);
-
+        userRepository.addUser(donor);
         donorRepository.saveAll(donors);
 
         return donor;

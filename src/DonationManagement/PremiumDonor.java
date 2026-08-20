@@ -20,4 +20,8 @@ public class PremiumDonor extends DonorDecorater{
     public String showBenefits() {
         return super.showBenefits()+txtGetter.getMessage("PremiumDonor_showBenefits","src/DonationManagement/DonationManagementMessages.txt");
     }
+    @Override
+    public String getType(){
+        return "PREMIUM_DONOR" ;
+    }
 }

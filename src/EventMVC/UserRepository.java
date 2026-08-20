@@ -22,6 +22,10 @@ public class UserRepository {
     public void save(){
         userFileManager.save(users);
     }
+    public void saveNew(){
+        userFileManager.saveNew(users);
+    }
+
     public static void load(){
         users=userFileManager.load();
     }

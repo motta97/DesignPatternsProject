@@ -21,4 +21,8 @@ public class VIPDonor extends DonorDecorater{
     public String showBenefits() {
         return super.showBenefits()+txtGetter.getMessage("VIPDonor_showBenefits","src/DonationManagement/DonationManagementMessages.txt");
     }
+    @Override
+    public String getType(){
+        return "VIP_DONOR" ;
+    }
 }

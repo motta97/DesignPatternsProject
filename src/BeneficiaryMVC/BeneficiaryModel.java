@@ -6,8 +6,10 @@ import BeneficaryManagement.DistributionStrategy;
 import BeneficaryManagement.Isupport;
 import BeneficaryRequestStatus.BeneficiaryRequest;
 import DonationManagement.Donation;
+import EventMVC.UserRepository;
 import TextFile.BeneficiaryRepository;
 import TextFile.BeneficiaryRequestsRepository;
+import utility.User;
 
 import java.util.List;
 
@@ -21,25 +23,33 @@ public class BeneficiaryModel {
     private  List<Beneficiary> beneficiaries;
 
     private List<BeneficiaryRequest> requests ;
+    private UserRepository userRepository ;
+
 
     public BeneficiaryModel() {
 
         repository = new BeneficiaryRepository();
         beneficiaries = repository.getAll();
         requestsRepository = new BeneficiaryRequestsRepository() ;
-
+        userRepository = UserRepository.getInstance() ;
         requests = requestsRepository.getAll() ;
 
 
     }
 
-    public Beneficiary registerBeneficiary(String name,  String phone, String email, String distributionType) {
+    public UserRepository getUserRepository() {
+        return userRepository;
+    }
+
+    public Beneficiary registerBeneficiary(String name, String phone, String email, String distributionType) {
 
 
 
             Beneficiary beneficiary = BeneficaryFactory.createBeneficary(name,  phone, email, distributionType);
 
             beneficiaries.add(beneficiary);
+        userRepository.addUser(beneficiary);
+
 
             repository.SaveAll(beneficiaries);
 
@@ -133,6 +143,10 @@ public class BeneficiaryModel {
         }
 
         return null;
+    }
+    public void RemoveBeneficary(Beneficiary ref){
+        beneficiaries.remove(ref) ;
+        repository.SaveAll(beneficiaries);
     }
 
     public Beneficiary GetLastBeneficiary(){

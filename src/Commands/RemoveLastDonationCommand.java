@@ -14,7 +14,7 @@ public class RemoveLastDonationCommand implements Command {
     @Override
     public void execute() {
         ref =model.GetLastDonation() ;
-        model.RemoveDonationById(model.GetLastDonation().getId());
+        model.RemoveDonation(ref);
     }
 
     @Override

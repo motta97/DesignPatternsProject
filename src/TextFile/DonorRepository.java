@@ -33,26 +33,14 @@ public class DonorRepository {
                 String donorType =
                         fields[4];
 
-                Donor donor =
-                        DonorFactory.createDonor(
-                                name,
-                                donorType,
-                                phone,
-                                email
-                        );
-                if (donor == null) {
+                Donor donor = DonorFactory.createDonor(name, donorType, phone, email);
 
-                    throw new RuntimeException();
-                }
 
                 Donors.add(donor);
             }
-            catch (RuntimeException exception) {
+            catch (Exception exception) {
 
-                System.err.println(
-                        "Skipping invalid donor record: "
-                                + exception.getMessage()
-                );
+
             }
 
 

@@ -15,7 +15,7 @@ public class Beneficiary extends User {
 
     @Override
     public String getType() {
-        return "Beneficiary";
+        return "BASIC_BENEFECIARY";
     }
 
     public void setSupp_type(Isupport supp_type) {

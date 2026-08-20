@@ -3,6 +3,7 @@ package TextFile;
 import BeneficaryManagement.*;
 import DonationManagement.Donation;
 import DonationManagement.Donor;
+import EventMVC.UserRepository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,8 +11,10 @@ import java.util.List;
 public class BeneficiaryRepository {
     private final  String filePath = "data/beneficiaries.txt" ;
     private TextFileHandler texthandler ;
+
     public BeneficiaryRepository(){
         texthandler = TextFileHandler.GetInstance() ;
+
     }
     public List<Beneficiary> getAll() {
         List<Beneficiary> Beneficiaries = new ArrayList<>();
