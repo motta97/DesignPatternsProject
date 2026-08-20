@@ -4,13 +4,13 @@ import utility.User;
 
 import java.util.List;
 
-public class CommunicationFacade {
+public class CommunicationFacade implements Subject{
     CommunicationStrategy communicationStrategy;
     public void setCommunicationStrategy(CommunicationStrategy communicationStrategy) {
         this.communicationStrategy = communicationStrategy;
     }
 
-    public boolean sendMessage(User receiver, String message) {
+    public boolean sendMessage(User sender, User receiver, String message) {
 
             if(communicationStrategy==null){
                 return false;
@@ -18,10 +18,10 @@ public class CommunicationFacade {
         return communicationStrategy.send(receiver, message);
 
     }
-    public boolean sendCampaign(List<User> users, String message){
+    public boolean sendCampaign(User sender, List<User> receivers, String message){
         boolean result = true;
-        for(User user : users){
-            if(!sendMessage(user,message))
+        for(User user : receivers){
+            if(!sendMessage(sender, user,message))
                 result = false;
         }
         return result;

@@ -2,7 +2,7 @@ package utility;
 
 import Enums.UserType;
 
-public class User {
+public abstract class User {
 
     private String name ;
     private static int counter =0 ;
@@ -20,9 +20,7 @@ public class User {
     public void setType(UserType type){
         this.type = type;
     }
-    public UserType getType(){
-        return this.type;
-    }
+    public abstract String getType();
     public String getName() {
         return name;
     }

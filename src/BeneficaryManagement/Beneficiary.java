@@ -13,6 +13,11 @@ public class Beneficiary extends User {
         super(name,  phone, email);
     }
 
+    @Override
+    public String getType() {
+        return "Beneficiary";
+    }
+
     public void setSupp_type(Isupport supp_type) {
         this.supp_type = supp_type;
     }

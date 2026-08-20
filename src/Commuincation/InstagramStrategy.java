@@ -1,8 +1,13 @@
 package Commuincation;
 
 public class InstagramStrategy implements SocialMediaStrategy {
+    APITemplate instagramAPI;
+    public InstagramStrategy(APITemplate instagramAPI) {
+        this.instagramAPI = instagramAPI;
+    }
     @Override
-    public void post(String description) {
-        System.out.println("POSTING "+description+" ON INSTAGRAM...");
+    public boolean post(String description) {
+        instagramAPI.createPost(description);
+        return true;
     }
 }

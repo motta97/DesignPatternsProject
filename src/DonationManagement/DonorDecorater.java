@@ -16,4 +16,9 @@ public class DonorDecorater extends Donor{
     public String showBenefits() {
         return ref.showBenefits() ;
     }
+
+    @Override
+    public String getType() {
+        return "DonorDecorater";
+    }
 }

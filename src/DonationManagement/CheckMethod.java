@@ -23,4 +23,9 @@ public class CheckMethod implements DonateMethod {
     public String getMethodType() {
         return txtGetter.getMessage("CheckMethod_getMethodType","src/DonationManagement/DonationManagementMessages.txt");
     }
+
+    @Override
+    public String getPaymentDetails() {
+        return CheckNumber;
+    }
 }

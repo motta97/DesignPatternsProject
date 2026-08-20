@@ -12,21 +12,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CommunicationController {
-    private CommunicationView view;
-    private CommuincationService commuincationService;
-    private UserRepository userRepoisitory;
-    private EventRepository eventRepository;
-    private Event event;
-    public CommunicationController(){
-        userRepoisitory = new UserRepository();
+    private final CommunicationView view;
+    private final CommuincationService commuincationService;
+    private static UserRepository userRepository;
+    private static EventRepository eventRepository;
+    private User currentUser;
+    public CommunicationController(int currentUserID){
+        userRepository = new UserRepository();
         eventRepository = new EventRepository();
         view = new CommunicationView();
-        commuincationService = new CommuincationService();
+        currentUser = userRepository.getUser(currentUserID);
+        commuincationService = new CommuincationService(currentUser);
         mainMenu();
     }
     public void mainMenu(){
         view.showCommunicationMainMenu();
-        int choiceID= view.getInt();
+        int choiceID= view.getInt("Menu Choice");
         chooseAction(choiceID);
     }
     public void chooseAction(int choiceID){
@@ -34,8 +35,8 @@ public class CommunicationController {
             case 1:
                 //send message
                 view.showSendMessageMenu();
-                int userID=view.getInt();
-                String message = view.getString();
+                int userID=view.getInt("UserID");
+                String message = view.getString("Message");
                 ReminderType reminderType = view.getReminderType();
                if(sendMessage(userID,message,reminderType))
                    view.displayMessage("SUCCESS SENDING A MESSAGE");
@@ -48,44 +49,51 @@ public class CommunicationController {
                     //post on social media
                     view.showPostOnSocialMediaMenu();
                     SocialMediaType socialMediaType = view.getSocialMediaType();
-                    String description = view.getString();
+                    String description = view.getString("Description");
+                    if(postOnSocialMedia(socialMediaType,description)){
+                        view.displayMessage("SUCCESS SENDING A MESSAGE");
+                    }
+                    else{
+                        view.displayError("FAIL SENDING A MESSAGE");
+                    }
                     mainMenu();
                     break;
 
             case 3:
                 //register to an event;
                 view.showRegisterToAnEventMenu();
-                int eventID  = view.getInt();
-                Event event = eventRepository.getEvent(eventID);
-                if(event!=null){
-                    event.registerObserver(commuincationService);
-                    view.displayMessage("SUCCESS REGISTERING TO EVENT!");
+                int eventID  = view.getInt("EventID");
+                if(registerToAnEvent(eventID)){
+                    view.displayMessage("SUCCESS SENDING A MESSAGE");
                 }
-                else {
-                    view.displayError("FAILED REGISTERING TO EVENT");
+                else{
+                    view.displayError("FAIL SENDING A MESSAGE");
                 }
                 mainMenu();
                 break;
             case 4:
                 //send campaign
                 view.showSendToCampaignMenu();
-                int numUsers =view.getInt();//number of users
+                int numUsers =view.getInt("Number of users");//number of users
                 List<User> users = new ArrayList<>();
-                for(int i=0;i<numUsers;i++){
-                    view.displayMessage("Please enter user ID");
-                    int userIDCampaign = view.getInt();
-                    User user = userRepoisitory.getUser(userIDCampaign);
-                    if(user==null){
+                for(int i=0;i<numUsers;i++) {
+
+                    int userIDCampaign = view.getInt("UserID");
+                    User user = userRepository.getUser(userIDCampaign);
+                    if (user == null) {
                         view.displayError("Failed to find a user with that ID");
                         break;
-                    }
-                    else
+                    } else
                         users.add(user);
                 }
-                view.displayMessage("Plese enter the message");
-                String messageCampagin = view.getString();
+                String messageCampagin = view.getString("Message");
 
-                commuincationService.sendCampaign(users,messageCampagin);
+                if(sendCampaign(users,messageCampagin)){
+                    view.displayMessage("SUCCESS SENDING A CAMPAIGN");
+                }
+                else {
+                    view.displayError("FAILED SENDING A CAMPAIGN");
+                }
                 mainMenu();
 
             break;
@@ -98,12 +106,32 @@ public class CommunicationController {
 
         }
     }
-    public boolean sendMessage(int userID, String message, ReminderType reminderType){
-        User user = userRepoisitory.getUser(userID);
-        if(user==null){
+    public boolean sendMessage(int recipientID, String message, ReminderType reminderType){
+        User recipient = userRepository.getUser(recipientID);
+        if(recipient ==null){
             return false;
         }
-        commuincationService.sendMessage(user, message,reminderType);
-        return true;
+        return commuincationService.sendMessage(recipient, message,reminderType);
+    }
+
+    public boolean postOnSocialMedia(SocialMediaType socialMediaType, String message){
+        return commuincationService.postOnSocialMedia(message,socialMediaType);
+    }
+    public boolean sendCampaign(List<User> receivers, String message){
+        if(currentUser==null){
+            return false;
+        }
+        return commuincationService.sendCampaign(receivers,message);
+    }
+    public boolean registerToAnEvent(int EventID){
+        Event event = eventRepository.getEvent(EventID);
+        if(event!=null){
+            commuincationService.setEvent(event);
+            return true;
+        }
+        return false;
+    }
+    public static List<User> getUsers() {
+        return userRepository.getAllUsers();
     }
 }

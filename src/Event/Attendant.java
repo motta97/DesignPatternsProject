@@ -9,10 +9,17 @@ public class Attendant extends User implements EventObserver{
         this.event = event;
         event.registerObserver(this);
     }
+    //attendant not assigned to an event
     public Attendant(String name, String email, String phoneNumber){
         super(name, email, phoneNumber);
 
     }
+
+    @Override
+    public String getType() {
+        return "";
+    }
+
     public void updateEventObserver(String eventNotification){
         System.out.println("User " + getName() + " received: " + eventNotification);
     }
