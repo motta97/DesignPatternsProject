@@ -16,7 +16,7 @@ public class EventView {
     private UserRepository userRepository;
     public EventView() {
         scanner = new Scanner(System.in);
-        eventRepository = new EventRepository();
+        eventRepository = EventRepository.getInstance();
         userRepository = new UserRepository();
     }
 

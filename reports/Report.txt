@@ -1,31 +1,6 @@
 ==================================
              REPORT
 ==================================
-Beneficiary #1
-Name: Mahmoud Nabil
-Support: Basic Support 
-Distribution: Collection
--------------------
-Beneficiary #2
-Name: Abdallah Badewy
-Support: Basic Support 
-Distribution: Collection
--------------------
-Beneficiary #3
-Name: Khaled
-Support: Basic Support 
-Distribution: Collection
--------------------
-Beneficiary #4
-Name: Mohamed
-Support: Basic Support 
-Distribution: Collection
--------------------
-Beneficiary #5
-Name: Gamal Khaled
-Support: Basic Support 
-Distribution: External Delivery
--------------------
 ==================================
-Total Beneficaries: 5
-Total Requests: 1
+Total Beneficaries: 0
+Total Requests: 0

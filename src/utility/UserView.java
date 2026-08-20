@@ -10,13 +10,15 @@ public class UserView {
         scanner = new Scanner(System.in);
     }
     public void showMainMenu(){
-
+        System.out.println("Welcome to the User Management System");
+        System.out.println("1. Log in");
+        System.out.println("2. Sign Up");
     }
     public void showSignUpMenu(){
-
+        System.out.println("Welcome to the Sign up menu");
     }
     public void showLoginMenu(){
-
+        System.out.println("Welcome to the Login menu");
     }
     public String getString(String printing)
     {

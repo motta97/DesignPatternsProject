@@ -22,7 +22,7 @@ public class EventContoller {
     private EventFactory eventFactory;
 
     public EventContoller(){
-        eventRepository = new EventRepository();
+        eventRepository = EventRepository.getInstance();
         userRepoisitory = new UserRepository();
         eventView = new EventView();
     }
@@ -47,9 +47,13 @@ public class EventContoller {
             LocalDate date = LocalDate.parse(schedule, fmt);
             LocalDateTime dateTime = date.atStartOfDay();
             int eventID= createEvent(eventName, eventType,cost, eventDescription, capacity, dateTime);
-
-            eventView.showEventDetails(eventID);//should show the event details based on its id
-            start();
+            if(eventID==-1){
+                start();
+            }
+            else {
+                eventView.showEventDetails(eventID);//should show the event details based on its id
+                start();
+            }
 
         }
        else if(actionID==2){
@@ -117,6 +121,7 @@ public class EventContoller {
            start();
         }
         else if(actionID==8){
+            //start event
             int eventID = eventView.getInt("Event ID");
             Event event= eventRepository.getEvent(eventID);
             if(event!=null){
@@ -125,6 +130,7 @@ public class EventContoller {
             start();
         }
         else if(actionID==9){
+            //cancel event
             int eventID = eventView.getInt("Event ID");
             Event event= eventRepository.getEvent(eventID);
             if(event!=null){
@@ -133,6 +139,7 @@ public class EventContoller {
             start();
         }
         else if(actionID==10){
+            //close event
             int eventID = eventView.getInt("Event ID");
             Event event= eventRepository.getEvent(eventID);
             if(event!=null){

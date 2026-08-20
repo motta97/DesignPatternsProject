@@ -45,8 +45,9 @@ public class UserFileManager {
                 }
 
                 String[] parts = line.split(",");
-                //we store the name, type, email, and phoneNumber
-                if (parts.length != 4) {
+                //we store the name, type, email, phoneNumber, and id
+                System.out.println("I GOT HERE");
+                if (parts.length != 5) {
                     System.err.println(
                             "skip corrupted line " + lineNumber + ": " + line);
                     continue;
@@ -58,10 +59,14 @@ public class UserFileManager {
                     String type = parts[1].trim();
                     String email = parts[2].trim();
                     String phoneNumber = parts[3].trim();
+                    int userID = Integer.parseInt(parts[4].trim());
                     User user = UserFactory.createUser(type, name, email, phoneNumber);
 
                     if (user != null) {
+                        user.setId(userID);
+                        System.out.println("I got here in the user file manager");
                         users.add(user);
+
                     }
                     else {
                         System.err.println(
@@ -89,6 +94,7 @@ public class UserFileManager {
                 writer.println(
                         user.getName().replace(",","") + "," + user.getType().replace(",","")
                         +"," + user.getEmail().replace(",","") + "," + user.getPhone().replace(",","")
+                        + "," + user.getId()
                 );
             }
 

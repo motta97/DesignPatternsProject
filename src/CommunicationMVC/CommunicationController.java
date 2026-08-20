@@ -19,7 +19,7 @@ public class CommunicationController {
     private User currentUser;
     public CommunicationController(int currentUserID){
         userRepository = new UserRepository();
-        eventRepository = new EventRepository();
+        eventRepository = EventRepository.getInstance();
         view = new CommunicationView();
         currentUser = userRepository.getUser(currentUserID);
         commuincationService = new CommuincationService(currentUser);

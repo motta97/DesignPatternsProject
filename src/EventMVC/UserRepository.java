@@ -9,12 +9,13 @@ public class UserRepository {
     private List<User> users;
     public UserRepository() {
         userFileManager = UserFileManager.getInstance();
+        load();
     }
     public void save(){
         userFileManager.save(users);
     }
     public void load(){
-        users=userFileManager.load();
+        this.users=userFileManager.load();
     }
     public void addUser(User user){
         users.add(user);
@@ -25,7 +26,9 @@ public class UserRepository {
     public List<User> getAllUsers(){
         return users;
     }
+
     public User getUser(int userID){
+        load();
         for(User user:users){
             if(user.getId()==userID){
                 return user;

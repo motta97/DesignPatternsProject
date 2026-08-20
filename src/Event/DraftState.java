@@ -3,7 +3,7 @@ package Event;
 public class DraftState implements EventState {
     @Override
     public void register(Event event, Attendant attendee) {
-        throw new IllegalStateException("Cannot register — event not published yet");
+        System.out.println("Cannot register — event not published yet");
     }
     @Override
     public void cancel(Event event) {
@@ -11,11 +11,11 @@ public class DraftState implements EventState {
     }
     @Override
     public void startEvent(Event event) {
-        throw new IllegalStateException("Cannot start — event still in draft");
+        System.out.println("Cannot start — event still in draft");
     }
     @Override
     public void closeRegistration(Event event) {
-        throw new IllegalStateException("No registration to close — event is a draft");
+        System.out.println("No registration to close — event is a draft");
     }
     @Override
     public String getName() { return "DRAFT"; }

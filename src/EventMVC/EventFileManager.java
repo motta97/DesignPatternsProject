@@ -44,8 +44,8 @@ public class EventFileManager {
                     continue;
                 }
                 String[] parts = line.split(",");
-                    //we store teh event name, cost, type, state, and description
-                if (parts.length != 7) {
+                    //we store the event name, cost, type, state, description, capacity, date, and ID
+                if (parts.length != 8) {
                     System.err.println(
                             "skip corrupted line " + lineNumber + ": " + line);
                     continue;
@@ -63,9 +63,11 @@ public class EventFileManager {
                     DateTimeFormatter fmt = DateTimeFormatter.ofPattern("d/M/yyyy");
                     LocalDate date = LocalDate.parse(parts[6], fmt);
                     LocalDateTime dateTime = date.atStartOfDay();
+                    int id = Integer.parseInt(parts[7].trim());
                     Event event = EventFactory.createEvent(name, type, state, cost, description,  capacity, dateTime);
 
                     if (event != null) {
+                        event.setID(id);
                         events.add(event);
                     }
                     else {
@@ -99,6 +101,7 @@ public class EventFileManager {
                         event.getEventName().replace(",","") + "," + event.getEventType().replace(",","")
                                 + "," + event.getEventState().replace(",","") + ","+ event.getCost() + ","+ event.getDescription().replace(",", "")+","
                         + event.getCapacity()+","+ event.getSchedule().format(DateTimeFormatter.ofPattern("d/M/yyyy"))
+                        + ","+event.getEventID()
                 );
             }
 

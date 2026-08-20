@@ -65,7 +65,9 @@ public abstract class Event implements Subject, Component {
             o.updateEventObserver(eventNotification);
         }
     }
-
+    public void setID(int eventID){
+        this.eventID=eventID;
+    }
     public void ticket(Attendant attendant){
         Ticket ticket = new Ticket();
         ticket.addTicket(attendant, this);

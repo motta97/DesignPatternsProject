@@ -17,6 +17,9 @@ public abstract class User {
         this.phone = phone ;
         this.email = email ;
     }
+    public void setId(int id) {
+        this.id = id;
+    }
     public void setType(UserType type){
         this.type = type;
     }

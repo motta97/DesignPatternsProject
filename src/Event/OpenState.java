@@ -4,7 +4,7 @@ public class OpenState implements EventState {
     @Override
     public void register(Event event, Attendant attendee) {
         if (event.getRegisteredCount() >= event.getCapacity()) {
-            throw new IllegalStateException("Event is full");
+            System.out.println("Event is full");
         }
         event.register(attendee);
         if (event.getRegisteredCount() >= event.getCapacity()) {

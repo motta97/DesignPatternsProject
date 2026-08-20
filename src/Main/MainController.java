@@ -22,6 +22,7 @@ public class MainController {
     private CommunicationController communicationController ;
     private EventContoller eventController;
     public MainController(){
+        System.out.println("I GOT HERE");
          mainView = new MainView() ;
         BeneficiaryModel beneficiaryModel = new BeneficiaryModel();
         BeneficiaryFacade beneficiaryFacade = new BeneficiaryFacade(beneficiaryModel);
@@ -34,6 +35,7 @@ public class MainController {
         donationController = new DonationController(donationFacade, donationView);
         userController = new UserController();
         eventController = new EventContoller();
+        System.out.println("I LEFT FROM HERE");
     }
 
     public void start(){

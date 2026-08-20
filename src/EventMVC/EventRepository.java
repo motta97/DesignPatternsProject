@@ -7,11 +7,17 @@ import java.util.List;
 
 public class EventRepository {
     private EventFactory eventFactory;
-    private EventFileManager eventFileManager;
+    private static EventFileManager eventFileManager;
     private List<Event> eventList;
-    public EventRepository() {
-        eventFactory = new EventFactory();
-        eventFileManager = EventFileManager.getInstance();
+    private static EventRepository uniqueInstance;
+    private EventRepository() {
+    }
+    public static EventRepository getInstance() {
+        if(uniqueInstance == null) {
+            uniqueInstance = new EventRepository();
+            eventFileManager = EventFileManager.getInstance();
+        }
+        return uniqueInstance;
     }
     public void save(){
         eventFileManager.save(eventList);
@@ -24,8 +30,10 @@ public class EventRepository {
         return eventList;
     }
     public void addEvent(Event event){
+        load();
         eventList.add(event);
         save();
+        System.out.println("I GOT HERE");
     }
     public boolean removeEvent(int eventID){
         Event event = getEvent(eventID);
