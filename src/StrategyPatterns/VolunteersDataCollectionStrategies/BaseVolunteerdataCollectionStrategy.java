@@ -13,7 +13,12 @@ import MVC.Viewer;
  */
 public abstract class BaseVolunteerdataCollectionStrategy {
     private static Viewer viewer = Viewer.getInstance();
+<<<<<<<< Updated upstream:src/StrategyPatterns/VolunteersDataCollectionStrategies/BaseVolunteerdataCollectionStrategy.java
     protected String name,id,email,phone;
+========
+    protected String id;
+    
+>>>>>>>> Stashed changes:NetBeansProject_DP/src/main/java/StrategyPatterns/VolunteersDataCollectionStrategies/BaseVolunteerdataCollectionStrategy.java
     public void InitializeBaseParamters(){
         viewer.DisplayMsg("Enter new Volunteer data: ");
         

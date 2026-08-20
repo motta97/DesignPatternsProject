@@ -28,4 +28,8 @@ public class XRayScanTaskDataContainer extends MedicalTaskDataContainer{
     public String getTargetScan(){
         return this.targetScan;
     }
+    @Override
+    public String getContainerAsString(){
+        return super.getContainerAsString()+","+isPregnant+","+targetScan;
+    }
 } 

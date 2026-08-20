@@ -4,6 +4,7 @@
  */
 package Tasks;
 
+import DataContainers.BaseTaskDataContainer;
 import DataContainers.BloodExtractionTaskDataContainer;
 import IteratorPackage.Collection;
 import java.util.Map;
@@ -23,18 +24,24 @@ public class BloodExtraction extends MedicalTask {
     private int vialsRequired;
     private boolean isFasting;
     private BloodType bloodType;
-    
+    private BaseTaskDataContainer data;
     public BloodExtraction(BloodExtractionTaskDataContainer data){
         super(TaskType.BE,data.getHoursNeeded(),data.getNeededSkills(),data.getReqSpeciality());
         taskCounter++;
         this.vialsRequired = data.reqVialsCount();
         this.isFasting = data.getFastingStatus();
         this.bloodType = data.getBloodType();
+        this.data = data;
     }
 
     @Override
     String getTaskSeqNum() {
         return globalTaskCounter+""+taskCounter;
+    }
+
+    @Override
+    BaseTaskDataContainer taskData() {
+        return data;
     }
 
     

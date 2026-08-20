@@ -23,9 +23,14 @@ public class CommunicationController {
         view = new CommunicationView();
         currentUser = userRepository.getUser(currentUserID);
         commuincationService = new CommuincationService(currentUser);
+<<<<<<< Updated upstream
         mainMenu();
     }
     public void mainMenu(){
+=======
+    }
+    public void start(){
+>>>>>>> Stashed changes
         view.showCommunicationMainMenu();
         int choiceID= view.getInt("Menu Choice");
         chooseAction(choiceID);
@@ -42,7 +47,11 @@ public class CommunicationController {
                    view.displayMessage("SUCCESS SENDING A MESSAGE");
                 else
                     view.displayError("FAIL SENDING A MESSAGE");
+<<<<<<< Updated upstream
                 mainMenu();
+=======
+                start();
+>>>>>>> Stashed changes
                 break;
 
                 case 2:
@@ -56,7 +65,11 @@ public class CommunicationController {
                     else{
                         view.displayError("FAIL SENDING A MESSAGE");
                     }
+<<<<<<< Updated upstream
                     mainMenu();
+=======
+                    start();
+>>>>>>> Stashed changes
                     break;
 
             case 3:
@@ -69,7 +82,11 @@ public class CommunicationController {
                 else{
                     view.displayError("FAIL SENDING A MESSAGE");
                 }
+<<<<<<< Updated upstream
                 mainMenu();
+=======
+                start();
+>>>>>>> Stashed changes
                 break;
             case 4:
                 //send campaign
@@ -94,7 +111,11 @@ public class CommunicationController {
                 else {
                     view.displayError("FAILED SENDING A CAMPAIGN");
                 }
+<<<<<<< Updated upstream
                 mainMenu();
+=======
+                start();
+>>>>>>> Stashed changes
 
             break;
             case 5:
@@ -102,7 +123,12 @@ public class CommunicationController {
                 return;
             default:
                 view.displayError("NOT A VALID CHOICE, PLEASE TRY AGAIN");
+<<<<<<< Updated upstream
                 mainMenu();
+=======
+                start();
+                break;
+>>>>>>> Stashed changes
 
         }
     }
@@ -134,4 +160,8 @@ public class CommunicationController {
     public static List<User> getUsers() {
         return userRepository.getAllUsers();
     }
+<<<<<<< Updated upstream
+
+=======
+>>>>>>> Stashed changes
 }

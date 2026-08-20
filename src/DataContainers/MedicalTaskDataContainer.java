@@ -30,6 +30,10 @@ public class MedicalTaskDataContainer extends BaseTaskDataContainer{
     public MedicalFields getReqSpeciality(){
         return this.medicalSpeciality;
     }
+    @Override
+    public String getContainerAsString(){
+        return super.getContainerAsString()+","+medicalRecord.collectionToString()+","+medicalSpeciality.toString();
+    } 
 }
 
 

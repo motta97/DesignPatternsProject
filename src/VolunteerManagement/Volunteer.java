@@ -136,10 +136,41 @@ public abstract class Volunteer {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 interface Icertificate{
     
 }
 class NewComerCertificate implements Icertificate{
     
 }
-

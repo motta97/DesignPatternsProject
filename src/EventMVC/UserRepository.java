@@ -1,12 +1,13 @@
 package EventMVC;
 
+import java.util.ArrayList;
 import utility.User;
 
 import java.util.List;
 
 public class UserRepository {
     private UserFileManager userFileManager;
-    private List<User> users;
+    private List<User> users  = new ArrayList<>();
     public UserRepository() {
         userFileManager = UserFileManager.getInstance();
     }

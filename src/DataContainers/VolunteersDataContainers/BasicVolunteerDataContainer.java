@@ -11,6 +11,7 @@ import volunteermanagement.Enums.VolunteerClassifications;
  *
  * @author abeer
  */
+<<<<<<<< Updated upstream:src/DataContainers/VolunteersDataContainers/BasicVolunteerDataContainer.java
 public abstract class BasicVolunteerDataContainer {
     String name;
     String id;
@@ -20,6 +21,11 @@ public abstract class BasicVolunteerDataContainer {
     public BasicVolunteerDataContainer(String n,String id,String ph,String email){
         this.name = n;
         
+========
+public abstract class BasicVolunteerDataContainer{
+    String id;
+    public BasicVolunteerDataContainer(String id){
+>>>>>>>> Stashed changes:NetBeansProject_DP/src/main/java/DataContainers/VolunteersDataContainers/BasicVolunteerDataContainer.java
         this.id = id;
         this.email =email;
         this.phone = ph;

@@ -6,6 +6,7 @@ package Tasks;
 
 import ClassStatePattern.TaskOpenState;
 import ClassStatePattern.TaskState;
+import DataContainers.BaseTaskDataContainer;
 import IteratorPackage.Collection;
 import volunteermanagement.Enums.TaskSkills;
 import volunteermanagement.Enums.TaskType;
@@ -59,4 +60,9 @@ public abstract  class Itasks {
     public void AssignTask(){
         state.Assign(this);
     }
+
+    public final BaseTaskDataContainer getData() {
+        return taskData();
+    }
+    abstract BaseTaskDataContainer taskData();
 }

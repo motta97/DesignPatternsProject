@@ -13,7 +13,11 @@ public class BasicDonor extends Donor {
 
     @Override
     public String getType() {
+<<<<<<< Updated upstream
         return "BasicDonor";
+=======
+        return "BASIC_DONOR";
+>>>>>>> Stashed changes
     }
 
     public void addDonation(Donation ref) {

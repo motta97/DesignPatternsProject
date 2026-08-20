@@ -8,6 +8,13 @@ import Event.Attendant;
 import Event.WhatsAppStrategy;
 import Event.SMSStrategy;
 import Event.EmailStrategy;
+<<<<<<< Updated upstream
+=======
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+>>>>>>> Stashed changes
 import java.util.List;
 import Event.EventFactory;
 
@@ -21,10 +28,15 @@ public class EventContoller {
         eventRepository = new EventRepository();
         userRepoisitory = new UserRepository();
         eventView = new EventView();
+<<<<<<< Updated upstream
 
 
     }
     public void mainMenu(){
+=======
+    }
+    public void start(){
+>>>>>>> Stashed changes
 
         eventView.showEventMainMenu();
         int choice = eventView.getInt("Menu Choice");
@@ -40,10 +52,22 @@ public class EventContoller {
             String eventDescription = eventView.getString("EventDescription");
             double cost = eventView.getDouble("EventCost");
             int capacity = eventView.getInt("EventCapacity");
+<<<<<<< Updated upstream
             int eventID= createEvent(eventName, eventType,cost, eventDescription, capacity);
             eventView.showEventDetails(eventID);//should show the event details based on its id
             mainMenu();
             return;
+=======
+            String schedule = eventView.getString("EventDate in d/m/yyyy");
+            DateTimeFormatter fmt = DateTimeFormatter.ofPattern("d/M/yyyy");
+            LocalDate date = LocalDate.parse(schedule, fmt);
+            LocalDateTime dateTime = date.atStartOfDay();
+            int eventID= createEvent(eventName, eventType,cost, eventDescription, capacity, dateTime);
+
+            eventView.showEventDetails(eventID);//should show the event details based on its id
+            start();
+
+>>>>>>> Stashed changes
         }
        else if(actionID==2){
             //update an event
@@ -57,8 +81,13 @@ public class EventContoller {
             else {
                 eventView.displayError("FAILED UPDATING EVENT");
             }
+<<<<<<< Updated upstream
             mainMenu();
             return;
+=======
+            start();
+
+>>>>>>> Stashed changes
 
         }
         else if(actionID==3){
@@ -69,8 +98,13 @@ public class EventContoller {
                 eventView.displayMessage("SUCCESS REMOVING AN EVENT");
             else
                 eventView.displayError("FAILED REMOVING AN EVENT");
+<<<<<<< Updated upstream
             mainMenu();
             return;
+=======
+            start();
+
+>>>>>>> Stashed changes
         }
         else if(actionID==4){
             //send event reminder
@@ -84,8 +118,13 @@ public class EventContoller {
                 eventView.displayError("FAILED SENDING A REMINDER");
 
 
+<<<<<<< Updated upstream
             mainMenu();
             return;
+=======
+            start();
+
+>>>>>>> Stashed changes
 
         }
         else if(actionID==5){
@@ -98,16 +137,28 @@ public class EventContoller {
             }
             else
                 eventView.displayError("FAILED ATTENDING AN EVENT");
+<<<<<<< Updated upstream
             mainMenu();
+=======
+            start();
+>>>>>>> Stashed changes
 
         }
        else if(actionID==6){
             printAllEvents();
+<<<<<<< Updated upstream
             mainMenu();
         }
        else if(actionID==7){
            printAllUsers();
            mainMenu();
+=======
+            start();
+        }
+       else if(actionID==7){
+           printAllUsers();
+           start();
+>>>>>>> Stashed changes
         }
         else if(actionID==8){
             int eventID = eventView.getInt("Event ID");
@@ -115,7 +166,11 @@ public class EventContoller {
             if(event!=null){
                 eventStart(event);
             }
+<<<<<<< Updated upstream
             mainMenu();
+=======
+            start();
+>>>>>>> Stashed changes
         }
         else if(actionID==9){
             int eventID = eventView.getInt("Event ID");
@@ -123,7 +178,11 @@ public class EventContoller {
             if(event!=null){
                 eventCancel(event);
             }
+<<<<<<< Updated upstream
             mainMenu();
+=======
+            start();
+>>>>>>> Stashed changes
         }
         else if(actionID==10){
             int eventID = eventView.getInt("Event ID");
@@ -131,7 +190,11 @@ public class EventContoller {
             if(event!=null){
                 eventCloseRegistration(event);
             }
+<<<<<<< Updated upstream
             mainMenu();
+=======
+            start();
+>>>>>>> Stashed changes
         }
         else if(actionID==11){
             int eventID = eventView.getInt("Event ID");
@@ -139,16 +202,29 @@ public class EventContoller {
             if(event!=null){
                 eventView.displayMessage(eventGetState(event));
             }
+<<<<<<< Updated upstream
             mainMenu();
+=======
+            start();
+>>>>>>> Stashed changes
         }
 
         else if(actionID==12){
             //exit
+<<<<<<< Updated upstream
             return;
         }
         else {
             eventView.displayError("ERROR NOT A VALID CHOICE, PLEASE TRY AGAIN");
             mainMenu();
+=======
+
+        }
+        else {
+            eventView.displayError("ERROR NOT A VALID CHOICE, PLEASE TRY AGAIN");
+            start();
+
+>>>>>>> Stashed changes
         }
     }
     public boolean eventAttend(int eventID, int userID){
@@ -164,6 +240,7 @@ public class EventContoller {
         return true;
 
     }
+<<<<<<< Updated upstream
     public int createEvent(String eventName, String eventType, double cost, String eventDescription, int capacity){
         Event event;
         if(eventType.equals("Fundraisers")){
@@ -174,6 +251,18 @@ public class EventContoller {
         }
         else if(eventType.equals("Workshop")){
             event = eventFactory.createEvent(eventName,"WORKSHOP", "DRAFT", cost, eventDescription,  capacity);
+=======
+    public int createEvent(String eventName, String eventType, double cost, String eventDescription, int capacity, LocalDateTime dateTime){
+        Event event;
+        if(eventType.equals("Fundraisers")){
+            event = eventFactory.createEvent(eventName,"FUNDRAISERS", "DRAFT", cost, eventDescription, capacity,  dateTime);
+        }
+        else if(eventType.equals("Outreach")){
+            event = eventFactory.createEvent(eventName,"OUTREACH", "DRAFT", cost, eventDescription,  capacity, dateTime);
+        }
+        else if(eventType.equals("Workshop")){
+            event = eventFactory.createEvent(eventName,"WORKSHOP", "DRAFT", cost, eventDescription,  capacity,  dateTime);
+>>>>>>> Stashed changes
         }
         else {
             eventView.displayError("ERROR NOT A VALID CHOICE, PLEASE TRY AGAIN");

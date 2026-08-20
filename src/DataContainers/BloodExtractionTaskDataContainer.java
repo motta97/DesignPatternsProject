@@ -34,5 +34,8 @@ public class BloodExtractionTaskDataContainer extends MedicalTaskDataContainer{
     public BloodType getBloodType(){
         return this.bloodType;
     }
-    
+    @Override
+    public String getContainerAsString(){
+        return super.getContainerAsString()+","+isFasting+","+reqVialsCount+","+bloodType.toString();
+    }
 }

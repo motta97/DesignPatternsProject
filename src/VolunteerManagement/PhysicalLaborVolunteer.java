@@ -97,3 +97,4 @@ public class PhysicalLaborVolunteer extends Volunteer {
         return false;
     }
 }
+    

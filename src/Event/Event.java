@@ -1,6 +1,10 @@
 package Event;
 import Enums.EventType;
 
+<<<<<<< Updated upstream
+=======
+import java.time.LocalDateTime;
+>>>>>>> Stashed changes
 import java.util.List;
 
 public abstract class Event implements Subject, Component {
@@ -17,6 +21,10 @@ public abstract class Event implements Subject, Component {
     private EventState currentState;
     private int EventCapcity;
     private int registredCount = 0;
+<<<<<<< Updated upstream
+=======
+    private LocalDateTime schedule;
+>>>>>>> Stashed changes
     public Event(String eventName, double eventCost, String eventDescription, int EventCapcity) {
         this.eventName=eventName;
         this.eventID=nextID++;
@@ -25,6 +33,15 @@ public abstract class Event implements Subject, Component {
         this.EventCapcity=EventCapcity;
         currentState = new DraftState();
     }
+<<<<<<< Updated upstream
+=======
+    public LocalDateTime getSchedule() {
+        return schedule;
+    }
+    public void setSchedule(LocalDateTime schedule) {
+        this.schedule = schedule;
+    }
+>>>>>>> Stashed changes
     public int getRegisteredCount() {
         return registredCount;
     }
@@ -80,7 +97,11 @@ public abstract class Event implements Subject, Component {
         this.reminderStrategy=strategy;
     }
     public void sendReminder(Attendant attendant){
+<<<<<<< Updated upstream
         reminderStrategy.sendReminder(attendant);
+=======
+        reminderStrategy.sendReminder(this, attendant);
+>>>>>>> Stashed changes
     }
 
     public void register(Attendant attendant){

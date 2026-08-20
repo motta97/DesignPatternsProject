@@ -17,7 +17,11 @@ public class Attendant extends User implements EventObserver{
 
     @Override
     public String getType() {
+<<<<<<< Updated upstream
         return "";
+=======
+        return "ATTENDANT";
+>>>>>>> Stashed changes
     }
 
     public void updateEventObserver(String eventNotification){

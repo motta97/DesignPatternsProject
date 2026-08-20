@@ -16,8 +16,13 @@ public class PhysicalLaborVolunteerDataContainer extends BasicVolunteerDataConta
     private float maxCap;
     private boolean reqAccomdations;
     private Collection<EquipmentCertifications> certifiedTools;
+<<<<<<<< Updated upstream:src/DataContainers/VolunteersDataContainers/PhysicalLaborVolunteerDataContainer.java
     public PhysicalLaborVolunteerDataContainer(String n, String id, String ph, String email,float maxCap,boolean reqAcc,Collection<EquipmentCertifications>tools) {
         super(n, id, ph, email);
+========
+    public PhysicalLaborVolunteerDataContainer(String id,float maxCap,boolean reqAcc,Collection<EquipmentCertifications>tools) {
+        super(id);
+>>>>>>>> Stashed changes:NetBeansProject_DP/src/main/java/DataContainers/VolunteersDataContainers/PhysicalLaborVolunteerDataContainer.java
         this.maxCap = maxCap;
         this.reqAccomdations = reqAcc;
         this.certifiedTools = tools;

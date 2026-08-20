@@ -31,5 +31,7 @@ public class BaseTaskDataContainer {
     public int getHoursNeeded(){
         return this.hoursNeeded;
     }
-    
+    public String getContainerAsString(){
+        return hoursNeeded+","+neededSkills.collectionToString();
+    }
 }

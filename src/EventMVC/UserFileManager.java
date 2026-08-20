@@ -87,7 +87,12 @@ public class UserFileManager {
 
             for (User user : users) {
                 writer.println(
+<<<<<<< Updated upstream
                         user.getId() + "," + user.getName().replace(",","") + "," + user.getType().replace(",","")
+=======
+                        user.getName().replace(",","") + "," + user.getType().replace(",","")
+                        +"," + user.getEmail().replace(",","") + "," + user.getPhone().replace(",","")
+>>>>>>> Stashed changes
                 );
             }
 

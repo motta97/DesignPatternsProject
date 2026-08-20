@@ -30,5 +30,9 @@ public class VacinationTaskDataContainer extends MedicalTaskDataContainer{
     public int getObsTime(){
         return this.obsTime;
     }
+    @Override
     
+    public String getContainerAsString(){
+        return super.getContainerAsString()+","+this.vaccineBatchNum+","+obsTime;
+    }
 }

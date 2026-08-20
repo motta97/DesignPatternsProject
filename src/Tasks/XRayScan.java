@@ -4,6 +4,7 @@
  */
 package Tasks;
 
+import DataContainers.BaseTaskDataContainer;
 import DataContainers.XRayScanTaskDataContainer;
 import IteratorPackage.Collection;
 import java.util.Map;
@@ -20,9 +21,11 @@ public class XRayScan extends MedicalTask{
     private static int taskCounter = 0;
     private String targetScan;
     private boolean isPregnant;
+    private BaseTaskDataContainer data;
     public XRayScan(XRayScanTaskDataContainer data) {
         super(TaskType.XRS,data.getHoursNeeded(),data.getNeededSkills(),data.getReqSpeciality());
         taskCounter++;
+        this.data = data;
         this.targetScan = data.getTargetScan();
         this.isPregnant = data.getIsPregnant();
         
@@ -31,5 +34,10 @@ public class XRayScan extends MedicalTask{
     @Override
     String getTaskSeqNum() {
         return globalTaskCounter+""+taskCounter;
+    }
+
+    @Override
+    BaseTaskDataContainer taskData() {
+        return this.data;
     }
 }

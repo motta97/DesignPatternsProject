@@ -4,6 +4,10 @@
  */
 package MVC;
 
+import AdapterPattern.Idatabase;
+import AdapterPattern.ProtectiveProxy;
+import AdapterPattern.TextFileDatabase;
+import AdapterPattern.VirtualProxy;
 import DataContainers.VolunteersDataContainers.BasicVolunteerDataContainer;
 import IteratorPackage.Collection;
 import IteratorPackage.Iiterator;
@@ -21,19 +25,28 @@ import volunteermanagement.VolunteerFactory;
  */
 public class VolunteerManagementController {
     private static Viewer volunteerViewer = Viewer.getInstance();
+    String volFilePath;
+    String taskFilePath;
+    private Idatabase db;
+    Collection<Volunteer> data;
     private static BaseVolunteerdataCollectionStrategy dataCollectionStrategy;
-    public static void start(){
+    
+    public void start(){
         volunteerViewer.DisplayGreeting();
         int userChoice = volunteerViewer.MainMenuView();
         HandleMainMenuChoice(userChoice);
+        InitializeDB();
     }
     
-    public static void HandleMainMenuChoice(int choice){
+    public void HandleMainMenuChoice(int choice){
         switch(choice){
             case 1:
+            {
                 
-                RegisterVolunteer();
+                SaveAllVolunteer(data);
+            }
                 break;
+
             case 2:
                 //AssignTask();
                 break;
@@ -50,16 +63,23 @@ public class VolunteerManagementController {
         }
     }
     
+    private  void SaveAllVolunteer(Collection<Volunteer> data) {
+        
+        db.SaveVolunteers(data);
+        
+    }
+    
     public static void SetDataCollectionStrategy(BaseVolunteerdataCollectionStrategy strategy){
         dataCollectionStrategy = strategy;
     }
-    public static void RegisterVolunteer(){
+    public static void RegisterVolunteer(String name, String phone,String email){
         BasicVolunteerDataContainer dataContainer;
         VolunteerClassifications volClass = SetVolunteerRole();
         dataCollectionStrategy = DataCollectionStrategyFactory.createStrategy(volClass);
         if(dataCollectionStrategy != null){
             dataContainer =dataCollectionStrategy.CollectVolunteerData();
-            Volunteer newVol = VolunteerFactory.createVolunteer(volClass,dataContainer);
+            
+            Volunteer newVol = VolunteerFactory.createVolunteer(volClass,name,phone,email,dataContainer);
         }
         else{
             volunteerViewer.DisplayMsg("Collection strategy has not been implemented yet!");
@@ -82,5 +102,16 @@ public class VolunteerManagementController {
         }
         
         return VolunteerClassifications.values()[userChoice-1];
+    }
+    
+    public void SetTaskFilePath(String path){
+        this.taskFilePath = path;
+    }
+    public void SetVolFilePath(String path){
+        this.volFilePath = path;
+    }
+    private void InitializeDB() {
+        
+        db = ProtectiveProxy.getInstance(VirtualProxy.getInstance(taskFilePath,volFilePath));
     }
 }
