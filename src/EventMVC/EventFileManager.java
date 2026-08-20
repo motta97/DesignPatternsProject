@@ -111,6 +111,30 @@ public class EventFileManager {
         }
 
     }
+    public void saveNew(List<Event> events){
+        this.events = events;
+
+        //save to a text file
+        try (PrintWriter writer =
+                     new PrintWriter(new FileWriter("events.txt"))) {//true to make it append
+
+            for (Event event : events) {
+
+                writer.println(
+                        event.getEventName().replace(",","") + "," + event.getEventType().replace(",","")
+                                + "," + event.getEventState().replace(",","") + ","+ event.getCost() + ","+ event.getDescription().replace(",", "")+","
+                                + event.getCapacity()+","+ event.getSchedule().format(DateTimeFormatter.ofPattern("d/M/yyyy"))
+                                + ","+event.getEventID()
+                );
+            }
+
+        }
+        catch(IOException e){
+            System.out.println("error saving events.txt");
+        }
+
+    }
+
 
 
 }

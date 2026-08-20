@@ -9,8 +9,8 @@ public class MainView {
                 ===== Main Module =====
                 1.Donation Module
                 2.Beneficiary Module
-                3. Event Module
-                4. Communication Module
+                3.Event Module
+                4.Communication Module
                 
                 0.return back
                 """);

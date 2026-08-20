@@ -13,6 +13,7 @@ public class CommunicationFacade implements Subject{
     public boolean sendMessage(User sender, User receiver, String message) {
 
             if(communicationStrategy==null){
+                System.out.println("communicationStrategy is null");
                 return false;
             }
         return communicationStrategy.send(receiver, message);
@@ -20,6 +21,7 @@ public class CommunicationFacade implements Subject{
     }
     public boolean sendCampaign(User sender, List<User> receivers, String message){
         boolean result = true;
+        this.communicationStrategy= new SMSStrategy();
         for(User user : receivers){
             if(!sendMessage(sender, user,message))
                 result = false;

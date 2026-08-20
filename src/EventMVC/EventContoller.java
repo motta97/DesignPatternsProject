@@ -23,7 +23,7 @@ public class EventContoller {
 
     public EventContoller(){
         eventRepository = EventRepository.getInstance();
-        userRepoisitory = new UserRepository();
+        userRepoisitory = UserRepository.getInstance();
         eventView = new EventView();
     }
     public void start(){

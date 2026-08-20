@@ -18,7 +18,7 @@ public class CommunicationController {
     private static EventRepository eventRepository;
     private User currentUser;
     public CommunicationController(int currentUserID){
-        userRepository = new UserRepository();
+        userRepository = UserRepository.getInstance();
         eventRepository = EventRepository.getInstance();
         view = new CommunicationView();
         currentUser = userRepository.getUser(currentUserID);
@@ -50,10 +50,10 @@ public class CommunicationController {
                     SocialMediaType socialMediaType = view.getSocialMediaType();
                     String description = view.getString("Description");
                     if(postOnSocialMedia(socialMediaType,description)){
-                        view.displayMessage("SUCCESS SENDING A MESSAGE");
+                        view.displayMessage("SUCCESS POSTING ON SOCIAL MEDIA");
                     }
                     else{
-                        view.displayError("FAIL SENDING A MESSAGE");
+                        view.displayError("FAIL POSTING ON SOCIAL MEDIA");
                     }
                     start();
                     break;
@@ -119,6 +119,7 @@ public class CommunicationController {
     }
     public boolean sendCampaign(List<User> receivers, String message){
         if(currentUser==null){
+            System.out.println("Current User is null");
             return false;
         }
         return commuincationService.sendCampaign(receivers,message);

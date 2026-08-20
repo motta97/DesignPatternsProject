@@ -33,18 +33,20 @@ public class EventRepository {
         load();
         eventList.add(event);
         save();
-        System.out.println("I GOT HERE");
+
     }
     public boolean removeEvent(int eventID){
+        load();
         Event event = getEvent(eventID);
         if(event!=null) {
             eventList.remove(event);
-            save();
+            eventFileManager.saveNew(eventList);
             return true;
         }
         return false;
     }
     public Event getEvent(int id){
+        load();
         for(Event event:eventList){
             if(event.getEventID()==id){
                 return event;

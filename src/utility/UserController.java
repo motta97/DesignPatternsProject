@@ -6,7 +6,7 @@ public class UserController {
     UserRepository userRepoisitory;
     UserView userView;
     public UserController() {
-        userRepoisitory = new UserRepository();
+        userRepoisitory = UserRepository.getInstance();
         userView = new UserView();
     }
     public int mainMenu() {
@@ -27,7 +27,7 @@ public class UserController {
 
                 }
                 else {
-                    userView.displayMessage("Successfully logged in");
+                    userView.displayMessage("Successfully logged in, welocme back "+user.getName());
                     return user.getId();
                 }
 
@@ -41,6 +41,7 @@ public class UserController {
                 String userType = userView.getUserType();
 
                 User user = UserFactory.createUser(userType,userName,userEmail,userPhone );
+                userRepoisitory.addUser(user);
                 userView.displayMessage("Successfully signed up");
                 return user.getId();
             }

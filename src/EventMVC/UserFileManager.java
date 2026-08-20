@@ -46,7 +46,7 @@ public class UserFileManager {
 
                 String[] parts = line.split(",");
                 //we store the name, type, email, phoneNumber, and id
-                System.out.println("I GOT HERE");
+
                 if (parts.length != 5) {
                     System.err.println(
                             "skip corrupted line " + lineNumber + ": " + line);
@@ -64,7 +64,7 @@ public class UserFileManager {
 
                     if (user != null) {
                         user.setId(userID);
-                        System.out.println("I got here in the user file manager");
+
                         users.add(user);
 
                     }
@@ -104,4 +104,23 @@ public class UserFileManager {
         }
 
     }
+    public void saveNew(List<User> users) {
+        try (PrintWriter writer =
+                     new PrintWriter(new FileWriter("users.txt"))) {
+
+            for (User user : users) {
+                writer.println(
+                        user.getName().replace(",","") + "," + user.getType().replace(",","")
+                                +"," + user.getEmail().replace(",","") + "," + user.getPhone().replace(",","")
+                                + "," + user.getId()
+                );
+            }
+
+        }
+        catch(IOException e){
+            System.out.println("Error saving users.txt");
+        }
+
+    }
+
 }

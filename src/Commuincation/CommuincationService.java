@@ -12,8 +12,8 @@ import java.util.List;
 
 public class CommuincationService implements EventObserver {
     private Event event;
-    private CommunicationProxy communicationFacadeProxy;
-    private  SocialMediaFacade socialMediaFacade;
+    private CommunicationProxy communicationFacadeProxy = new CommunicationProxy();
+    private  SocialMediaFacade socialMediaFacade = new SocialMediaFacade();
     private User currentUser;
     public CommuincationService(Event event){
         this.event = event;

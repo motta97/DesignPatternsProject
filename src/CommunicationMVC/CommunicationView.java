@@ -30,7 +30,7 @@ public class CommunicationView {
     public void showSendMessageMenu() {
 
         System.out.println("\n---- Send Message ----");
-        System.out.print("Enter User ID: ");
+
     }
 
     public void showPostOnSocialMediaMenu() {
@@ -45,13 +45,11 @@ public class CommunicationView {
     public void showRegisterToAnEventMenu() {
 
         System.out.println("\n===== Register To Event =====");
-        System.out.print("Enter Event ID: ");
     }
 
     public void showSendToCampaignMenu() {
 
         System.out.println("\n========== Send Campaign ==========");
-        System.out.print("Enter number of users: ");
     }
 //input methods
 
@@ -69,7 +67,7 @@ public class CommunicationView {
     }
 
     public String getString(String message) {
-
+        System.out.println("Please enter "+message);
         return scanner.nextLine();
     }
 

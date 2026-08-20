@@ -17,7 +17,7 @@ public class EventView {
     public EventView() {
         scanner = new Scanner(System.in);
         eventRepository = EventRepository.getInstance();
-        userRepository = new UserRepository();
+        userRepository = userRepository.getInstance();
     }
 
 //menus
