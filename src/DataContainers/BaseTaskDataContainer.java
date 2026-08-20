@@ -6,7 +6,7 @@ package DataContainers;
 
 import ClassStatePattern.TaskState;
 import IteratorPackage.Collection;
-import volunteermanagement.Enums.TaskSkills;
+import Enums.TaskSkills;
 import volunteermanagement.Volunteer;
 
 /**
@@ -31,5 +31,7 @@ public class BaseTaskDataContainer {
     public int getHoursNeeded(){
         return this.hoursNeeded;
     }
-    
+    public String getContainerAsString(){
+        return hoursNeeded+","+neededSkills.collectionToString();
+    }
 }

@@ -9,7 +9,7 @@ import DataContainers.VolunteersDataContainers.PhysicalLaborVolunteerDataContain
 import IteratorPackage.Collection;
 import IteratorPackage.Iiterator;
 import MVC.Viewer;
-import volunteermanagement.Enums.EquipmentCertifications;
+import Enums.EquipmentCertifications;
 
 /**
  *
@@ -41,6 +41,6 @@ public class PhysicalLaborVolunteerDataCollectionStrategy extends BaseVolunteerd
              Viewer.ChoicesDisplayer(iterator);
              input = Viewer.promptForInt("Send -1 when done");
          }
-         return new PhysicalLaborVolunteerDataContainer(name,id,phone,email,maxCap,reqAcc,certifiedTools);
+         return new PhysicalLaborVolunteerDataContainer(id,maxCap,reqAcc,certifiedTools);
      }
 }

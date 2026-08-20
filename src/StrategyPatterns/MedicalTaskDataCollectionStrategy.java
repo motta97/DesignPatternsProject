@@ -9,8 +9,8 @@ import DataContainers.MedicalTaskDataContainer;
 import IteratorPackage.Collection;
 import IteratorPackage.Iiterator;
 import MVC.Viewer;
-import volunteermanagement.Enums.MedicalDiagnosis;
-import volunteermanagement.Enums.MedicalFields;
+import Enums.MedicalDiagnosis;
+import Enums.MedicalFields;
 
 /**
  *

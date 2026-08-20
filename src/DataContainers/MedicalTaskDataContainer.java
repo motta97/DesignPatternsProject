@@ -5,10 +5,10 @@
 package DataContainers;
 
 import IteratorPackage.Collection;
-import volunteermanagement.Enums.BloodType;
-import volunteermanagement.Enums.MedicalDiagnosis;
-import volunteermanagement.Enums.MedicalFields;
-import volunteermanagement.Enums.TaskSkills;
+import Enums.BloodType;
+import Enums.MedicalDiagnosis;
+import Enums.MedicalFields;
+import Enums.TaskSkills;
 import volunteermanagement.Volunteer;
 
 /**
@@ -30,6 +30,10 @@ public class MedicalTaskDataContainer extends BaseTaskDataContainer{
     public MedicalFields getReqSpeciality(){
         return this.medicalSpeciality;
     }
+    @Override
+    public String getContainerAsString(){
+        return super.getContainerAsString()+","+medicalRecord.collectionToString()+","+medicalSpeciality.toString();
+    } 
 }
 
 

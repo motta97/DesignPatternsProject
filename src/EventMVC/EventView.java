@@ -37,7 +37,9 @@ public class EventView {
         System.out.println("9. Cancel an Event");
         System.out.println("10. Close Registration for an event");
         System.out.println("11. Get the state of an event");
-        System.out.println("12. Exit");
+        System.out.println("12. Add VIP Access");
+        System.out.println("13. Add Live Stream");
+        System.out.println("14. Exit");
     }
 
     public void showCreateEventMenu() {

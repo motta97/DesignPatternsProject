@@ -8,7 +8,9 @@ import Event.Attendant;
 import Event.WhatsAppStrategy;
 import Event.SMSStrategy;
 import Event.EmailStrategy;
-
+import Event.VIPAccess;
+import Event.LiveStream;
+import Event.Component;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -155,8 +157,44 @@ public class EventContoller {
             }
             start();
         }
+        else if(actionID ==12){
+            //add VIP access to an event
+            int eventID = eventView.getInt("Event ID");
+            Event event= eventRepository.getEvent(eventID);
+            if(event!=null){
+                Component vipAccess= new VIPAccess(event);
+                event.setEventDescription(vipAccess.getDescription());
+                event.setEventCost(vipAccess.getCost());
+                eventView.displayMessage("SUCCESS ADDING VIP ACCESS");
+                eventView.displayMessage("New Event Description: "+event.getDescription());
+                eventView.displayMessage("New Event Cost: "+event.getCost());
 
-        else if(actionID==12){
+            }
+            else{
+                eventView.displayError("FAILED ADDING VIP ACCESS");
+            }
+            start();
+        }
+        else if(actionID==13){
+            //add Live Stream
+            int eventID = eventView.getInt("Event ID");
+            Event event= eventRepository.getEvent(eventID);
+            if(event!=null){
+                Component liveStream= new LiveStream(event);
+                event.setEventDescription(liveStream.getDescription());
+                event.setEventCost(liveStream.getCost());
+                eventView.displayMessage("SUCCESS ADDING LIVE STREAM");
+                eventView.displayMessage("New Event Description: "+event.getDescription());
+                eventView.displayMessage("New Event Cost: "+event.getCost());
+
+            }
+            else{
+                eventView.displayError("FAILED ADDING LIVE STREAM");
+            }
+            start();
+        }
+
+        else if(actionID==14){
             //exit
 
         }

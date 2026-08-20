@@ -4,13 +4,14 @@
  */
 package MVC;
 
+import AdapterPattern.Idatabase;
 import DataContainers.VolunteersDataContainers.BasicVolunteerDataContainer;
 import IteratorPackage.Collection;
 import IteratorPackage.Iiterator;
 import static MVC.Viewer.ChoicesDisplayer;
-import StrategyPatterns.DataCollectionStrategyFactory;
+import StrategyPatterns.VolunteersDataCollectionStrategies.DataCollectionStrategyFactory;
 import StrategyPatterns.VolunteersDataCollectionStrategies.BaseVolunteerdataCollectionStrategy;
-import volunteermanagement.Enums.VolunteerClassifications;
+import Enums.VolunteerClassifications;
 import volunteermanagement.MedicalVolunteer;
 import volunteermanagement.Volunteer;
 import volunteermanagement.VolunteerFactory;
@@ -21,7 +22,9 @@ import volunteermanagement.VolunteerFactory;
  */
 public class VolunteerManagementController {
     private static Viewer volunteerViewer = Viewer.getInstance();
+    private Idatabase db;
     private static BaseVolunteerdataCollectionStrategy dataCollectionStrategy;
+    
     public static void start(){
         volunteerViewer.DisplayGreeting();
         int userChoice = volunteerViewer.MainMenuView();
@@ -32,7 +35,6 @@ public class VolunteerManagementController {
         switch(choice){
             case 1:
                 
-                RegisterVolunteer();
                 break;
             case 2:
                 //AssignTask();
@@ -53,13 +55,14 @@ public class VolunteerManagementController {
     public static void SetDataCollectionStrategy(BaseVolunteerdataCollectionStrategy strategy){
         dataCollectionStrategy = strategy;
     }
-    public static void RegisterVolunteer(){
+    public static void RegisterVolunteer(String name, String phone,String email){
         BasicVolunteerDataContainer dataContainer;
         VolunteerClassifications volClass = SetVolunteerRole();
         dataCollectionStrategy = DataCollectionStrategyFactory.createStrategy(volClass);
         if(dataCollectionStrategy != null){
             dataContainer =dataCollectionStrategy.CollectVolunteerData();
-            Volunteer newVol = VolunteerFactory.createVolunteer(volClass,dataContainer);
+            
+            Volunteer newVol = VolunteerFactory.createVolunteer(volClass,name,phone,email,dataContainer);
         }
         else{
             volunteerViewer.DisplayMsg("Collection strategy has not been implemented yet!");

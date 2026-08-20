@@ -5,10 +5,10 @@
 package DataContainers;
 
 import IteratorPackage.Collection;
-import volunteermanagement.Enums.BloodType;
-import volunteermanagement.Enums.MedicalDiagnosis;
-import volunteermanagement.Enums.MedicalFields;
-import volunteermanagement.Enums.TaskSkills;
+import Enums.BloodType;
+import Enums.MedicalDiagnosis;
+import Enums.MedicalFields;
+import Enums.TaskSkills;
 import volunteermanagement.Volunteer;
 
 /**
@@ -34,5 +34,8 @@ public class BloodExtractionTaskDataContainer extends MedicalTaskDataContainer{
     public BloodType getBloodType(){
         return this.bloodType;
     }
-    
+    @Override
+    public String getContainerAsString(){
+        return super.getContainerAsString()+","+isFasting+","+reqVialsCount+","+bloodType.toString();
+    }
 }

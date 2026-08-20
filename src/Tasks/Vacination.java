@@ -4,14 +4,15 @@
  */
 package Tasks;
 
+import DataContainers.BaseTaskDataContainer;
 import DataContainers.VacinationTaskDataContainer;
 import IteratorPackage.Collection;
 import Tasks.MedicalTask;
 import static Tasks.MedicalTask.globalTaskCounter;
 import java.util.Map;
-import volunteermanagement.Enums.MedicalFields;
-import volunteermanagement.Enums.TaskSkills;
-import volunteermanagement.Enums.TaskType;
+import Enums.MedicalFields;
+import Enums.TaskSkills;
+import Enums.TaskType;
 import volunteermanagement.Volunteer;
 
 /**
@@ -22,18 +23,23 @@ public class Vacination extends MedicalTask{
     
     private String vaccineBatchNum;
     private int observationTime;
-    
+    private BaseTaskDataContainer data;
     private static int taskCounter=0;
     public Vacination(VacinationTaskDataContainer data){
         super(TaskType.VAC,data.getHoursNeeded(),data.getNeededSkills(),data.getReqSpeciality());
         taskCounter++;
-        
+        this.data = data;
         this.vaccineBatchNum = data.getVaccNum();
         this.observationTime = data.getObsTime();
     }
     @Override
     String getTaskSeqNum(){
         return globalTaskCounter+""+taskCounter;
+    }
+
+    @Override
+    BaseTaskDataContainer taskData() {
+        return this.data;
     }
 
     

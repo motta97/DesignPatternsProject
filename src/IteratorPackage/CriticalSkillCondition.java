@@ -4,7 +4,7 @@
  */
 package IteratorPackage;
 
-import volunteermanagement.Enums.TaskSkills;
+import Enums.TaskSkills;
 
 /**
  *

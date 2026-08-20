@@ -5,8 +5,8 @@
 package DataContainers.VolunteersDataContainers;
 
 import IteratorPackage.Collection;
-import volunteermanagement.Enums.EquipmentCertifications;
-import volunteermanagement.Enums.VolunteerClassifications;
+import Enums.EquipmentCertifications;
+import Enums.VolunteerClassifications;
 
 /**
  *
@@ -16,8 +16,8 @@ public class PhysicalLaborVolunteerDataContainer extends BasicVolunteerDataConta
     private float maxCap;
     private boolean reqAccomdations;
     private Collection<EquipmentCertifications> certifiedTools;
-    public PhysicalLaborVolunteerDataContainer(String n, String id, String ph, String email,float maxCap,boolean reqAcc,Collection<EquipmentCertifications>tools) {
-        super(n, id, ph, email);
+    public PhysicalLaborVolunteerDataContainer(String id,float maxCap,boolean reqAcc,Collection<EquipmentCertifications>tools) {
+        super(id);
         this.maxCap = maxCap;
         this.reqAccomdations = reqAcc;
         this.certifiedTools = tools;

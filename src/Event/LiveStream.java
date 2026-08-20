@@ -1,6 +1,9 @@
 package Event;
 
 public class LiveStream extends EventDecorator{
+    public LiveStream(Event event){
+        this.component = event;
+    }
     public String getDescription() {
         return "Live Stream"+ component.getDescription();
 

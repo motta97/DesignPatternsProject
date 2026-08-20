@@ -4,40 +4,26 @@
  */
 package DataContainers.VolunteersDataContainers;
 
-import java.util.Map;
-import volunteermanagement.Enums.VolunteerClassifications;
+
+import Enums.*;
 
 /**
  *
  * @author abeer
  */
-public abstract class BasicVolunteerDataContainer {
-    String name;
+public abstract class BasicVolunteerDataContainer{
     String id;
-    String email;
-    String phone;
-    
-    public BasicVolunteerDataContainer(String n,String id,String ph,String email){
-        this.name = n;
-        
+    public BasicVolunteerDataContainer(String id){
         this.id = id;
-        this.email =email;
-        this.phone = ph;
+        
     }
-    public String getName(){
-        return this.name;
-    }
+    
     public String getID(){
         return this.id;
     }
-    public String getEmail(){
-        return this.email;
-    }
-    public String getPhone(){ 
-        return this.phone;
-    }
+    
     public String getContainerAsString(){
-        return getVolunteerType()+","+this.id+","+this.name+","+this.phone+","+this.email;
+        return getVolunteerType()+","+this.id;
     }
     abstract VolunteerClassifications getVolunteerType();
 }

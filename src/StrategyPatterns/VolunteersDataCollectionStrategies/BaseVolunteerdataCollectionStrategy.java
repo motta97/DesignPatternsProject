@@ -13,17 +13,18 @@ import MVC.Viewer;
  */
 public abstract class BaseVolunteerdataCollectionStrategy {
     private static Viewer viewer = Viewer.getInstance();
-    protected String name,id,email,phone;
+    protected String id;
+    
     public void InitializeBaseParamters(){
         viewer.DisplayMsg("Enter new Volunteer data: ");
         
-         name = viewer.promptForString("Name: ");
+         //name = viewer.promptForString("Name: ");
         
          id = viewer.promptForString("ID: ");
         
-         email = viewer.promptForString("Email: ");
+         //email = viewer.promptForString("Email: ");
         
-         phone = viewer.promptForString("Phone: ");
+         //phone = viewer.promptForString("Phone: ");
         
         
     };

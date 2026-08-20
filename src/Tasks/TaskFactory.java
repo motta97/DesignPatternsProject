@@ -16,8 +16,8 @@ import Tasks.Itasks;
 import Tasks.MedicalCheckUp;
 import Tasks.XRayScan;
 import java.util.Map;
-import volunteermanagement.Enums.TaskSkills;
-import volunteermanagement.Enums.TaskType;
+import Enums.TaskSkills;
+import Enums.TaskType;
 
 /**
  *

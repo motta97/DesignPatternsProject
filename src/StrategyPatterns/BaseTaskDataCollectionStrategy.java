@@ -9,7 +9,7 @@ import DataContainers.VolunteersDataContainers.BasicVolunteerDataContainer;
 import IteratorPackage.Collection;
 import IteratorPackage.Iiterator;
 import MVC.Viewer;
-import volunteermanagement.Enums.TaskSkills;
+import Enums.TaskSkills;
 
 /**
  *

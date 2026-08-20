@@ -5,9 +5,9 @@
 package Tasks;
 
 import IteratorPackage.Collection;
-import volunteermanagement.Enums.TaskType;
-import volunteermanagement.Enums.MedicalFields;
-import volunteermanagement.Enums.TaskSkills;
+import Enums.TaskType;
+import Enums.MedicalFields;
+import Enums.TaskSkills;
 /**
  *
  * @author Compuomart

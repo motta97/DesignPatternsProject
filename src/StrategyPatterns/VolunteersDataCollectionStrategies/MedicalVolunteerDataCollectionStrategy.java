@@ -10,7 +10,7 @@ import IteratorPackage.Collection;
 import IteratorPackage.Iiterator;
 import MVC.Viewer;
 import static MVC.Viewer.ChoicesDisplayer;
-import volunteermanagement.Enums.MedicalFields;
+import Enums.MedicalFields;
 
 /**
  *
@@ -38,8 +38,7 @@ public class MedicalVolunteerDataCollectionStrategy extends BaseVolunteerdataCol
         
         String expDate = viewer.promptForString("licnese expiry date: ");
         
-        MedicalVolunteerDataContainer dataContainer = new MedicalVolunteerDataContainer(name
-                ,id,email,phone,field,lic,certificationLevel,expDate,limit,certifier);
+        MedicalVolunteerDataContainer dataContainer = new MedicalVolunteerDataContainer(id,field,lic,certificationLevel,expDate,limit,certifier);
         return dataContainer;
     }
     private  MedicalFields HandleMedicalFields(){

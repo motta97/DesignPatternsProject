@@ -6,8 +6,8 @@ package DataContainers.VolunteersDataContainers;
 
 import java.time.LocalDate;
 import java.util.Map;
-import volunteermanagement.Enums.MedicalFields;
-import volunteermanagement.Enums.VolunteerClassifications;
+import Enums.MedicalFields;
+import Enums.VolunteerClassifications;
 
 /**
  *
@@ -20,9 +20,9 @@ public class MedicalVolunteerDataContainer extends BasicVolunteerDataContainer{
     private String lic;
     private LocalDate expDate;
     private int limitPerDay;
-    public MedicalVolunteerDataContainer(String n, String id, String ph, String email,MedicalFields specialization,String license, String certificationLevel,String expDate,int limitPerDay,String certifiedBy) 
+    public MedicalVolunteerDataContainer(String id,MedicalFields specialization,String license, String certificationLevel,String expDate,int limitPerDay,String certifiedBy) 
      throws IllegalArgumentException{
-        super(n, id, ph, email);
+        super(id);
         this.specialization = specialization;
         this.certificationLevel = certificationLevel;
         this.certifiedBy = certifiedBy;

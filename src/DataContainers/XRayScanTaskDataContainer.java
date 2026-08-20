@@ -5,9 +5,9 @@
 package DataContainers;
 
 import IteratorPackage.Collection;
-import volunteermanagement.Enums.MedicalDiagnosis;
-import volunteermanagement.Enums.MedicalFields;
-import volunteermanagement.Enums.TaskSkills;
+import Enums.MedicalDiagnosis;
+import Enums.MedicalFields;
+import Enums.TaskSkills;
 import volunteermanagement.Volunteer;
 
 /**
@@ -27,5 +27,9 @@ public class XRayScanTaskDataContainer extends MedicalTaskDataContainer{
     }
     public String getTargetScan(){
         return this.targetScan;
+    }
+    @Override
+    public String getContainerAsString(){
+        return super.getContainerAsString()+","+isPregnant+","+targetScan;
     }
 } 

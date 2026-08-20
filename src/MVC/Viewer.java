@@ -9,8 +9,8 @@ import DataContainers.VolunteersDataContainers.MedicalVolunteerDataContainer;
 import IteratorPackage.Collection;
 import IteratorPackage.Iiterator;
 import java.util.Scanner;
-import volunteermanagement.Enums.MedicalFields;
-import volunteermanagement.Enums.VolunteerClassifications;
+import Enums.MedicalFields;
+import Enums.VolunteerClassifications;
 
 /**
  *

@@ -10,7 +10,7 @@ import DataContainers.MedicalTaskDataContainer;
 import IteratorPackage.Collection;
 import IteratorPackage.Iiterator;
 import MVC.Viewer;
-import volunteermanagement.Enums.BloodType;
+import Enums.BloodType;
 
 /**
  *

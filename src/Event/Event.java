@@ -92,7 +92,9 @@ public abstract class Event implements Subject, Component {
     public void sendReminder(Attendant attendant){
         reminderStrategy.sendReminder(this, attendant);
     }
-
+    public String getEventDescription(){
+        return eventDescription;
+    }
     public void register(Attendant attendant){
         attendantList.add(attendant);
         registredCount++;
